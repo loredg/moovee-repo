@@ -8,6 +8,11 @@ public class DriverManagerConnectionPool {
 
 	private static List<Connection> freeDbConnections;
 	
+	private DriverManagerConnectionPool() {
+	    throw new IllegalStateException("Utility class");
+	  }
+
+	
 	static  {
 		freeDbConnections = new LinkedList<Connection>();
 		try {
