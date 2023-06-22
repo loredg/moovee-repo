@@ -83,6 +83,7 @@ public class UserDAO implements IBeanDAO<User>{
 				user.setFname(rs.getString("nome"));
 				user.setLname(rs.getString("cognome"));
 				user.setAdmin(rs.getBoolean("admin"));
+				user.setId(rs.getString("id"));
 			}
 		}finally {
 			try {
@@ -119,7 +120,7 @@ public class UserDAO implements IBeanDAO<User>{
 				user.setFname(rs.getString("nome"));
 				user.setLname(rs.getString("cognome"));
 				user.setAdmin(rs.getBoolean("admin"));
-				
+				user.setId(rs.getString("id"));
 				
 				users.add(user);
 			}
@@ -151,6 +152,7 @@ public class UserDAO implements IBeanDAO<User>{
 				user.setFname(rs.getString("nome"));
 				user.setLname(rs.getString("cognome"));
 				user.setAdmin(rs.getBoolean("admin"));
+				user.setId(rs.getString("id"));
 			}
 		}finally {
 			try {
@@ -164,4 +166,4 @@ public class UserDAO implements IBeanDAO<User>{
 		return user;
 	}
 
-}
+} 

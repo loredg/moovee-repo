@@ -90,17 +90,16 @@ public class MovieDAO implements IBeanDAO<Movie> {
 		PreparedStatement ps = null;
 		
 		Movie movie = new Movie();
-		String selectSQL = "SELECT * FROM " + TABLE_NAME + "WHERE id = ?";
 		
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
-			ps = connection.prepareStatement(selectSQL);
+			ps = connection.prepareStatement("SELECT * FROM film WHERE id = ?");
 			ps.setString(1, id);
 			
 			ResultSet rs = ps.executeQuery();
 			
-			if(rs.next()) {
-				movie.setId(rs.getInt("id"));
+			while(rs.next()) {
+				movie.setId(rs.getString("id"));
 				movie.setTitle(rs.getString("titolo"));
 				movie.setDirector(rs.getString("regista"));
 				movie.setGenre(rs.getString("genere"));
@@ -143,7 +142,7 @@ public class MovieDAO implements IBeanDAO<Movie> {
 			while(rs.next()) {
 				Movie movie = new Movie();
 				
-				movie.setId(rs.getInt("id"));
+				movie.setId(rs.getString("id"));
 				movie.setTitle(rs.getString("titolo"));
 				movie.setDirector(rs.getString("regista"));
 				movie.setGenre(rs.getString("genere"));
@@ -183,7 +182,7 @@ public class MovieDAO implements IBeanDAO<Movie> {
 			
 			while(rs.next()) {
 				Movie movie = new Movie();
-				movie.setId(rs.getInt("id"));
+				movie.setId(rs.getString("id"));
 				movie.setTitle(rs.getString("titolo"));
 				movie.setDirector(rs.getString("regista"));
 				movie.setGenre(rs.getString("genere"));

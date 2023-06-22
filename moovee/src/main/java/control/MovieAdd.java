@@ -43,7 +43,7 @@ public class MovieAdd extends HttpServlet {
 				Integer length = Integer.parseInt(request.getParameter("length"));
 				Integer release_year = Integer.parseInt(request.getParameter("release_year"));
 				Double price = Double.parseDouble(request.getParameter("price"));
-				Integer qty = Integer.parseInt(request.getParameter("price"));
+				Integer qty = Integer.parseInt(request.getParameter("qty"));
 				
 				Movie movie = new Movie();
 				movie.setTitle(title);

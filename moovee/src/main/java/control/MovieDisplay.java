@@ -30,13 +30,14 @@ public class MovieDisplay extends HttpServlet {
 			throws ServletException, IOException {
 		Collection<Movie> movies = null;
 		request.removeAttribute("movies");
+		String referer = (String) request.getAttribute("referer");
 		try {
 			movies = movieDAO.doRetrieveAll("titolo");
 		} catch (SQLException e) {
 			System.out.println("Error: " + e.getMessage());
 		}
 		request.setAttribute("movies", movies);
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/admin.jsp");
+		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(referer);
 		dispatcher.forward(request, response);
 	}
 

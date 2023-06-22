@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1" import="java.util.*,model.Movie"%>
 
 <%
+request.setAttribute("referer", "/admin.jsp");
 Collection<?> movies = (Collection<?>) request.getAttribute("movies");
 if (movies == null) {
 	request.getRequestDispatcher("./MovieDisplay").forward(request, response);
@@ -36,7 +37,7 @@ if (movies != null && movies.size() > 0) {
 
 <h3>Upload Photo</h3>
 
-<form action="http://localhost:80/moovee/UploadPoster" enctype="multipart/form-data" method="POST">
+<form action="./UploadPoster" enctype="multipart/form-data" method="POST">
 		Titolo film: <select name="id">
 <%
 	if(movies != null && movies.size() > 0) {
@@ -60,7 +61,7 @@ if (movies != null && movies.size() > 0) {
 
 <h1>ADD MOVIE</h1>
 <body>
-	<form action="http://localhost:80/moovee/MovieAdd" method="POST">
+	<form action="./MovieAdd" method="POST">
 		<input type="hidden" name="action" value="add">
 		Titolo: <input type="text" name="title" required> <br> <label
 			for="director">Regista:</label> <input type="text" name="director"
@@ -81,7 +82,7 @@ if (movies != null && movies.size() > 0) {
 	<br>
 
 	<h1>DELETE MOVIE</h1>
-	<form action="http://localhost:80/moovee/MovieDelete" method="POST">
+	<form action="./MovieDelete" method="POST">
 		<input type="hidden" name="action" value="delete"> <label
 			for="id">Inserire l'ID del film da eliminare:</label> <input
 			type="text" name="delete_id" required> <br>

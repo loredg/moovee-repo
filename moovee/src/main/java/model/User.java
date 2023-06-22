@@ -2,7 +2,7 @@ package model;
 
 public class User {
 	
-	private Integer id;
+	private String id;
 	private String username;
 	private String email;
 	private String password;
@@ -22,11 +22,11 @@ public class User {
 		this.isAdmin = false;
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return this.id;
 	}
 	
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -99,5 +99,12 @@ public class User {
 	public void setAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
 	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", email=" + email + ", password=" + password + ", fname="
+				+ fname + ", lname=" + lname + "]";
+	}
+	
 
 }

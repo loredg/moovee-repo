@@ -9,22 +9,7 @@
 </head>
 <body>
 
-<%
-
-	boolean isLogged = (boolean)session.getAttribute("isLogged");
-	if(isLogged == true) {
-		
-%>
-
-<script>
-	alert("you successfully logged in!");
-</script>
-
-<%
-	}
-%>
-
-<!-- TODO: add alert to confirm registration. Get attribute hasRegistered -->
+	<!-- TODO: add alert to confirm registration. Get attribute hasRegistered -->
 
 	<header>
 		<div id="header-div">
@@ -42,9 +27,16 @@
 					<input type="search" id="search-bar">
 					<button type="submit" class="right-buttons" id="search">Search</button>
 				</form> -->
-				<button class="right-buttons" id="cart"></button>
-				<a href="./login.jsp" class="right-buttons" id="login">Log In</a>
-				<a href="./signup.jsp" class="right-buttons" id="sign-in">Sign Up</a>
+				<a href="./cart.jsp" class="right-buttons" id="cart">Cart</a>
+				<%
+				if (session.getAttribute("isLogged") == null || (boolean) session.getAttribute("isLogged") == false) {
+				%>
+				<a href="./login.jsp" class="right-buttons" id="login">Log In</a> <a
+					href="./signup.jsp" class="right-buttons" id="sign-in">Sign Up</a>
+				<%
+				} else {
+				%>
+				<a href="./account.jsp" class="right-buttons" id="account">Account</a>
 				<!-- <div class="user-dropdown">
 					<button class="right-buttons" id="dropbtn"></button>
 					<div class="dropdown-content">
@@ -52,6 +44,9 @@
 							class="accountLinks" href="#">Sign out</a>
 					</div>
 				</div> -->
+				<%
+				}
+				%>
 			</div>
 		</div>
 	</header>
@@ -59,23 +54,53 @@
 	<h3 id="whats-new">What's new this week</h3>
 	<%
 	Collection<?> newMovies = (Collection<?>) request.getAttribute("newMovies");
-	if(newMovies == null) {
+	if (newMovies == null) {
 		request.getRequestDispatcher("./NewMovies").forward(request, response);
 		return;
 	}
-	
-	if(newMovies!= null && !newMovies.isEmpty()) {
+
+	if (newMovies != null && !newMovies.isEmpty()) {
 		Iterator<?> it = newMovies.iterator();
-		while(it.hasNext()) {
+		while (it.hasNext()) {
 			Movie movie = (Movie) it.next();
 	%>
-	
-	<div id="new-movies"><%= movie.getTitle()%>,&nbsp</div>
-	
+
+	<div id="new-movies"><%=movie.getTitle()%>,&nbsp
+	</div>
+
 	<%
-		}
+	}
 	}
 	%>
-	
+
+	<h3>CATALOGUE</h3>
+
+	<%
+	request.setAttribute("referer", "/index.jsp");
+	Collection<?> movies = (Collection<?>) request.getAttribute("movies");
+	if (movies == null) {
+		request.getRequestDispatcher("./MovieDisplay").forward(request, response);
+		return;
+	}
+	if (movies != null && movies.size() > 0) {
+		Iterator<?> it = movies.iterator();
+		while (it.hasNext()) {
+			Movie movie = (Movie) it.next();
+	%>
+
+	<div id="movie">
+		<img src="./GetPicture?id=<%=movie.getId()%>"
+			onerror="this.src='./images/noimageavailable.jpg'"
+			style="width: 150px; height: 200px" alt="movie">
+		<div id="movie-deets">
+			<%=movie.getTitle()%>
+		</div>
+	</div>
+	<%
+	}
+	}
+	%>
+
+
 </body>
 </html>
