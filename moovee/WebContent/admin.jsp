@@ -61,8 +61,7 @@ if (movies != null && movies.size() > 0) {
 <h1>ADD MOVIE</h1>
 <body>
 	<form action="http://localhost:80/moovee/MovieAdd" method="POST">
-		<input type="hidden" name="action" value="add"> <label
-			for="id">ID:</label> <input type="text" name="id" required> <br>
+		<input type="hidden" name="action" value="add">
 		Titolo: <input type="text" name="title" required> <br> <label
 			for="director">Regista:</label> <input type="text" name="director"
 			required> <br> <label for="genre">Genere:</label> <input

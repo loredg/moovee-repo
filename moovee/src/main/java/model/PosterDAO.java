@@ -124,10 +124,5 @@ public class PosterDAO implements IBeanDAO<MoviePoster>{
 		return posters;
 	}
 
-	@Override
-	public Collection<MoviePoster> doRetrieveSinceDate(LocalDate date) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

@@ -9,6 +9,23 @@
 </head>
 <body>
 
+<%
+
+	boolean isLogged = (boolean)session.getAttribute("isLogged");
+	if(isLogged == true) {
+		
+%>
+
+<script>
+	alert("you successfully logged in!");
+</script>
+
+<%
+	}
+%>
+
+<!-- TODO: add alert to confirm registration. Get attribute hasRegistered -->
+
 	<header>
 		<div id="header-div">
 			<div id="logo">
@@ -26,8 +43,8 @@
 					<button type="submit" class="right-buttons" id="search">Search</button>
 				</form> -->
 				<button class="right-buttons" id="cart"></button>
-				<button class="right-buttons" id="login">Log In</button>
-				<button class="right-buttons" id="sign-in">Sign Up</button>
+				<a href="./login.jsp" class="right-buttons" id="login">Log In</a>
+				<a href="./signup.jsp" class="right-buttons" id="sign-in">Sign Up</a>
 				<!-- <div class="user-dropdown">
 					<button class="right-buttons" id="dropbtn"></button>
 					<div class="dropdown-content">

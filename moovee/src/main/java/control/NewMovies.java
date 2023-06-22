@@ -22,7 +22,7 @@ import model.MovieDAO;
 public class NewMovies extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	IBeanDAO<Movie> movieDAO = new MovieDAO();
+	MovieDAO movieDAO = new MovieDAO();
 	
     public NewMovies() {
         super();

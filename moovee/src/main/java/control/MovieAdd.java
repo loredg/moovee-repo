@@ -37,7 +37,6 @@ public class MovieAdd extends HttpServlet {
 		
 		try {
 			if(action != null && action.equals("add")) {
-				String id = request.getParameter("id");
 				String title = request.getParameter("title");
 				String director = request.getParameter("director");
 				String genre = request.getParameter("genre");
@@ -47,7 +46,6 @@ public class MovieAdd extends HttpServlet {
 				Integer qty = Integer.parseInt(request.getParameter("price"));
 				
 				Movie movie = new Movie();
-				movie.setId(id);
 				movie.setTitle(title);
 				movie.setDirector(director);
 				movie.setGenre(genre);

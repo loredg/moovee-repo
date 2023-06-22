@@ -19,14 +19,13 @@ public class UserDAO implements IBeanDAO<User>{
 	public void doSave(User bean) throws SQLException {
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
-			ps = connection.prepareStatement("INSERT INTO account(username, email, password, nome, cognome, indirizzo, admin) VALUES(?, ?, ?, ?, ?, ?, ?)");
+			ps = connection.prepareStatement("INSERT INTO account(username, email, password, nome, cognome, admin) VALUES(?, ?, ?, ?, ?, ?)");
 			ps.setString(1, bean.getUsername());
 			ps.setString(2, bean.getEmail());
 			ps.setString(3, bean.getPassword());
 			ps.setString(4, bean.getFname());
 			ps.setString(5, bean.getLname());
-			ps.setString(6, bean.getAddress());
-			ps.setBoolean(7, bean.isAdmin());
+			ps.setBoolean(6, bean.isAdmin());
 			
 			ps.executeUpdate();
 			connection.commit();
@@ -74,7 +73,7 @@ public class UserDAO implements IBeanDAO<User>{
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 			ps = connection.prepareStatement("SELECT * FROM account WHERE username = ?");
-			
+			ps.setString(1, username);
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
@@ -83,7 +82,6 @@ public class UserDAO implements IBeanDAO<User>{
 				user.setPassword(rs.getString("password"));
 				user.setFname(rs.getString("nome"));
 				user.setLname(rs.getString("cognome"));
-				user.setAddress(rs.getString("indirizzo"));
 				user.setAdmin(rs.getBoolean("admin"));
 			}
 		}finally {
@@ -101,7 +99,7 @@ public class UserDAO implements IBeanDAO<User>{
 	@Override
 	public Collection<User> doRetrieveAll(String order) throws SQLException {
 		Collection<User> users = new LinkedList<User>();
-		String selectSQL = "SELECT * FROM acccount";
+		String selectSQL = "SELECT * FROM account";
 		
 		if(order != null && order.equals("")) {
 			selectSQL += "ORDER BY " + order;
@@ -120,7 +118,6 @@ public class UserDAO implements IBeanDAO<User>{
 				user.setPassword(rs.getString("password"));
 				user.setFname(rs.getString("nome"));
 				user.setLname(rs.getString("cognome"));
-				user.setAddress(rs.getString("indirizzo"));
 				user.setAdmin(rs.getBoolean("admin"));
 				
 				
@@ -138,9 +135,33 @@ public class UserDAO implements IBeanDAO<User>{
 		return users;
 	}
 
-	@Override
-	public Collection<User> doRetrieveSinceDate(LocalDate date) throws SQLException {
-		return null;
+	public User doRetrieveByEmail(String email) throws SQLException {
+		User user = new User();
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			ps = connection.prepareStatement("SELECT * FROM account WHERE email = ?");
+			ps.setString(1, email);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				user.setUsername(rs.getString("username"));
+				user.setEmail(rs.getString("email"));
+				user.setPassword(rs.getString("password"));
+				user.setFname(rs.getString("nome"));
+				user.setLname(rs.getString("cognome"));
+				user.setAdmin(rs.getBoolean("admin"));
+			}
+		}finally {
+			try {
+				if(ps != null) {
+					ps.close();
+				}
+			}finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		return user;
 	}
 
 }

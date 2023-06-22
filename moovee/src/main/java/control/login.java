@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.IBeanDAO;
+import model.PasswordHashing;
 import model.User;
 import model.UserDAO;
 
@@ -26,7 +27,7 @@ import model.UserDAO;
 public class login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	static IBeanDAO<?> userDAO = new UserDAO();
+	static UserDAO userDAO = new UserDAO();
    
     public login() {
         super();
@@ -40,7 +41,7 @@ public class login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		String hashPassword = toHash(password);
+		String hashPassword = PasswordHashing.toHash(password);
 		User toMatch = null;
 		RequestDispatcher dispatcherToLoginPage = request.getRequestDispatcher("/login");
 		RequestDispatcher dispatcherToIndex = request.getRequestDispatcher("/index.jsp");
@@ -48,7 +49,7 @@ public class login extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		try {
-			toMatch = (User) userDAO.doRetrieveByKey(email);
+			toMatch = (User) userDAO.doRetrieveByEmail(email);
 		} catch (SQLException e) {
 			System.out.println("Error: " + e.getMessage());
 		}
@@ -73,21 +74,6 @@ public class login extends HttpServlet {
 		dispatcherToIndex.forward(request, response);
 	}
 
-	private String toHash(String password) {
-		String hashString = null;
-		try {
-			java.security.MessageDigest digest = java.security.MessageDigest.getInstance("SHA-512");
-			byte[] hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
-			hashString = "";
-			for(int i = 0; i < hash.length; i++) {
-				hashString += Integer.toHexString((hash[i] & 0xFF) | 0x100).toLowerCase().substring(1, 3);
-			}
-		}catch(java.security.NoSuchAlgorithmException e) {
-			System.out.println("ERROR: " + e.getMessage());
-		}
-		
-		return hashString;
-	}
 	
 }
 

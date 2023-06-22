@@ -4,7 +4,7 @@ import org.joda.time.LocalDate;
 
 public class Movie {
 	
-	private String id;
+	private Integer id;
 	private String title;
 	private String director;
 	private String genre;
@@ -15,10 +15,10 @@ public class Movie {
 	private LocalDate addDate;
 	
 	public Movie() {
-		this.id = "";
-		this.title = "";
-		this.director = "";
-		this.genre = "";
+		this.id = null;
+		this.title = null;
+		this.director = null;
+		this.genre = null;
 		this.length = 0;
 		this.releaseYear = 0;
 		this.price = 0.0;
@@ -82,11 +82,11 @@ public class Movie {
 		this.genre = genre;
 	}
 	
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 	
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 	

@@ -24,21 +24,20 @@ public class MovieDAO implements IBeanDAO<Movie> {
 		java.sql.Date sqlDate = new java.sql.Date(today.toDateTimeAtStartOfDay(jodaTzUTC).getMillis());
 
 		String insertSQL = "INSERT INTO " + TABLE_NAME
-				+ "(id, regista, genere, anno_uscita, durata_min, prezzo, qta, titolo, data_aggiunta) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ "(regista, genere, anno_uscita, durata_min, prezzo, qta, titolo, data_aggiunta) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 			ps = connection.prepareStatement(insertSQL);
 			
-			ps.setString(1, movie.getId());
-			ps.setString(8, movie.getTitle());
-			ps.setString(2, movie.getDirector());
-			ps.setString(3, movie.getGenre());
-			ps.setInt(4, movie.getLength());
-			ps.setInt(5, movie.getReleaseYear());
-			ps.setDouble(6, movie.getPrice());
-			ps.setInt(7, movie.getQty());
-			ps.setDate(9, sqlDate);
+			ps.setString(7, movie.getTitle());
+			ps.setString(1, movie.getDirector());
+			ps.setString(2, movie.getGenre());
+			ps.setInt(3, movie.getLength());
+			ps.setInt(4, movie.getReleaseYear());
+			ps.setDouble(5, movie.getPrice());
+			ps.setInt(6, movie.getQty());
+			ps.setDate(8, sqlDate);
 			
 			ps.executeUpdate();
 			connection.commit();
@@ -101,7 +100,7 @@ public class MovieDAO implements IBeanDAO<Movie> {
 			ResultSet rs = ps.executeQuery();
 			
 			if(rs.next()) {
-				movie.setId(rs.getString("id"));
+				movie.setId(rs.getInt("id"));
 				movie.setTitle(rs.getString("titolo"));
 				movie.setDirector(rs.getString("regista"));
 				movie.setGenre(rs.getString("genere"));
@@ -144,7 +143,7 @@ public class MovieDAO implements IBeanDAO<Movie> {
 			while(rs.next()) {
 				Movie movie = new Movie();
 				
-				movie.setId(rs.getString("id"));
+				movie.setId(rs.getInt("id"));
 				movie.setTitle(rs.getString("titolo"));
 				movie.setDirector(rs.getString("regista"));
 				movie.setGenre(rs.getString("genere"));
@@ -168,8 +167,8 @@ public class MovieDAO implements IBeanDAO<Movie> {
 		return movies;
 	}
 
-	@Override
-	public Collection<Movie> doRetrieveSinceDate(LocalDate date) throws SQLException {
+
+	public synchronized Collection<Movie> doRetrieveSinceDate(LocalDate date) throws SQLException {
 		Collection<Movie> movies = new LinkedList<Movie>();
 		Connection connection = null;
 		PreparedStatement ps = null;
@@ -184,7 +183,7 @@ public class MovieDAO implements IBeanDAO<Movie> {
 			
 			while(rs.next()) {
 				Movie movie = new Movie();
-				movie.setId(rs.getString("id"));
+				movie.setId(rs.getInt("id"));
 				movie.setTitle(rs.getString("titolo"));
 				movie.setDirector(rs.getString("regista"));
 				movie.setGenre(rs.getString("genere"));

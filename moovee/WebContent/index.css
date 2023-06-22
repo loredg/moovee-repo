@@ -64,17 +64,21 @@ header {
 	margin: 0 auto;
 }
 
+
+
 .right-buttons {
-	text-indent: -999999px;
 	height: 40px;
 	width: 40px;
 	border-radius: 15px;
 	border: none;
 	background: transparent;
 	cursor: pointer;
+	color: inherit;
+	font-size: 18px;
 }
 
 #cart {
+	text-indent: -999999999px;
 	background: url(images/shopping-cart.svg) no-repeat center;
 }
 

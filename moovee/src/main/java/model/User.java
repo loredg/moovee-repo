@@ -2,30 +2,36 @@ package model;
 
 public class User {
 	
+	private Integer id;
 	private String username;
 	private String email;
 	private String password;
 	private String fname;
 	private String lname;
-	private String address;
 	private boolean isAdmin;
 	
 	
 	
 	public User() {
+		this.id = null;
 		this.username = null;
 		this.email= null;
 		this.password = null;
 		this.fname= null;
 		this.lname = null;
-		this.address = null;
 		this.isAdmin = false;
 	}
 
-
+	public Integer getId() {
+		return this.id;
+	}
+	
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getUsername() {
-		return username;
+		return this.username;
 	}
 
 
@@ -80,18 +86,6 @@ public class User {
 
 	public void setLname(String lname) {
 		this.lname = lname;
-	}
-
-
-
-	public String getAddress() {
-		return address;
-	}
-
-
-
-	public void setAddress(String address) {
-		this.address = address;
 	}
 
 

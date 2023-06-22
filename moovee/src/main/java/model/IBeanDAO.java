@@ -15,5 +15,4 @@ public interface IBeanDAO<T> {
 
 	public Collection<T> doRetrieveAll(String order) throws SQLException;
 	
-	public Collection<T> doRetrieveSinceDate(LocalDate date) throws SQLException;
 }
