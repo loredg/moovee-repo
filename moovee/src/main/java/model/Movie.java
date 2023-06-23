@@ -1,5 +1,7 @@
 package model;
 
+import java.io.InputStream;
+
 import org.joda.time.LocalDate;
 
 public class Movie {
@@ -13,6 +15,8 @@ public class Movie {
 	private Double price;
 	private Integer qty;
 	private LocalDate addDate;
+	private InputStream posterStream;
+	private byte[] posterBytes;
 	
 	public Movie() {
 		this.id = null;
@@ -24,6 +28,8 @@ public class Movie {
 		this.price = 0.0;
 		this.qty = 0;
 		this.addDate = null;
+		this.posterStream = null;
+		this.posterBytes = null;
 	}
 	
 	public String getTitle() {
@@ -96,6 +102,22 @@ public class Movie {
 	
 	public void setAddDate(LocalDate date) {
 		this.addDate = date;
+	}
+	
+	public InputStream getPosterStream() {
+		return posterStream;
+	}
+
+	public void setPosterStream(InputStream posterStream) {
+		this.posterStream = posterStream;
+	}
+
+	public byte[] getPosterBytes() {
+		return posterBytes;
+	}
+
+	public void setPosterBytes(byte[] posterBytes) {
+		this.posterBytes = posterBytes;
 	}
 	@Override
 	public String toString() {

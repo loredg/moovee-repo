@@ -7,10 +7,12 @@ import java.util.Collection;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import org.joda.time.LocalDate;
 
@@ -18,9 +20,9 @@ import model.IBeanDAO;
 import model.Movie;
 import model.MovieDAO;
 
-/**
- * Servlet implementation class MovieControl
- */
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
+maxFileSize = 1024 * 1024 * 10, // 10MB
+maxRequestSize = 1024 * 1024 * 50) // 50MB
 @WebServlet("/MovieAdd")
 public class MovieAdd extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -53,6 +55,13 @@ public class MovieAdd extends HttpServlet {
 				movie.setReleaseYear(release_year);
 				movie.setPrice(price);
 				movie.setQty(qty);
+				
+				for(Part part : request.getParts()) {
+					String filename = part.getSubmittedFileName();
+					if(filename != null && !filename.equals("")) {
+						movie.setPosterStream(part.getInputStream());
+					}
+				}
 				
 				movieDAO.doSave(movie);
 			}

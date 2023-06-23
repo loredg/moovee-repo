@@ -35,7 +35,7 @@ if (movies != null && movies.size() > 0) {
 	}
 %>
 
-<h3>Upload Photo</h3>
+<%-- <h3>Upload Photo</h3>
 
 <form action="./UploadPoster" enctype="multipart/form-data" method="POST">
 		Titolo film: <select name="id">
@@ -76,6 +76,29 @@ if (movies != null && movies.size() > 0) {
 			name="qty" required> <br> Disponibile come: <br>
 		Blu ray: <input type="checkbox" name="blurayorDVD" value="Blu ray">
 		<br> DVD:<input type="checkbox" name="blurayorDVD" value="DVD"><br>
+		<button type="submit">Aggiungi</button>
+		<button type="reset">Azzera</button>
+	</form>
+	<br> --%>
+	
+	<h1>ADD MOVIE</h1>
+<body>
+	<form action="./MovieAdd" enctype="multipart/form-data" method="POST">
+		<input type="hidden" name="action" value="add">
+		Titolo: <input type="text" name="title" required> <br> <label
+			for="director">Regista:</label> <input type="text" name="director"
+			required> <br> <label for="genre">Genere:</label> <input
+			type="text" name="genre" required> <br> <label
+			for="length">Durata in minuti:</label> <input type="number"
+			name="length" required> <br> <label for="release_year">Anno
+			di pubblicazione:</label> <input type="number" name="release_year" required>
+		<br> <label for="price">Prezzo di vendita:</label> <input
+			type="number" name="price" required> <br> <label
+			for="qty">Copie disponibili alla vendita:</label> <input type="text"
+			name="qty" required> <br> Disponibile come: <br>
+		Blu ray: <input type="checkbox" name="blurayorDVD" value="Blu ray">
+		<br> DVD:<input type="checkbox" name="blurayorDVD" value="DVD"><br>
+		Copertina: <input type="file" name="poster">
 		<button type="submit">Aggiungi</button>
 		<button type="reset">Azzera</button>
 	</form>

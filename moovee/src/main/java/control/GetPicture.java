@@ -12,14 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.IBeanDAO;
-import model.MoviePoster;
-import model.PosterDAO;
+import model.Movie;
+import model.MovieDAO;
 
 @WebServlet("/GetPicture")
 public class GetPicture extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	IBeanDAO<MoviePoster> movieDAO = new PosterDAO();
+	IBeanDAO<Movie> movieDAO = new MovieDAO();
        
 
     public GetPicture() {
