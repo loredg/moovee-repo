@@ -41,8 +41,6 @@ public class signup extends HttpServlet {
 		List<String> errors = new ArrayList<>();
 		String username = request.getParameter("username");
 		RequestDispatcher dispatcherToSignUpPage = request.getServletContext().getRequestDispatcher("/signup.jsp");
-		RequestDispatcher dispatcherToIndex = request.getServletContext().getRequestDispatcher("/index.jsp");
-		RequestDispatcher dispatcherToLogInPage = request.getServletContext().getRequestDispatcher("/login.jsp");
 		List<User> users = null;
 		HttpSession session = request.getSession();
 		String email = request.getParameter("email");
@@ -68,7 +66,7 @@ public class signup extends HttpServlet {
 				if (u.getEmail().equals(email)) {
 					errors.add("This email is already linked to an existing account. Please log in.");
 					request.setAttribute("errors", errors);
-					dispatcherToLogInPage.forward(request, response);
+					response.sendRedirect("/login.jsp");
 					return;
 				}
 			}
@@ -91,7 +89,7 @@ public class signup extends HttpServlet {
 
 		session.setAttribute("hasLogged", true);
 		session.setAttribute("isLogged", true);
-		dispatcherToIndex.forward(request, response);
+		response.sendRedirect("./index.jsp");
 	}
 
 }

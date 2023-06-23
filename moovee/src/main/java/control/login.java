@@ -26,54 +26,59 @@ import model.UserDAO;
 @WebServlet("/login")
 public class login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	static UserDAO userDAO = new UserDAO();
-   
-    public login() {
-        super();
-    }
+
+	public login() {
+		super();
+	}
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doPost(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String email = request.getParameter("email");
-		String password = request.getParameter("password");
-		String hashPassword = PasswordHashing.toHash(password);
+		String password = PasswordHashing.toHash(request.getParameter("password"));
 		User toMatch = null;
-		RequestDispatcher dispatcherToLoginPage = request.getRequestDispatcher("/login");
-		RequestDispatcher dispatcherToIndex = request.getRequestDispatcher("/index.jsp");
-		List<String> errors = new ArrayList<>();		
+		RequestDispatcher dispatcherToLoginPage = request.getServletContext().getRequestDispatcher("/login.jsp");
+		List<String> errors = new ArrayList<>();
 		HttpSession session = request.getSession();
-		
+
 		try {
 			toMatch = (User) userDAO.doRetrieveByEmail(email);
 		} catch (SQLException e) {
 			System.out.println("Error: " + e.getMessage());
 		}
 		
-		if(toMatch.getUsername() == null) {
-			 errors.add("Controllare l'email");
-			 session.setAttribute("isLogged", false);
-		}
-		
-		if(!toMatch.getPassword().equals(hashPassword)) {
-			errors.add("La password e' errata");
+		if(toMatch == null || toMatch.getEmail() == null) {
+			errors.add("This email is not registered. Please check for mistakes, or sign up if you don't have an account.");
 			session.setAttribute("isLogged", false);
-		}
-		
-		if(!errors.isEmpty()) {
 			request.setAttribute("errors", errors);
 			dispatcherToLoginPage.forward(request, response);
 			return;
+		}else {
+			if(!toMatch.getPassword().equals(password)) {
+				errors.add("The password is wrong. Please retry.");
+				session.setAttribute("isLogged", false);
+				request.setAttribute("errors", errors);
+				dispatcherToLoginPage.forward(request, response);
+				return;
+			}
 		}
 
 		session.setAttribute("isLogged", true);
-		dispatcherToIndex.forward(request, response);
+
+		if (toMatch.isAdmin() == true) {
+			session.setAttribute("isAdmin", true);
+			response.sendRedirect("./admin/admin.jsp");
+			return;
+		}
+
+		response.sendRedirect("./index.jsp");
 	}
 
-	
 }
-

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -60,6 +61,7 @@ public class MovieDAO implements IBeanDAO<Movie> {
 	public synchronized boolean doDelete(String id) throws SQLException {
 		Connection connection = null;
 		PreparedStatement ps = null;
+		ResultSet rs = null;
 		
 		int result = 0;
 		

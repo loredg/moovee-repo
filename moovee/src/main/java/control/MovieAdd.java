@@ -1,7 +1,6 @@
 package control;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.Collection;
 
@@ -13,8 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-
-import org.joda.time.LocalDate;
 
 import model.IBeanDAO;
 import model.Movie;
@@ -72,7 +69,7 @@ public class MovieAdd extends HttpServlet {
 			System.out.println("Error: " + e.getMessage());
 		}
 		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/admin.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/admin/admin.jsp");
 		dispatcher.forward(request, response);
 	}
 

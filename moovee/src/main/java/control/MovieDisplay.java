@@ -37,7 +37,7 @@ public class MovieDisplay extends HttpServlet {
 			System.out.println("Error: " + e.getMessage());
 		}
 		request.setAttribute("movies", movies);
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher(referer);
+		RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher(referer);
 		dispatcher.forward(request, response);
 	}
 
