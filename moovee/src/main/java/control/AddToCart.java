@@ -44,9 +44,16 @@ public class AddToCart extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("addToCart");
-		Cart cart = new Cart();
+		Cart cart = null;
 		Movie toAdd = null;
 		HttpSession session = request.getSession();
+		if(session.getAttribute("cart") == null) {
+			cart = new Cart();
+		}
+		else {
+			cart = (Cart)session.getAttribute("cart");
+		}
+		
 		try {
 			toAdd = movieDAO.doRetrieveByKey(id);
 		} catch (SQLException e) {

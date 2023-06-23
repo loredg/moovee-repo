@@ -15,7 +15,7 @@
 		<div id="header-div">
 			<div id="logo">
 				<a href="./index.jsp" id="logo"><img id="header-logo"
-					src="images/moovee-cropped-light.png"></a>
+					src="images/moovee-cropped-light.png" alt="moovee logo"></a>
 			</div>
 			<div class="header-center">
 				<a id="home" class="nav-buttons" href="home">Home</a> <a id="about"
@@ -93,7 +93,11 @@
 			onerror="this.src='./images/noimageavailable.jpg'"
 			style="width: 150px; height: 200px" alt="movie">
 		<div id="movie-deets">
-			<%=movie.getTitle()%>
+			<label id="movie-title"><%=movie.getTitle()%></label> <br>
+			<form action="./AddToCart" method="post">
+				<input type="hidden" value="<%=movie.getId()%>" name="addToCart">
+				<button type="submit">Add to cart</button>
+			</form>
 		</div>
 	</div>
 	<%

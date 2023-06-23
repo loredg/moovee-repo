@@ -27,7 +27,7 @@ if (movies != null && movies.size() > 0) {
 %>
 
 <img src="./GetPicture?id=<%=movie.getId()%>"
-	onerror="this.src='./images/noimageavailable.jpg'" style="width:100px;height:200px">
+	onerror="this.src='./images/noimageavailable.jpg'" style="width:100px;height:200px" alt="picture not available.">
 <%=movie.getTitle()%>
 <br>
 <%

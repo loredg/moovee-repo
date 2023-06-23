@@ -6,14 +6,14 @@ import java.util.List;
 
 public class Cart {
 	
-	private List<Movie> movies = new ArrayList<>();
+	private List<Movie> movies;
 	private Integer numberOfMovies;
-	private Double totalPrice;
+	private Double totalAmount;
 	
 	public Cart() {
-		this.movies = null;
-		this.numberOfMovies = null;
-		this.totalPrice = null;
+		this.movies = new ArrayList<>();
+		this.numberOfMovies = 0;
+		this.totalAmount = 0.0;
 	}
 
 	public List<Movie> getMovies() {
@@ -25,27 +25,35 @@ public class Cart {
 	}
 
 	public Integer getNumberOfMovies() {
-		return numberOfMovies;
+		return this.movies.size();
 	}
 
 	public void setNumberOfMovies(Integer numberOfMovies) {
 		this.numberOfMovies = numberOfMovies;
 	}
 
-	public Double getTotalPrice() {
+	public Double getTotalAmount() {
+		Double totalPrice = 0.0;
+		for(Movie m : movies) {
+			totalPrice += m.getPrice();
+		}
 		return totalPrice;
 	}
 
 	public void setTotalPrice(Double totalPrice) {
-		this.totalPrice = totalPrice;
+		this.totalAmount = totalPrice;
 	}
 	
 	public void addToCart(Movie movie) {
 		this.movies.add(movie);
+		setNumberOfMovies(getNumberOfMovies());
+		setTotalPrice(getTotalAmount());
 	}
 	
 	public void removeFromCart(Movie movie) {
 		this.movies.removeIf(m -> m.getId().equals(movie.getId()));
+		setNumberOfMovies(getNumberOfMovies());
+		setTotalPrice(getTotalAmount());
 	}
 
 }

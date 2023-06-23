@@ -8,12 +8,16 @@ public class test {
 	public static void main(String args[]) throws SQLException {
 	
 	MovieDAO movieDAO = new MovieDAO();
-	List<Movie> movies =  (List<Movie>)movieDAO.doRetrieveAll("titolo");
-	System.out.println(movies);
-	Movie a = new Movie();
-	a.setId("1");
-	movies.removeIf(m -> m.getId().equals(a.getId()));
-	System.out.println(movies);
+	Cart cart = new Cart();
+	cart.setMovies((List<Movie>)movieDAO.doRetrieveAll("titolo"));
+	
+	Movie m = movieDAO.doRetrieveByKey("1");
+	cart.removeFromCart(m);
+	
+	
+	System.out.println(cart.getMovies());
+	System.out.println(cart.getNumberOfMovies());
+	System.out.println(cart.getTotalAmount());
 	
 	}
 }
