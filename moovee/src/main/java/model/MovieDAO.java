@@ -14,7 +14,7 @@ import org.joda.time.DateTimeZone;
 public class MovieDAO implements IBeanDAO<Movie> {
 
 	private static final String TABLE_NAME = "film";
-	private final DateTimeZone jodaTzUTC = DateTimeZone.forID("UTC");
+	final DateTimeZone jodaTzUTC = DateTimeZone.forID("UTC");
 
 	@Override
 	public synchronized void doSave(Movie movie) throws SQLException {
