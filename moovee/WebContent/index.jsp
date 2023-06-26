@@ -29,7 +29,8 @@
 				</form> -->
 				<a href="./cart.jsp" class="right-buttons" id="cart">Cart</a>
 				<%
-				if (session.getAttribute("isLogged") == null || (boolean) session.getAttribute("isLogged") == false) {
+				Boolean isLogged = (Boolean)session.getAttribute("isLogged");
+				if (isLogged == null || isLogged == false) {
 				%>
 				<a href="./login.jsp" class="right-buttons" id="login">Log In</a> <a
 					href="./signup.jsp" class="right-buttons" id="sign-in">Sign Up</a>

@@ -14,7 +14,7 @@ if (movies == null) {
 <html lang="eng">
 <head>
 <meta charset="ISO-8859-1">
-<link ref="admin.css" type="text/css" rel="stylesheet"/>
+<link href="admin.css" type="text/css" rel="stylesheet"/>
 <title>Admin</title>
 </head>
 
@@ -39,7 +39,7 @@ if (movies != null && movies.size() > 0) {
 %>
 
 <h1>ADD MOVIE</h1>
-	<form action="./MovieAdd" enctype="multipart/form-data" method="POST">
+	<form action="../MovieAdd" enctype="multipart/form-data" method="POST">
 		<input type="hidden" name="action" value="add">
 		Titolo: <input type="text" name="title" required> <br> <label
 			for="director">Regista:</label> <input type="text" name="director"
@@ -61,7 +61,7 @@ if (movies != null && movies.size() > 0) {
 	<br>
 
 	<h1>DELETE MOVIE</h1>
-	<form action="./MovieDelete" method="POST">
+	<form action="../MovieDelete" method="POST">
 		<input type="hidden" name="action" value="delete"> <label
 			for="id">Inserire l'ID del film da eliminare:</label> <input
 			type="text" name="delete_id" required> <br>

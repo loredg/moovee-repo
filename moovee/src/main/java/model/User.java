@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
 	
 	private String id;
@@ -9,7 +12,8 @@ public class User {
 	private String fname;
 	private String lname;
 	private boolean isAdmin;
-	
+	private List<Address> addresses = new ArrayList<>();
+
 	
 	
 	public User() {
@@ -20,6 +24,7 @@ public class User {
 		this.fname= null;
 		this.lname = null;
 		this.isAdmin = false;
+		this.addresses = null;
 	}
 
 	public String getId() {
@@ -98,6 +103,14 @@ public class User {
 
 	public void setAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
+	}
+	
+	public List<Address> getAddresses() {
+		return this.addresses;
+	}
+	
+	public void addAddress(Address address) {
+		addresses.add(address);
 	}
 
 	@Override

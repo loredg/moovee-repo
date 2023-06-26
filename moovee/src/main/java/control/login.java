@@ -71,6 +71,7 @@ public class login extends HttpServlet {
 		}
 
 		session.setAttribute("isLogged", true);
+		session.setAttribute("activeUser", toMatch);
 
 		if (toMatch.isAdmin() == true) {
 			session.setAttribute("isAdmin", true);

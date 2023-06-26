@@ -41,7 +41,8 @@
 	%>
 	<br>
 	Your total is:
-	<%=cart.getTotalAmount()%>
+	<%=cart.getTotalAmount()%> <br>
+	<a id="checkout" href="checkout.jsp">Proceed to checkout</a>
 
 	<%
 	}
