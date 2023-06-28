@@ -21,21 +21,37 @@
 	if (user.getAddresses() == null) {
 	%>
 
-	Seems like you don't have any addresses registered. 
-	<form action="./AddressAdd" method="post">
-		<input type="hidden" name="id" value="<%=user.getId()%>">
-		Address: <input type="text" name="address"> <br>
-		Zip code: <input type="text" name="zipCode"> <br>
-		Town: <input type="text" name="town"> <br>
-		Province: <input type="text" name="province"> <br>
-		Region: <input type="text" name="region"> <br>
-		State: <input type="text" name="state"> <br>
-		<button type="submit"></button> <button type="reset"></button> <br>
+	<p>Seems like you don't have any addresses registered.</p>
+	<form>
+	<br> Zip code:
+	<input type="text" name="zipCode">
+	<br> Town:
+	<input type="text" name="town">
+	<br> Province:
+	<input type="text" name="province
+	">
+	<br> Region:
+	<input type="text" name="region">
+	<br> State:
+	<input type="text" name="state">
+	<br>
+	<button type="submit"></button>
+	<button type="reset"></button>
+	<br>
 	</form>
 
 	<%
 	} else {
-
+		List<Address> addresses = user.getAddresses();
+		for(Address a : user.getAddresses()) {
+		%>
+	<p>Please select the address you would like your order sent to:</p>
+	<form action="./payment" method="post">
+		<input type="radio" class="address-radio-button"
+			value="<%=a.getAddressId()%>"><%=a.getAddress()%><br>
+		<button type="submit">Proceed to payment</button>
+	</form>
+	<%
 	}
 	}
 	%>

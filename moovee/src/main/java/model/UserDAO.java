@@ -66,14 +66,14 @@ public class UserDAO implements IBeanDAO<User>{
 	}
 
 	@Override
-	public User doRetrieveByKey(String username) throws SQLException {
+	public User doRetrieveByKey(String id) throws SQLException {
 		
 		User user = new User();
 		
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
-			ps = connection.prepareStatement("SELECT * FROM account WHERE username = ?");
-			ps.setString(1, username);
+			ps = connection.prepareStatement("SELECT * FROM account WHERE id = ?");
+			ps.setString(1, id);
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {

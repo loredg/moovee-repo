@@ -33,6 +33,8 @@ public class OrderDAO implements IBeanDAO<Order>{
 			ps.setString(3, order.getUserId());
 			ps.executeUpdate();
 			
+			
+			//TODO: replace below with DAO
 			for(Movie m : order.getMovies()) {
 				ps2 = connection.prepareStatement("INSERT INTO composto_da(idAccount, idFilm) VALUES(?, ?)");
 				ps2.setString(1, order.getUserId());
@@ -50,6 +52,10 @@ public class OrderDAO implements IBeanDAO<Order>{
 			}
 
 		}
+		
+		UserDAO userDAO = new UserDAO();
+		User user = userDAO.doRetrieveByKey(order.getUserId());
+		user.addOrder(order);
 		
 	}
 

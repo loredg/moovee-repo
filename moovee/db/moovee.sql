@@ -3,54 +3,64 @@ use moovee;
 
 create table Account 
 (
-username varchar(20) primary key not null,
-email varchar(30) not null,
-password char(64) not null,
-nome varchar(20) not null,
+id int primary key not null AUTO_INCREMENT,
+username varchar(20) UNIQUE not null,
+email varchar(30) UNIQUE not null,
+password char(128) not null,
+nome varchar(30) not null,
 cognome varchar(30) not null,
-indirizzo varchar(50),
 admin boolean default false
 );
 
 create table Ordine
 (
-id char(9) primary key not null,
+id int primary key not null AUTO_INCREMENT,
 totale integer not null,
 data date not null
+idAccount int not null,
+foreign key(idAccount) references Account(id) on update cascade on delete cascade
 );
 
 create table Film
 (
-id char(9) primary key not null,
+id int primary key not null,
 regista varchar(40) not null,
 genere varchar(20) not null,
-data_uscita date not null,
+anno_uscita int not null,
 durata_min integer not null,
-prezzo integer not null,
+prezzo double not null,
 qta integer not null
-titolo varchar(30) not null,
-copertina mediumblob default null;
+titolo varchar(50) not null,
+copertina longblob default null
+data_aggiunta date not null
 );
 
-create table Bluray 
-(
-id char(9) not null,
-primary key(id),
-foreign key(id) references Film(id) on update cascade on delete cascade
-);
-
-create table DVD 
-(
-id char(9) not null,
-primary key(id),
-foreign key(id) references Film(id) on update cascade on delete cascade
-);
 
 create table Composto_Da 
 (
-idFilm char(9) not null,
-idOrdine char(9) not null,
+idFilm int not null,
+idOrdine int not null,
 primary key (idFilm, idOrdine),
-foreign key (idFilm) references Film(id),
+foreign key (idFilm) references Film(id) on update cascade on delete set null,
 foreign key (idOrdine) references Ordine(id) on update cascade on delete cascade
+);
+
+create table CartaDiPagamento (
+numero varchar(16) primary key not null,
+scadenza date not null,
+cvc varchar(3) not null,
+idAccount int not null,
+foreign key(idAcoount) references Account(id)
+);
+
+create table indirizzo (
+id int primary key not null AUTO_INCREMENT,
+via varchar(40) not null,
+cap varchar(12) not null,
+citta varchar(30) not null,
+provincia varchar(30) not null,
+regione varchar(30) not null,
+stato varchar(30) not null,
+idAccount int not null,
+foreign key(idAccount) references Account(id)
 );

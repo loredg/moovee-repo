@@ -13,7 +13,8 @@ public class User {
 	private String lname;
 	private boolean isAdmin;
 	private List<Address> addresses = new ArrayList<>();
-
+	private List<Order> orders = new ArrayList<>();
+	private List<CreditCard> cards = new ArrayList<>();
 	
 	
 	public User() {
@@ -25,6 +26,8 @@ public class User {
 		this.lname = null;
 		this.isAdmin = false;
 		this.addresses = null;
+		this.orders = null;
+		this.cards = null;
 	}
 
 	public String getId() {
@@ -109,6 +112,10 @@ public class User {
 		return this.addresses;
 	}
 	
+	public void removeAddress(Address address) {
+		this.addresses.removeIf(a -> a.getAddressId().equals(address.getAddressId()));
+	}
+	
 	public void addAddress(Address address) {
 		addresses.add(address);
 	}
@@ -118,6 +125,36 @@ public class User {
 		return "User [id=" + id + ", username=" + username + ", email=" + email + ", password=" + password + ", fname="
 				+ fname + ", lname=" + lname + "]";
 	}
-	
 
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+	
+	public void addOrder(Order order) {
+		this.orders.add(order);
+	}
+	
+	public void removeOrder(Order order) {
+		this.orders.removeIf(o -> o.getOrderId().equals(order.getOrderId()));
+	}
+
+	public List<CreditCard> getCards() {
+		return cards;
+	}
+
+	public void setCards(List<CreditCard> cards) {
+		this.cards = cards;
+	}
+	
+	public void addCard(CreditCard card) {
+		cards.add(card);
+	}
+	
+	public void removeCard(CreditCard card) {
+		this.cards.removeIf(c -> c.getNumber().equals(card.getNumber()));
+	}
 }

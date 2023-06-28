@@ -13,9 +13,7 @@ import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet Filter implementation class AccessControlFilter
- */
+
 @WebFilter(filterName = "/AccessControlFilter", urlPatterns = "/*")
 public class AccessControlFilter extends HttpFilter implements Filter {
        
@@ -31,6 +29,7 @@ public class AccessControlFilter extends HttpFilter implements Filter {
 			httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/login.jsp");
 			return;
 		}
+		//TODO: add restrictions to checkout, payment and account page, put in folder protected
 		
 		chain.doFilter(request, response);
 	}
