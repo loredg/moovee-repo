@@ -4,53 +4,15 @@
 <html lang="eng">
 <head>
 <meta charset="ISO-8859-1">
-<link href="index.css" type="text/css" rel="stylesheet">
+<link href="styles/index.css" type="text/css" rel="stylesheet">
+<link rel="icon" href="images/windowlogo-light.png">
 <title>moovee</title>
 </head>
 <body>
 
 	<!-- TODO: add alert to confirm registration. Get attribute hasRegistered -->
 
-	<header>
-		<div id="header-div">
-			<div id="logo">
-				<a href="./index.jsp" id="logo"><img id="header-logo"
-					src="images/moovee-cropped-light.png" alt="moovee logo"></a>
-			</div>
-			<div class="header-center">
-				<a id="home" class="nav-buttons" href="home">Home</a> <a id="about"
-					class="nav-buttons" href="About">About</a> <a id="contacts"
-					class="nav-buttons" href="Contacts">Contacts</a>
-			</div>
-			<div class="header-right">
-				<!-- <form id="search-form">
-					<input type="search" id="search-bar">
-					<button type="submit" class="right-buttons" id="search">Search</button>
-				</form> -->
-				<a href="./cart.jsp" class="right-buttons" id="cart">Cart</a>
-				<%
-				Boolean isLogged = (Boolean)session.getAttribute("isLogged");
-				if (isLogged == null || isLogged == false) {
-				%>
-				<a href="./login.jsp" class="right-buttons" id="login">Log In</a> <a
-					href="./signup.jsp" class="right-buttons" id="sign-in">Sign Up</a>
-				<%
-				} else {
-				%>
-				<a href="./account.jsp" class="right-buttons" id="account">Account</a>
-				<!-- <div class="user-dropdown">
-					<button class="right-buttons" id="dropbtn"></button>
-					<div class="dropdown-content">
-						<a class="accountLinks" href="#">Account</a> <a
-							class="accountLinks" href="#">Sign out</a>
-					</div>
-				</div> -->
-				<%
-				}
-				%>
-			</div>
-		</div>
-	</header>
+	<%@ include file="header.jsp" %>
 
 	<h3 id="whats-new">What's new this week</h3>
 	<%
@@ -87,6 +49,7 @@
 		Iterator<?> it = movies.iterator();
 		while (it.hasNext()) {
 			Movie movie = (Movie) it.next();
+			if (movie.getQty() >= 0) {
 	%>
 
 	<div id="movie">
@@ -97,15 +60,23 @@
 			<label id="movie-title"><%=movie.getTitle()%></label> <br>
 			<form action="./AddToCart" method="post">
 				<input type="hidden" value="<%=movie.getId()%>" name="addToCart">
+				<%
+				if(movie.getQty() == 0) {
+				%>
+				<p>This movie is not available at the moment.</p>
+				<%}else { %>
 				<button type="submit">Add to cart</button>
+				<%}%>
 			</form>
 		</div>
 	</div>
 	<%
+				}
 	}
 	}
 	%>
 
+	<%@ include file="footer.jsp" %>
 
 </body>
 </html>

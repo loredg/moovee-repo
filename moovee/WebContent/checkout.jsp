@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import="java.util.*, model.User"%>
+	pageEncoding="ISO-8859-1" import="java.util.*, model.User, model.Address"%>
 <!DOCTYPE html>
 <html lang="eng">
 <head>
@@ -52,6 +52,7 @@
 		<button type="submit">Proceed to payment</button>
 	</form>
 	<%
+	}
 	}
 	}
 	%>

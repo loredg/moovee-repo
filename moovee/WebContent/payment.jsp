@@ -20,6 +20,7 @@ if(cards == null || cards.isEmpty()) {
 		CVC: <input type="text" name="cvc"> <br>
 		<button type="submit">Add card</button>
 	</form>
+	<%
 }
 %>
 

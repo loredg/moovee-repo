@@ -1,0 +1,44 @@
+@font-face {
+	font-family: "Montserrat";
+	src: url(../fonts/Montserrat-VariableFont_wght.ttf);
+}
+
+@font-face {
+	font-family: "Montserrat italic";
+	src: url(../fonts/Montserrat-Italic-VariableFont_wght.ttf);
+}
+
+body {
+	font-family: Montserrat, Serif;
+	background-color: #f6f5f4;
+	text-align: center;
+	color: #84817F;
+	margin: 0px;
+}
+
+h3 {
+	font-size: 20px;
+	text-align: left;
+	color: #1C1B1E;
+}
+
+#new-movies{
+	text-align: left;
+}
+
+#movie {
+	text-align: left;
+	border: 1px solid black;
+	padding: 10px;
+	float:left;
+	margin: 10px;
+}
+
+#movie-deets {
+	border-style: solid;
+	border-width: 1px;
+	border-color: black;
+	padding: 10px;
+
+}
+

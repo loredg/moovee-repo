@@ -14,7 +14,7 @@ if (movies == null) {
 <html lang="eng">
 <head>
 <meta charset="ISO-8859-1">
-<link href="admin.css" type="text/css" rel="stylesheet"/>
+<link href="../styles/admin.css" type="text/css" rel="stylesheet"/>
 <title>Admin</title>
 </head>
 
@@ -27,17 +27,24 @@ if (movies != null && movies.size() > 0) {
 	Iterator<?> it = movies.iterator();
 	while (it.hasNext()) {
 		Movie movie = (Movie) it.next();
+		if(movie.getQty() >= 0) {
 %>
 
-<img src="../GetPicture?id=<%=movie.getId()%>"
-	onerror="this.src='./images/noimageavailable.jpg'" style="width:100px;height:200px" alt="picture not available.">
-<%=movie.getTitle()%>
-<br>
+<div id="movie">
+		<img src="../GetPicture?id=<%=movie.getId()%>"
+			onerror="this.src='./images/noimageavailable.jpg'"
+			style="width: 150px; height: 200px" alt="movie">
+		<div id="movie-deets">
+			<label id="movie-title"><%=movie.getTitle()%></label> <br>
+		</div>
+	</div>
 <%
+			}
 		}
 	}
 %>
 
+<div id="add-movie">
 <h1>ADD MOVIE</h1>
 	<form action="../MovieAdd" enctype="multipart/form-data" method="POST">
 		<input type="hidden" name="action" value="add">
@@ -58,6 +65,7 @@ if (movies != null && movies.size() > 0) {
 		<button type="submit">Aggiungi</button>
 		<button type="reset">Azzera</button>
 	</form>
+	</div>
 	<br>
 
 	<h1>DELETE MOVIE</h1>

@@ -68,7 +68,7 @@ public class MovieDAO implements IBeanDAO<Movie> {
 
 		int result = 0;
 
-		String deleteSQL = "DELETE FROM " + TABLE_NAME + " WHERE ID = ?";
+		String deleteSQL = "UPDATE film SET qta = -1 WHERE id = ?";
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
