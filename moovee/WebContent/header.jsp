@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<script src="scripts/code.jquery.com_jquery-3.7.0.min.js"></script>
+<script src="\"></script>
 <link href="styles/header.css" rel="stylesheet" type="text/css">
 <title>${param.pageTitle}</title>
 </head>
@@ -32,8 +32,7 @@
 				Boolean isLogged = (Boolean) session.getAttribute("isLogged");
 				if (isLogged == null || isLogged == false) {
 				%>
-				<a href="./login.jsp" class="right-buttons" id="login">Log In</a> <a
-					href="./signup.jsp" class="right-buttons" id="sign-in">Sign Up</a>
+				<a href="./login.jsp" class="right-buttons" id="login">Log in</a>
 				<%
 				} else {
 				%>

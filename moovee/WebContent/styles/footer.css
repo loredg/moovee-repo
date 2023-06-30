@@ -63,31 +63,27 @@ ul {
 	transition: all 0.3s ease;
 }
 
-/* .footer-col ul li a:hover {
+ .footer-col ul li a:hover {
 	color: #f6f5f4;
 	padding-left: 8px;
-} */
+} 
 
 .footer-col .social-links a {
 	display: inline-block;
 	height: 40px;
 	width: 40px;
-	background-color: #9f9997;
-	margin: 0 10px 10px 0;
+	/* margin: 0 10px 10px 0; */
 	text-align: center;
 	line-height: 40px;
 	border-radius: 50%;
-	/* transition: all 0.5s ease; */
+	transition: all 0.5s ease;
+	margin: 0 auto;
+	padding-top: 5px;
 }
 
 .footer-col .social-links a:hover {
 
 	background-color: #f6f5f4;
-}
-
-.fb {
-	background-image: url(../images/facebook.svg) no repeat center;
-	height:40px;
 }
 
 
@@ -96,6 +92,7 @@ ul {
 	.footer-col {
 		width: 50%;
 		margin-bottom: 30px;
+		padding: 3px;
 	}
 }
 

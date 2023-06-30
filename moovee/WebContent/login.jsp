@@ -8,6 +8,8 @@
 </head>
 <body>
 
+	<%@ include file="header.jsp" %>
+
 	<h1>Log In</h1>
 
 	<br>

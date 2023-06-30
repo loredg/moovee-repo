@@ -8,6 +8,8 @@
 </head>
 <body>
 
+<%@ include file="header.jsp" %>
+
 <%
 User user = (User)session.getAttribute("activeUser"); 
 List<CreditCard> cards = user.getCards();

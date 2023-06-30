@@ -8,6 +8,8 @@
 </head>
 <body>
 
+	<%@ include file="header.jsp" %>
+
 	<h3>Your moovee shopping cart</h3>
 
 	<%

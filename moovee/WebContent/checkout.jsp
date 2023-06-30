@@ -8,8 +8,9 @@
 </head>
 <body>
 
+	<%@ include file="header.jsp" %>
+
 	<%
-	Boolean isLogged = (Boolean) session.getAttribute("isLogged");
 	if (isLogged == false || isLogged == null) {
 	%>
 
