@@ -4,6 +4,9 @@
 <html lang="eng">
 <head>
 <meta charset="ISO-8859-1">
+<script
+	src="../scripts/jquery.js"
+	type="text/javascript"></script>
 <title>Moovee cart</title>
 </head>
 <body>
@@ -13,7 +16,6 @@
 	<h3>Your moovee shopping cart</h3>
 
 	<%
-	Cart cart = (Cart) session.getAttribute("cart");
 	if (cart == null || cart.getMovies().size() == 0) {
 	%>
 
@@ -44,14 +46,14 @@
 	<br>
 	Your total is:
 	<%=cart.getTotalAmount()%> <br>
-	<a id="checkout" href="checkout.jsp">Proceed to checkout</a>
+	<a id="checkout" href="protected/checkout.jsp">Proceed to checkout</a>
 
 	<%
 	}
 	%>
 
 <!-- TODO: add a slideshow of suggested movies -->
-
+	<%@ include file="../footer.jsp"%>
 
 </body>
 </html>

@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="eng">
 <head>
 <meta charset="ISO-8859-1">
-<script src="scripts/code.jquery.com_jquery-3.7.0.min.js"></script>
-<link href="styles/footer.css" rel="stylesheet" type="text/css">
+<script src="<%=request.getContextPath()%>/scripts/jquery.js" type="text/javascript"></script>
+<link href="<%=request.getContextPath()%>/styles/footer.css" rel="stylesheet" type="text/css">
 <title>${param.pageTitle}</title>
 </head>
 <body>
 
-<footer class="footer">
+<footer id="footer">
      <div class="container">
       <div class="row">
         <div class="footer-col">
@@ -44,10 +44,10 @@
         <div class="footer-col">
           <h4>Follow us</h4>
           <div class="social-links">
-            <a href="#" class="fb"><img src="images/facebook.svg" id="fb"></a>
-            <a href="#" class="ig"><img src="images/instagram.svg"></a>
-            <a href="#" class="twitter"><img src="images/twitter.svg"></a>
-            <a href="#" class="linkedin"><img src="images/linkedin.svg"></a>
+            <a href="#" class="fb"><img src="<%=request.getContextPath()%>/images/facebook.svg" id="fb"></a>
+            <a href="#" class="ig"><img src="<%=request.getContextPath()%>/images/instagram.svg"></a>
+            <a href="#" class="twitter"><img src="<%=request.getContextPath()%>/images/twitter.svg"></a>
+            <a href="#" class="linkedin"><img src="<%=request.getContextPath()%>/images/linkedin.svg"></a>
           </div>
         </div>
       </div>

@@ -47,7 +47,7 @@ public class AddressAdd extends HttpServlet {
 			System.out.println("Error: " + e.getMessage());
 		}
 		
-		RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/payment.jsp");
+		RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/protected/payment.jsp");
 		dispatcher.forward(request, response);
 	}
 

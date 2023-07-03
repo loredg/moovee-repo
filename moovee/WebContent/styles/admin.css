@@ -33,5 +33,5 @@ body {
 }
 
 #add-movie {
-	position: relative;
+	display: block;
 }

@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<%@ include file="header.jsp" %>
+<%@ include file="../header.jsp" %>
 
 <%
 User user = (User)session.getAttribute("activeUser"); 
@@ -16,7 +16,7 @@ List<CreditCard> cards = user.getCards();
 if(cards == null || cards.isEmpty()) {
 	%>
 	<p>There are no cards registered to your account, please insert your details to complete the payment.</p>
-	<form action="./Payment" method="post">
+	<form action="../Payment" method="post">
 		Card number: <input type="text" name="number"> <br>
 		Expiration date: <input type="text" name="expiration"> <br>
 		CVC: <input type="text" name="cvc"> <br>
@@ -25,6 +25,8 @@ if(cards == null || cards.isEmpty()) {
 	<%
 }
 %>
+
+<%@include file="../footer.jsp" %>
 
 </body>
 </html>

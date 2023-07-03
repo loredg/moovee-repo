@@ -18,7 +18,7 @@ public class AddressDAO implements IBeanDAO<Address>{
 		
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
-			ps = connection.prepareStatement("INSERT INTO indirizzo(idAccount, via, cap, citta, provincia, regione, stato) VALUES(?, ?, ?, ?, ?, ?, ?");
+			ps = connection.prepareStatement("INSERT INTO indirizzo(idAccount, via, cap, citta, provincia, regione, stato) VALUES(?, ?, ?, ?, ?, ?, ?)");
 			
 			ps.setString(1, bean.getUserId());
 			ps.setString(2, bean.getAddress());
