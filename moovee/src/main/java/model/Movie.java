@@ -17,6 +17,8 @@ public class Movie {
 	private LocalDate addDate;
 	private InputStream posterStream;
 	private byte[] posterBytes;
+	private InputStream landscapePosterStream;
+	private byte[] landscapePosterBytes;
 	
 	public Movie() {
 		this.id = null;
@@ -30,6 +32,8 @@ public class Movie {
 		this.addDate = null;
 		this.posterStream = null;
 		this.posterBytes = null;
+		this.landscapePosterBytes = null;
+		this.landscapePosterStream = null;
 	}
 	
 	public String getTitle() {
@@ -122,6 +126,22 @@ public class Movie {
 	@Override
 	public String toString() {
 		return "[\n" + title + "\nDirected by: " + director + "\nYear: " + "\nLenght: " + length + "min." + "\nPrice: " + price + "\nCopies available: " + qty + "\n]\n";
+	}
+
+	public InputStream getLandscapePosterStream() {
+		return landscapePosterStream;
+	}
+
+	public void setLandscapePosterStream(InputStream lanscapePosterStream) {
+		this.landscapePosterStream = lanscapePosterStream;
+	}
+
+	public byte[] getLandscapePosterBytes() {
+		return landscapePosterBytes;
+	}
+
+	public void setLandscapePosterBytes(byte[] landscapePosterBytes) {
+		this.landscapePosterBytes = landscapePosterBytes;
 	}
 	
 }

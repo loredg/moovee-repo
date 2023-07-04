@@ -69,8 +69,7 @@ public class MovieAdd extends HttpServlet {
 			System.out.println("Error: " + e.getMessage());
 		}
 		
-		RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/admin/admin.jsp");
-		dispatcher.forward(request, response);
+		response.sendRedirect("./admin/admin.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

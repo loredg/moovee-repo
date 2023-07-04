@@ -6,15 +6,15 @@
 <meta charset="ISO-8859-1">
 <link href="styles/index.css" type="text/css" rel="stylesheet">
 <link rel="icon" href="images/windowlogo-light.png">
+<script src="scripts/scripts.js" type="text/javascript"></script>
 <title>moovee</title>
 </head>
-<body>
+<body onload="showSlides()">
 
 	<!-- TODO: add alert to confirm registration. Get attribute hasRegistered -->
 
-	<%@ include file="header.jsp" %>
+	<%@ include file="header.jsp"%>
 
-	<h3 id="whats-new">What's new this week</h3>
 	<%
 	Collection<?> newMovies = (Collection<?>) request.getAttribute("newMovies");
 	if (newMovies == null) {
@@ -28,15 +28,12 @@
 			Movie movie = (Movie) it.next();
 	%>
 
-	<div id="new-movies"><%=movie.getTitle()%>,&nbsp
-	</div>
-
 	<%
 	}
 	}
 	%>
 
-	<h3>CATALOGUE</h3>
+	<div id="slideshow-container">
 
 	<%
 	request.setAttribute("referer", "/index.jsp");
@@ -47,12 +44,30 @@
 	}
 	if (movies != null && movies.size() > 0) {
 		Iterator<?> it = movies.iterator();
+		int index = 1;
 		while (it.hasNext()) {
 			Movie movie = (Movie) it.next();
 			if (movie.getQty() >= 0) {
 	%>
+		<div class="movie-slide fade">
+			<div id="caption">
+			<p id="title"><%=movie.getTitle()%></p>
+			<p id="director">Directed by: <%=movie.getDirector()%></p>
+			<p id="release-year">Released in <%=movie.getReleaseYear()%></p>
+			<p id="genre"><%=movie.getGenre()%></p>
+			<p id="duration"><%=movie.getLength()%> minutes</p>
+			<form action="./AddToCart" method="post" id="add-to-cart-form">
+				<input type="hidden" value="<%=movie.getId()%>">
+				<button type="submit" id="add-to-cart">Add to cart</button>
+				<p id="price"><%=movie.getPrice() %>$</p>
+			</form>
+			</div>
+			<img src="./GetLandscapePicture?id=<%=movie.getId()%>"
+			onerror="this.src='./images/noimageavailable.jpg'"
+			alt="no image available" id="poster-slide">
+		</div>
 
-	<div id="movie">
+	<%-- <div id="movie">
 		<img src="./GetPicture?id=<%=movie.getId()%>"
 			onerror="this.src='./images/noimageavailable.jpg'"
 			style="width: 150px; height: 200px" alt="movie">
@@ -69,14 +84,20 @@
 				<%}%>
 			</form>
 		</div>
-	</div>
+	</div> --%>
 	<%
-				}
+	}
+	index++;
 	}
 	}
 	%>
+	<a id="prev" onclick="plusSlide(-1)">&#10094;</a> <a id="next"
+			onclick="plusSlide(1)">&#10095;</a>
 
-	<%@ include file="footer.jsp" %>
+	</div>
+	
+
+	<%@ include file="footer.jsp"%>
 
 </body>
 </html>

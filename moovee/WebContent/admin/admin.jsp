@@ -22,28 +22,28 @@ if (movies == null) {
 
 	<%@ include file="../header.jsp"%>
 
-		<h1>CATALOGUE</h1>
-		<%
-		if (movies != null && movies.size() > 0) {
-			Iterator<?> it = movies.iterator();
-			while (it.hasNext()) {
-				Movie movie = (Movie) it.next();
-				if (movie.getQty() >= 0) {
-		%>
+	<h1>CATALOGUE</h1>
+	<%
+	if (movies != null && movies.size() > 0) {
+		Iterator<?> it = movies.iterator();
+		while (it.hasNext()) {
+			Movie movie = (Movie) it.next();
+			if (movie.getQty() >= 0) {
+	%>
 
-		<div id="movie">
-			<img src="../GetPicture?id=<%=movie.getId()%>"
-				onerror="this.src='./images/noimageavailable.jpg'"
-				style="width: 150px; height: 200px" alt="movie">
-			<div id="movie-deets">
-				<label id="movie-title"><%=movie.getTitle()%></label>
-			</div>
+	<div id="movie">
+		<img src="../GetPicture?id=<%=movie.getId()%>"
+			onerror="this.src='./images/noimageavailable.jpg'"
+			style="width: 150px; height: 200px" alt="movie">
+		<div id="movie-deets">
+			<label id="movie-title"><%=movie.getTitle()%></label>
 		</div>
-		<%
-		}
-		}
-		}
-		%>
+	</div>
+	<%
+	}
+	}
+	}
+	%>
 
 
 	<div id="add-movie">
@@ -80,7 +80,34 @@ if (movies == null) {
 		</form>
 	</div>
 
-	<%@ include file="../footer.jsp"%>
+	<%if(movies!= null && movies.size() > 0) {
+		Iterator<?> it = movies.iterator();
+		%>
+	<div id="addLandscapePoster">
+		<h1>ADD LANDSCAPE POSTER</h1>
+		<form action="../AddLandscapePoster" method="post"
+			enctype="multipart/form-data">
+			<select name="id">
+			<%
+			while(it.hasNext()) {
+			Movie movie = (Movie) it.next();
+			%>
+				<option value="<%=movie.getId()%>"><%=movie.getTitle()%></option>
+				<%
+				}
+				%>
+			
+			</select>
+			Copertina orizzontale: <input type="file" name="landscapePoster">
+			<button type="submit">Add poster</button>
+		</form>
+	</div>
+	<%	
+			}
+	
+	%>
+	
 
-</body>
+	<%@ include file="../footer.jsp"%>
+	</body>
 </html>

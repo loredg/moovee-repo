@@ -1,5 +1,6 @@
 package model;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,8 +35,8 @@ public class MovieDAO implements IBeanDAO<Movie> {
 			ps.setString(7, movie.getTitle());
 			ps.setString(1, movie.getDirector());
 			ps.setString(2, movie.getGenre());
-			ps.setInt(3, movie.getLength());
-			ps.setInt(4, movie.getReleaseYear());
+			ps.setInt(4, movie.getLength());
+			ps.setInt(3, movie.getReleaseYear());
 			ps.setDouble(5, movie.getPrice());
 			ps.setInt(6, movie.getQty());
 			ps.setDate(8, sqlDate);
@@ -57,9 +58,6 @@ public class MovieDAO implements IBeanDAO<Movie> {
 
 	}
 
-	// TODO: choose approach: either create copy of bought movies, so that you can
-	// still display them in the client's orders, or just set copies to 0 instead of
-	// deleating the product from the database
 	@Override
 	public synchronized boolean doDelete(String id) throws SQLException {
 		Connection connection = null;
@@ -115,6 +113,7 @@ public class MovieDAO implements IBeanDAO<Movie> {
 				movie.setQty(rs.getInt("qta"));
 				movie.setAddDate(new LocalDate(rs.getDate("data_aggiunta")));
 				movie.setPosterBytes(rs.getBytes("copertina"));
+				movie.setLandscapePosterBytes(rs.getBytes("copertina_landscape"));
 			}
 		} finally {
 			try {
@@ -159,6 +158,7 @@ public class MovieDAO implements IBeanDAO<Movie> {
 				movie.setQty(rs.getInt("qta"));
 				movie.setAddDate(new LocalDate(rs.getDate("data_aggiunta")));
 				movie.setPosterBytes(rs.getBytes("copertina"));
+				movie.setLandscapePosterBytes(rs.getBytes("copertina_landscape"));
 
 				movies.add(movie);
 			}
@@ -198,6 +198,7 @@ public class MovieDAO implements IBeanDAO<Movie> {
 				movie.setPrice(rs.getDouble("prezzo"));
 				movie.setQty(rs.getInt("qta"));
 				movie.setAddDate(new LocalDate(rs.getDate("data_aggiunta")));
+				movie.setLandscapePosterBytes(rs.getBytes("copertina_landscape"));
 
 				movies.add(movie);
 			}
@@ -213,6 +214,28 @@ public class MovieDAO implements IBeanDAO<Movie> {
 		}
 
 		return movies;
+	}
+	
+	public synchronized void addLandscapePoster(InputStream landscapePoster, String id) throws SQLException {
+		Connection connection = null;
+		PreparedStatement ps = null;
+
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			ps = connection.prepareStatement("UPDATE film SET copertina_landscape = ? where id = ?");
+			ps.setBinaryStream(1, landscapePoster);
+			ps.setString(2, id);
+			ps.executeUpdate();
+			connection.commit();
+		}finally {
+			try {
+				if (ps != null) {
+					ps.close();
+				}
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
 	}
 
 }

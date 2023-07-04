@@ -10,10 +10,11 @@
 
 body {
 	font-family: Montserrat, Serif;
-	background-color: #f6f5f4;
+	background-color: #1C1B1E;
 	text-align: center;
-	color: #84817F;
+	color: #f6f5f4;
 	margin: 0px;
+	overflow-x: hidden;
 }
 
 h3 {
@@ -38,3 +39,135 @@ h3 {
 	padding: 10px;
 }
 
+#slideshow-container {
+	box-sizing: border-box;
+	width: 100%;
+	position: relative;
+	margin: auto;
+	display: flex;
+	background-color: black;
+	color: #f6f5f4;
+}
+
+.movie-slide {
+	display: none;
+}
+
+#poster-slide {
+	text-align: center;
+	/* border: 1px solid red; */
+	width: 70%;
+	float: right;
+	z-index: 2;
+}
+
+#prev, #next {
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	width: auto;
+	margin-top: -22px;
+	padding: 16px;
+	color: #1C1B1E;
+	font-weight: bold;
+	font-size: 18px;
+	transition: 0.6s ease;
+	border-radius: 0 3px 3px 0;
+	user-select: none;
+}
+
+#next {
+	right: 0;
+	border-radius: 3px 0 0 3px;
+}
+
+#prev {
+	left: 0;
+}
+
+#prev:hover, #next:hover {
+  background-color: #1C1B1E;
+  color: #f6f5f4;
+}
+
+#caption {
+	color: inherit;
+	font-size: 15px;
+	padding: 8px 12px;
+	bottom: 8px;
+	text-align: center;
+	/* border: 1px solid green; */
+	height: 100%;
+	position: absolute;
+	width: 40%;
+	z-index: 1;
+	margin-top: 20px;
+	margin-left: 40px;
+}
+
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+#title {
+	font-size: 80px;
+	font-weight: bold;
+	padding-top: 40px;
+	/* border: 1px solid white; */
+}
+
+#director, #release-year, #genre, #duration, #price {
+	font-size: 30px;
+	text-align: center;
+}
+
+#price {
+	display: inline;
+	margin-left: 40px;
+	font-size: 20px;
+}
+
+
+#add-to-cart {
+	background-color: #3C333D;
+	color: #f6f5f4;
+	width: 150px;
+	height: 60px;
+	border-radius: 15px;
+	box-shadow: none;
+	border-style: solid;
+	cursor: pointer;
+	transition: all .5s ease-in-out;
+	font-size: 20px;
+	display: inline;
+}
+
+#add-to-cart-form {
+	text-align: left;
+	padding: 50px;
+	/* border: 1px solid red; */
+}
+
+#add-to-cart:hover {
+	transform: scale(1.1);
+}
+
+
+@keyframes fade {
+  from {opacity: 0.4}
+  to {opacity: 1}
+}
+
+@media (max-width: 1039px) {
+	#slideshow-container {
+		width: 100%;
+		height: auto;
+	}
+	
+	#poster-slide {
+		width: 100%;
+		height: auto;
+	}
+	
+}
