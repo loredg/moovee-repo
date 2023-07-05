@@ -88,13 +88,28 @@ ul {
 	border-radius: 50%;
 	transition: all 0.5s ease;
 	margin: 0 auto;
+	padding: 5px;
 }
 
-.footer-col .social-links a:hover {
+#fb {
+	background: url(../images/facebook.svg) no-repeat center;
+}
 
+#ig {
+	background: url(../images/instagram.svg) no-repeat center;
+}
+
+#twitter {
+	background: url(../images/twitter.svg) no-repeat center;
+}
+
+#linkedin {
+	background: url(../images/linkedin.svg) no-repeat center;
+}
+
+#fb:hover, #ig:hover, #twitter:hover, #linkedin:hover {
 	background-color: #f6f5f4;
 }
-
 
 /*responsive*/
 @media ( max-width : 767px) {

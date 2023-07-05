@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import="java.util.*, model.Movie"%>
+	pageEncoding="ISO-8859-1" import="java.util.*, model.Movie, java.text.*"%>
 <!DOCTYPE html>
 <html lang="eng">
 <head>
@@ -9,13 +9,14 @@
 <script src="scripts/scripts.js" type="text/javascript"></script>
 <title>moovee</title>
 </head>
-<body onload="showSlides()">
+<body onload="showSlides(0); showSlidesAuto()">
 
 	<!-- TODO: add alert to confirm registration. Get attribute hasRegistered -->
 
 	<%@ include file="header.jsp"%>
 
 	<%
+	DecimalFormat df = new DecimalFormat("#.00");
 	Collection<?> newMovies = (Collection<?>) request.getAttribute("newMovies");
 	if (newMovies == null) {
 		request.getRequestDispatcher("./NewMovies").forward(request, response);
@@ -56,11 +57,18 @@
 			<p id="release-year">Released in <%=movie.getReleaseYear()%></p>
 			<p id="genre"><%=movie.getGenre()%></p>
 			<p id="duration"><%=movie.getLength()%> minutes</p>
+			<div id="slide-bottom">
+			<div id="bottom-left">
 			<form action="./AddToCart" method="post" id="add-to-cart-form">
 				<input type="hidden" value="<%=movie.getId()%>">
 				<button type="submit" id="add-to-cart">Add to cart</button>
-				<p id="price"><%=movie.getPrice() %>$</p>
 			</form>
+			<p id="price"><%=df.format(movie.getPrice())%>$</p>
+			</div>
+			<div id="bottom-right">
+			<a href="#" id="more-info"></a>
+			</div>
+			</div>
 			</div>
 			<img src="./GetLandscapePicture?id=<%=movie.getId()%>"
 			onerror="this.src='./images/noimageavailable.jpg'"
@@ -95,7 +103,6 @@
 			onclick="plusSlide(1)">&#10095;</a>
 
 	</div>
-	
 
 	<%@ include file="footer.jsp"%>
 

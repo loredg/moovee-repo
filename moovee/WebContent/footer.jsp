@@ -44,10 +44,10 @@
         <div class="footer-col">
           <h4>Follow us</h4>
           <div class="social-links">
-            <a href="#" class="fb"><img src="<%=request.getContextPath()%>/images/facebook.svg" id="fb"></a>
-            <a href="#" class="ig"><img src="<%=request.getContextPath()%>/images/instagram.svg"></a>
-            <a href="#" class="twitter"><img src="<%=request.getContextPath()%>/images/twitter.svg"></a>
-            <a href="#" class="linkedin"><img src="<%=request.getContextPath()%>/images/linkedin.svg"></a>
+            <a href="#" id="fb"></a>
+            <a href="#" id="ig"></a>
+            <a href="#" id="twitter"></a>
+            <a href="#" id="linkedin"></a>
           </div>
         </div>
       </div>
