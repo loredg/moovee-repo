@@ -5,6 +5,7 @@
 <html lang="eng">
 <head>
 <meta charset="ISO-8859-1">
+<link rel="icon" href="images/windowlogo-light.png">
 <script src="../scripts/scripts.js" type="text/javascript"></script>
 <script
 	src="../scripts/jquery.js"

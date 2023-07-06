@@ -197,6 +197,7 @@ public class MovieDAO implements IBeanDAO<Movie> {
 				movie.setReleaseYear(rs.getInt("anno_uscita"));
 				movie.setPrice(rs.getDouble("prezzo"));
 				movie.setQty(rs.getInt("qta"));
+				movie.setPosterBytes(rs.getBytes("copertina"));
 				movie.setAddDate(new LocalDate(rs.getDate("data_aggiunta")));
 				movie.setLandscapePosterBytes(rs.getBytes("copertina_landscape"));
 
@@ -236,6 +237,44 @@ public class MovieDAO implements IBeanDAO<Movie> {
 				DriverManagerConnectionPool.releaseConnection(connection);
 			}
 		}
+	}
+	
+	public synchronized Collection<Movie> doRetrieveByTitle(String title) throws SQLException {
+		Connection connection = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Collection<Movie> movies = new LinkedList<>();
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			ps = connection.prepareStatement("SELECT * FROM film WHERE titolo LIKE '%" + title + "%'");
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Movie movie = new Movie();
+				movie.setId(rs.getString("id"));
+				movie.setTitle(rs.getString("titolo"));
+				movie.setDirector(rs.getString("regista"));
+				movie.setGenre(rs.getString("genere"));
+				movie.setLength(rs.getInt("durata_min"));
+				movie.setReleaseYear(rs.getInt("anno_uscita"));
+				movie.setPrice(rs.getDouble("prezzo"));
+				movie.setQty(rs.getInt("qta"));
+				movie.setAddDate(new LocalDate(rs.getDate("data_aggiunta")));
+				movie.setPosterBytes(rs.getBytes("copertina"));
+				movie.setLandscapePosterBytes(rs.getBytes("copertina_landscape"));
+
+				movies.add(movie);
+			}
+			
+		}finally {
+			try {
+				if (ps != null) {
+					ps.close();
+				}
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		return movies;
 	}
 
 }

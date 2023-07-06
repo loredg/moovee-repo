@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link rel="icon" href="images/windowlogo-light.png">
 <title>Payment</title>
 </head>
 <body>

@@ -107,6 +107,7 @@ header {
 
 #search {
 	background: url(../images/search-light.svg) no-repeat center;
+	text-indent: -99999999px;
 }
 
 
@@ -114,7 +115,7 @@ header {
 	background-color: #84817F;
 } 
 
-/* #search-form {
+#search-form {
 	border-radius: 15px;
 	border: 1px solid #f6f5f4;
 	margin: 0 auto;
@@ -124,22 +125,22 @@ header {
 	border: 1px solid #f6f5f4;
 }
 
-#search-bar {
+#search-bar{
 	background-color: transparent;
 	outline: none;
 	border: none;
-	font-size: 16px;
+	font-size: 14px;
 	margin: 0;
 	padding: 5px;
 	color: inherit;
 	width: 140px;
 }
 
-#search-bar::-webkit-search-cancel-button {
+#search-bar::-webkit-search-cancel-button #searc {
 	display: none;
-} */
+} 
 
-.user-dropdown {
+/* .user-dropdown {
 	position: relative;
 	direction: rtl;
 	border-radius: 15px;
@@ -153,7 +154,7 @@ header {
 .dropdown-content {
 	display: none;
 	position: absolute;
-	/*position: absolute posiziona elemento in modo relativo all'antenato piu' vicino*/
+	position: absolute posiziona elemento in modo relativo all'antenato piu' vicino
 	background-color: #333234;
 	min-width: 150px;
 	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -166,7 +167,7 @@ header {
 	text-decoration: none;
 	display: block;
 	border-radius: 15px;
-}
+} */
 
 .accountLinks:hover {
 	background-color: #84817F;

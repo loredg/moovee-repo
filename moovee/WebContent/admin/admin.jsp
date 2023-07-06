@@ -15,6 +15,7 @@ if (movies == null) {
 <head>
 <meta charset="ISO-8859-1">
 <link href="../styles/admin.css" type="text/css" rel="stylesheet" />
+<link rel="icon" href="images/windowlogo-light.png">
 <title>Admin</title>
 </head>
 

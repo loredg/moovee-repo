@@ -4,6 +4,7 @@
 <html lang="eng">
 <head>
 <meta charset="ISO-8859-1">
+<link rel="icon" href="images/windowlogo-light.png">
 <title>Log In</title>
 </head>
 <body>

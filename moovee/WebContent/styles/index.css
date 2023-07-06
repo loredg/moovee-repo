@@ -23,17 +23,27 @@ h3 {
 	color: #1C1B1E;
 }
 
-#new-movies{
+#new-movies {
 	text-align: left;
 }
 
 #movie {
-	text-align: left;
-	border: 1px solid black;
-	padding: 10px;
-	float:left;
-	margin: 10px;
+	box-sizing: border-box;
+	width: 20%;
+	position: relative;
+	margin: auto;
+	display: flex;
+	background-color: black;
+	color: #f6f5f4;
 }
+
+#poster {
+	text-align: center;
+	/* border: 1px solid red; */
+	width: 65%;
+	float: right;
+}
+
 
 #movie-deets {
 	padding: 10px;
@@ -47,8 +57,8 @@ h3 {
 	display: flex;
 	background-color: black;
 	color: #f6f5f4;
-	height: 800px;
 }
+
 
 .movie-slide {
 	display: none;
@@ -60,7 +70,6 @@ h3 {
 	width: 65%;
 	float: right;
 	z-index: 2;
-	/* border: 1px solid white; */
 }
 
 #prev, #next {
@@ -76,6 +85,7 @@ h3 {
 	transition: 0.6s ease;
 	border-radius: 0 3px 3px 0;
 	user-select: none;
+	z-index: 4;
 }
 
 #next {
@@ -88,27 +98,23 @@ h3 {
 }
 
 #prev:hover, #next:hover {
-  background-color: #1C1B1E;
-  color: #f6f5f4;
+	background-color: #1C1B1E;
+	color: #f6f5f4;
 }
 
 #caption {
 	color: inherit;
 	font-size: 15px;
-	padding: 8px 12px;
-	bottom: 8px;
 	text-align: center;
 	height: 100%;
 	position: absolute;
 	width: 40%;
 	z-index: 1;
-	margin-top: 20px;
-	margin-left: 40px;
 }
 
 .fade {
-  animation-name: fade;
-  animation-duration: 1.5s;
+	animation-name: fade;
+	animation-duration: 1.5s;
 }
 
 #title {
@@ -116,12 +122,8 @@ h3 {
 	font-weight: bold;
 	padding-top: 140px;
 	text-align: center;
-}
-
-#director, #release-year, #genre, #duration, #price {
-	font-size: 30px;
-	text-align: center;
-	display: none;
+	display: list-item;
+	height: 40%;
 }
 
 #price {
@@ -132,13 +134,12 @@ h3 {
 	padding-right: 70px;
 }
 
-
 #add-to-cart {
 	background-color: #f6f5f4;
 	color: black;
 	width: 150px;
 	height: 60px;
-	border-radius: 15px;
+	border-radius: 5vmin;
 	box-shadow: none;
 	border-style: solid;
 	cursor: pointer;
@@ -154,7 +155,7 @@ h3 {
 	display: inline;
 }
 
-#add-to-cart:hover {
+.scale:hover {
 	transform: scale(1.1);
 }
 
@@ -174,45 +175,134 @@ h3 {
 #more-info:hover {
 	background: url(../images/info-dark.svg) no-repeat center;
 	background-color: #f6f5f4;
-	transform: scale(1.1);
 }
 
 #slide-bottom {
-	padding-top: 100px;
 	/* border: 1px solid white; */
-}
-
-#bottom-right {
-	text-align: right;
-	/* border: 1px solid white; */
-	display: inline-block;
+	position: absolute;
+	padding-top: 300px;
+	text-align: center;
+	width: 40%;
+	z-index: 1;
+	height: 100%;
 	vertical-align: middle;
-}
-
-
-#bottom-left {
-	text-align: left;
-	/* border: 1px solid red; */
-	padding-left: 45px;
-	display: inline-block;
-	vertical-align: middle;
-	
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
 @keyframes fade {
-  from {opacity: 0.4}
-  to {opacity: 1}
+	from {opacity: 0.4
 }
 
-@media (max-width: 1039px) {
+to {
+	opacity: 1
+}
+
+}
+@media ( max-width : 1600px) {
+	#slideshow-cointainer {
+		width: 100%;
+		height: auto;
+	}
+	#title {
+		padding-top: 75px
+	}
+}
+
+@media ( max-width : 1440px) {
+	#title {
+		padding-top: 50px;
+		font-size: 60px;
+	}
+}
+
+@media ( max-width : 1060px) {
 	#slideshow-container {
 		width: 100%;
 		height: auto;
 	}
-	
-	#poster-slide {
-		width: 100%;
-		height: auto;
+	#title {
+		font-size: 50px;
 	}
-	
+	#add-to-cart {
+		width: 100px;
+		height: 40px;
+		font-size: 14px;
+	}
+	#price {
+		font-size: 16px;
+	}
+	#more-info {
+		height: 40px;
+		width: 40px;
+	}
+	#slide-bottom {
+		padding-top: 150px;
+	}
+	@media ( max-width : 870px) {
+		#title {
+			font-size: 40px;
+		}
+	}
+	@media ( max-width : 768px) {
+		#add-to-cart {
+			width: 75px;
+			height: 30px;
+			font-size: 12px;
+		}
+		#price {
+			font-size: 12px;
+		}
+		#more-info {
+			width: 20px;
+			height: 20px;
+		}
+		#title {
+			padding-top: 50px;
+		}
+		#prev, #next {
+			padding: 10px;
+			font-size: 12px;
+		}
+	}
+	@media ( max-width : 697px) {
+		#title {
+			font-size: 30px;
+		}
+		#slide-bottom {
+			padding-top: 100px;
+		}
+	}
+	@media ( max-width : 628px) {
+		#add-to-cart {
+			margin-right: -20px
+		}
+		#more-info {
+			margin-left: -20px;
+		}
+	}
+	@media ( max-width : 610px) {
+		#title {
+			padding-top: 20px;
+		}
+	}
+	@media ( max-width : 550px) {
+		#title {
+			font-size: 20px;
+		}
+		#more-info {
+			margin-left: -30px;
+		}
+		#price {
+			margin-right: -10px;
+		}
+		
+		@media (max-width: 480px) {
+			#price {
+				margin-right: -20px;
+			}
+			
+		}
+	}
 }

@@ -6,11 +6,11 @@
 <meta charset="ISO-8859-1">
 <script src="<%=request.getContextPath()%>/scripts/jquery.js" type="text/javascript"></script>
 <link href="<%=request.getContextPath()%>/styles/header.css" rel="stylesheet" type="text/css">
-<title></title>
+<title>${param.title}</title>
 </head>
 <body>
 
-
+<%System.out.println(request.getRequestURL()); %>
 	<header>
 		<div id="logo">
 			<a href="<%=request.getContextPath()%>/index.jsp" id="logo"><img id="header-logo"
@@ -22,10 +22,10 @@
 				class="nav-buttons" href="Contacts">Contacts</a>
 		</div>
 		<div class="header-right">
-			<!-- <form id="search-form">
-					<input type="search" id="search-bar">
+			<form id="search-form" action="./Search" method="post">
+					<input type="search" id="search-bar" name="title" placeholder="Insert movie title...">
 					<button type="submit" class="right-buttons" id="search">Search</button>
-				</form> -->
+				</form>
 				
 				<%
 				Cart cart = (Cart)session.getAttribute("cart");

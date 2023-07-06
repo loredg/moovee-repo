@@ -4,6 +4,7 @@
 <html lang="eng">
 <head>
 <meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="styles/index.css" type="text/css" rel="stylesheet">
 <link rel="icon" href="images/windowlogo-light.png">
 <script src="scripts/scripts.js" type="text/javascript"></script>
@@ -53,26 +54,20 @@
 		<div class="movie-slide fade">
 			<div id="caption">
 			<p id="title"><%=movie.getTitle()%></p>
-			<p id="director">Directed by: <%=movie.getDirector()%></p>
-			<p id="release-year">Released in <%=movie.getReleaseYear()%></p>
-			<p id="genre"><%=movie.getGenre()%></p>
-			<p id="duration"><%=movie.getLength()%> minutes</p>
+			</div>
 			<div id="slide-bottom">
-			<div id="bottom-left">
 			<form action="./AddToCart" method="post" id="add-to-cart-form">
 				<input type="hidden" value="<%=movie.getId()%>">
-				<button type="submit" id="add-to-cart">Add to cart</button>
+				<button type="submit" id="add-to-cart" class="scale">Add to cart</button>
 			</form>
 			<p id="price"><%=df.format(movie.getPrice())%>$</p>
+			<a href="#" id="more-info" class="scale"></a>
 			</div>
-			<div id="bottom-right">
-			<a href="#" id="more-info"></a>
-			</div>
-			</div>
-			</div>
+			<a href="movie.jsp">
 			<img src="./GetLandscapePicture?id=<%=movie.getId()%>"
 			onerror="this.src='./images/noimageavailable.jpg'"
 			alt="no image available" id="poster-slide">
+			</a>
 		</div>
 
 	<%-- <div id="movie">

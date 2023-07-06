@@ -50,6 +50,7 @@ public class AddLandscapePoster extends HttpServlet {
 		 * request.getServletContext().getRequestDispatcher("/admin/admin.jsp");
 		 * dispatcher.forward(request, response);
 		 */
+		
 		response.sendRedirect("./admin/admin.jsp");
 	}
 

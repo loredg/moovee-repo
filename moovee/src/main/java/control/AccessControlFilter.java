@@ -24,8 +24,13 @@ public class AccessControlFilter extends HttpFilter implements Filter {
 		HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 		
 		Boolean isAdmin = (Boolean) httpServletRequest.getSession().getAttribute("isAdmin");
+		Boolean isLogged = (Boolean) httpServletRequest.getSession().getAttribute("isLogged");
 		String path = httpServletRequest.getServletPath();
 		if (path.contains("/admin/") && (isAdmin==null || !isAdmin)) {
+			httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/login.jsp");
+			return;
+		}
+		else if(path.contains("/protected/") && (isLogged == null || !isLogged)) {
 			httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/login.jsp");
 			return;
 		}
