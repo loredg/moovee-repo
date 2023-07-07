@@ -36,3 +36,28 @@ function showSlidesAuto() {
   if (slideIndex > slides.length) {slideIndex = 1}
   slides[slideIndex-1].style.display = "block";
 }
+
+function setActive(buttonName) {
+	let button = document.getElementById(buttonName);
+	button.classList.add("active");
+}
+
+//display pop-up menu in header 
+function popUpMenu() {
+	let popupmenu = document.getElementById("pop-up-menu");
+	if(popupmenu.style.width == "0") {
+		popupmenu.style.width = "250px";
+	}
+	else {
+		popupmenu.style.width = "0";
+	}
+}
+
+function openNav() {
+  document.getElementById("sidenav").style.width = "250px";
+
+}
+
+function closeNav() {
+	document.getElementById("sidenav").style.width = "0px";
+}

@@ -4,59 +4,73 @@
 <html lang="eng">
 <head>
 <meta charset="ISO-8859-1">
-<script src="<%=request.getContextPath()%>/scripts/jquery.js" type="text/javascript"></script>
-<link href="<%=request.getContextPath()%>/styles/header.css" rel="stylesheet" type="text/css">
+<script src="<%=request.getContextPath()%>/scripts/scripts.js"
+	type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/scripts/jquery.js"
+	type="text/javascript"></script>
+<link href="<%=request.getContextPath()%>/styles/header.css"
+	rel="stylesheet" type="text/css">
 <title>${param.title}</title>
 </head>
 <body>
 
-<%System.out.println(request.getRequestURL()); %>
 	<header>
+
+		<div id="sidenav">
+			<button id="closebtn" onclick="closeNav()">&times;</button>
+			<form id="search-form-side" action="<%=request.getContextPath()%>/Search" method="post">
+				<input type="search" id="search-bar-side" name="title"
+					placeholder="Insert movie title...">
+				<button type="submit" class="right-buttons" id="search-side"></button>
+			</form>
+			<a href="#">About</a> 
+			<a href="#">Contacts</a>
+		</div>
+		<button id="three-lines" class="right-buttons" onclick="openNav()"></button>
 		<div id="logo">
-			<a href="<%=request.getContextPath()%>/index.jsp" id="logo"><img id="header-logo"
-				src="<%=request.getContextPath()%>/images/moovee-cropped-light.png" alt="moovee logo"></a>
+			<a href="<%=request.getContextPath()%>/index.jsp" id="logo"><img
+				id="header-logo"
+				src="<%=request.getContextPath()%>/images/moovee-cropped-light.png"
+				alt="moovee logo"></a>
 		</div>
 		<div class="header-center">
-			<a id="home" class="nav-buttons" href="<%=request.getContextPath()%>/index.jsp">Home</a> <a id="about"
-				class="nav-buttons" href="About">About</a> <a id="contacts"
-				class="nav-buttons" href="Contacts">Contacts</a>
+			<a id="home" class="nav-buttons"
+				href="<%=request.getContextPath()%>/index.jsp">Home</a> <a
+				id="about" class="nav-buttons"
+				href="<%=request.getContextPath()%>/about.jsp">About</a> <a
+				id="contacts" class="nav-buttons"
+				href="<%=request.getContextPath()%>/contacts.jsp">Contacts</a>
 		</div>
-		<div class="header-right">
+		<div id="header-right">
 			<form id="search-form" action="./Search" method="post">
-					<input type="search" id="search-bar" name="title" placeholder="Insert movie title...">
-					<button type="submit" class="right-buttons" id="search">Search</button>
-				</form>
-				
-				<%
-				Cart cart = (Cart)session.getAttribute("cart");
-				int cartItems;
-				if(cart == null) {
-					cartItems = 0;
-				}else {
-					cartItems = cart.getNumberOfMovies();
-				}
-				%>
-			<a href="<%=request.getContextPath() %>/cart.jsp" class="right-buttons" id="cart"
-				title="Shopping cart">Cart</a>
-				<span id="cart-items"><%=cartItems%></span>
+				<input type="search" id="search-bar-main" name="title"
+					placeholder="Insert movie title...">
+				<button type="submit" class="right-buttons" id="search-main"></button>
+			</form>
+
+			<%
+			Cart cart = (Cart) session.getAttribute("cart");
+			int cartItems;
+			if (cart == null) {
+				cartItems = 0;
+			} else {
+				cartItems = cart.getNumberOfMovies();
+			}
+			%>
+			<a href="<%=request.getContextPath()%>/cart.jsp"
+				class="right-buttons" id="cart" title="Shopping cart"></a> <span
+				id="cart-items"><%=cartItems%></span>
 			<%
 			Boolean isLogged = (Boolean) session.getAttribute("isLogged");
 			if (isLogged == null || isLogged == false) {
 			%>
-			<a href="<%=request.getContextPath()%>/login.jsp" class="right-buttons" id="login" title="Log in">Log
-				in</a>
+			<a href="<%=request.getContextPath()%>/login.jsp"
+				class="right-buttons" id="login" title="Log in"></a>
 			<%
 			} else {
 			%>
-			<a href="<%=request.getContextPath()%>/account.jsp" class="right-buttons" id="account"
-				title="Account">Account</a>
-			<!-- <div class="user-dropdown">
-					<button class="right-buttons" id="dropbtn"></button>
-					<div class="dropdown-content">
-						<a class="accountLinks" href="#">Account</a> <a
-							class="accountLinks" href="#">Sign out</a>
-					</div>
-				</div> -->
+			<a href="<%=request.getContextPath()%>/account.jsp"
+				class="right-buttons" id="account" title="Account"></a>
 			<%
 			}
 			%>

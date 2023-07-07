@@ -1,0 +1,116 @@
+@charset "ISO-8859-1";
+
+@font-face {
+	font-family: "Montserrat";
+	src: url(../fonts/Montserrat-VariableFont_wght.ttf);
+}
+
+@font-face {
+	font-family: "Montserrat italic";
+	src: url(../fonts/Montserrat-Italic-VariableFont_wght.ttf);
+}
+
+body {
+	font-family: Montserrat, Serif;
+	background-color: #1C1B1E;
+	color: #f6f5f4;
+}
+
+
+#main-container {
+	padding: 20px;
+	background-color: #1C1B1E;
+}
+
+#movie-container {
+	box-sizing: border-box;
+	width: 400px;
+	position: relative;
+	display: inline-block;
+	border: 1px solid #f6f5f4;
+	border-radius: 8px;
+	padding-bottom: 20px;
+	margin: 20px;
+}
+
+#movie-container:hover {
+	box-shadow: 10px 10px 5px #1C1B1E;
+}
+
+#container-bottom {
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#movie-poster{
+	width: 100%;
+	display: block;
+	border-top-left-radius: 2%;
+	border-top-right-radius: 2%;
+}
+
+#add-to-cart {
+	width: 125px;
+	height: 50px;
+	font-size: 16px;
+ 	margin: 0 auto;
+ 	margin-right: 10px;
+ 	color: #f6f5f4;
+ 	background-color: #1C1B1E;
+ 	padding: 5px;
+}
+
+#form {
+	display: inline;
+	text-align: center;
+}
+
+#movie-price {
+	font-size: 18px;
+	text-align: center;
+	display: inline;
+	font-weight: 600;
+	margin-left: 10px;
+}
+
+#movie-title {
+	font-weight: 600;
+	font-size: 20px;
+	padding: 10px;
+	color: #f6f5f4;
+}
+
+#filter {
+	background-color: #1C1B1E;
+	padding: 20px;
+}
+
+#filter > * {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+#filter-by {
+	display: inline;
+	color: inherit;
+	font-weight: 600;
+	font-size: 20px;
+}
+
+.filter-buttons {
+	border-style: solid;
+	border-radius: 8px;
+	display: inline;
+	font-family: Montserrat, Serif;
+	font-weight: 600;
+	font-size: 16px;
+	padding: 10px;
+	background-color: #1C1B1E;
+	color: #f6f5f4;
+}
+
+
+
+
+
