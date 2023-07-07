@@ -10,7 +10,7 @@
 <script src="scripts/scripts.js" type="text/javascript"></script>
 <title>moovee</title>
 </head>
-<body onload="showSlides(0); showSlidesAuto()">
+<body onload="showSlides(0); showSlidesAuto(); setActive('home');">
 
 	<!-- TODO: add alert to confirm registration. Get attribute hasRegistered -->
 
