@@ -77,10 +77,11 @@ public class signup extends HttpServlet {
 		user.setEmail(email);
 		user.setAdmin(false);
 		user.setPassword(password);
-		user.setFname(request.getParameter("fname"));
-		user.setLname(request.getParameter("lname"));
+		user.setFname(request.getParameter("First name"));
+		user.setLname(request.getParameter("Last name"));
 
 		try {
+			//TODO: DELETE LINE
 			System.out.println("ciao user: " + username + " " + email);
 			userDAO.doSave(user);
 		} catch (SQLException e) {

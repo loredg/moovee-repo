@@ -6,10 +6,10 @@
 <meta charset="ISO-8859-1">
 <link rel="icon" href="images/windowlogo-light.png">
 <link href="styles/login-signup.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="scripts/scripts.js"></script>
+<script type="text/javascript" src="scripts/validateForm.js"></script>
 <title>Log In</title>
 </head>
-<body >
+<body>
 
 	<%@ include file="header.jsp"%>
 
@@ -36,11 +36,16 @@
 			%>
 
 			<div class="login-form">
-				<form action="./login" method="post">
-				<p> Email: </p>
-						<input type="email" required placeholder="your@email.com" class="input" name="email">
-				<p> Password: </p>
-						<input type="password" required placeholder="Password" class="input" name="password">
+				<form action="./login" method="post"
+					onsubmit="return validateForm()">
+					<p>Email:</p>
+					<input type="email" required placeholder="your@email.com"
+						class="input" name="email" onchange="return validateEmail(this)" onblur="return notEmpty(this)">
+					<p class="error-message" id="email-error"></p>
+					<p>Password:</p>
+					<input type="password" required placeholder="Password"
+						class="input" name="password" onchange="validatePassword(this)" onblur="return notEmpty(this)">
+					<p class="error-message" id="password-error"></p>
 					<div class="link">
 						Don't have an account? Sign up <a href="signup.jsp">here</a>!
 					</div>
