@@ -17,11 +17,6 @@ body {
 	overflow-x: hidden;
 }
 
-body>* {
-	font-family: Montserrat, Serif;
-}
-
-
 h3 {
 	font-size: 20px;
 	text-align: left;
@@ -152,6 +147,7 @@ h3 {
 	display: inline;
 	font-weight: 500;
 	font-family: Montserrat, Serif;
+	border-color: #f6f5f4;
 }
 
 #add-to-cart-form {
@@ -201,14 +197,10 @@ h3 {
 }
 
 @keyframes fade {
-	from {opacity: 0.4
+  from {opacity: .4}
+  to {opacity: 1}
 }
 
-to {
-	opacity: 1
-}
-
-}
 @media ( max-width : 1600px) {
 	#slideshow-cointainer {
 		width: 100%;

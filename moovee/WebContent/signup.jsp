@@ -4,44 +4,59 @@
 <html lang="eng">
 <head>
 <meta charset="ISO-8859-1">
+<link href="styles/login-signup.css" rel="stylesheet" type="text/css">
 <title>Sign up</title>
 </head>
 <body>
 
 <%@ include file="header.jsp" %>
 
-<h1>Sign Up</h1>
+<div class="main">
 
-<%
-	Collection<?> errors = (Collection<?>)request.getAttribute("errors");
-	if(errors != null && errors.size() > 0) {
-		Iterator<?> it = errors.iterator();
-		while(it.hasNext()) {
-			String error = (String) it.next();
-%>
+		<div class="content">
 
-<%=error%>
+			<h2>Sign Up</h2>
 
-<br>
+			<%
+			Collection<?> errors = (Collection<?>) request.getAttribute("errors");
+			if (errors != null && errors.size() > 0) {
+				Iterator<?> it = errors.iterator();
+				while (it.hasNext()) {
+					String error = (String) it.next();
+			%>
 
-<%
-		}
-	}
-%>
+			<p class="error"><%=error%></p>
 
-<form action="./signup" method="Post">
-	<!-- TODO: use ajax to check username availability -->
-	Username: <input type="text" name="username"> <br> 
-	Name: <input type="text" name="fname"> <br>
-	Surname: <input type="text" name="lname"> <br>
-	Email: <input type="email" name="email"> <br>
-	Password: <input type="password" name="password"> <br>
-	Address: <input type="text" name="address"> <br>
-	<button type="submit">Sign Up</button> <br>
-	<button type="reset">Reset</button>	<br>
-</form>
+			<%
+			}
+			}
+			%>
 
-<a href="./login.jsp">Already have an account? Log in here!</a>
+			<div class="signup-form">
+				<form action="./signup" method="post">
+				<p> Name: </p>
+				<input type="text" required name="fname" class="input" placeholder="Your name">
+				<p> Last name:</p> 
+				<input type="text" required name="lname" class="input" placeholder="Your last name">
+				<p> Username: </p>
+				<input type="text" required name="username" class="input" placeholder="Pick a cool one">
+				<p> Email: </p>
+						<input type="email" required placeholder="your@email.com" class="input" name="email">
+				<p> Password: </p>
+						<input type="password" required placeholder="Password" class="input" name="password">
+					<div class="link">
+						Already have an account? Log in <a href="login.jsp">here</a>!
+					</div>
+					<button type="submit" value="Login" class="submit-button">Sign
+						Up</button>
+				</form>
+			</div>
+		</div>
+
+	</div>
+	
+	<%@include file="footer.jsp" %>
+
 
 </body>
 </html>

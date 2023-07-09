@@ -44,7 +44,7 @@
 		<div id="header-right">
 			<form id="search-form" action="./Search" method="post">
 				<input type="search" id="search-bar-main" name="title"
-					placeholder="Insert movie title...">
+					placeholder="Type movie title...">
 				<button type="submit" class="right-buttons" id="search-main"></button>
 			</form>
 

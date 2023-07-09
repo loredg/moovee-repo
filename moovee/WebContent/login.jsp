@@ -5,39 +5,54 @@
 <head>
 <meta charset="ISO-8859-1">
 <link rel="icon" href="images/windowlogo-light.png">
+<link href="styles/login-signup.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="scripts/scripts.js"></script>
 <title>Log In</title>
 </head>
-<body>
+<body >
 
-	<%@ include file="header.jsp" %>
+	<%@ include file="header.jsp"%>
 
-	<h1>Log In</h1>
 
-	<br>
+	<div class="main">
 
-	<%
-	Collection<?> errors = (Collection<?>)request.getAttribute("errors");
-	if(errors != null && errors.size() > 0) {
-		Iterator<?> it = errors.iterator();
-		while(it.hasNext()) {
-			String error = (String) it.next();
-%>
+		<div class="content">
 
-	<%=error%>
-	<br>
+			<h2>Log In</h2>
 
-	<%
-		}
-	}
-%>
+			<%
+			Collection<?> errors = (Collection<?>) request.getAttribute("errors");
+			if (errors != null && errors.size() > 0) {
+				Iterator<?> it = errors.iterator();
+				while (it.hasNext()) {
+					String error = (String) it.next();
+			%>
 
-	<form action="./login" method="POST">
-		Email: <input type="email" name="email"> <br> Password: <input
-			type="password" name="password"> <br>
-		<button type="submit">Log In</button>
-	</form>
+			<p class="error"><%=error%></p>
 
-	<a href="./signup.jsp">You don't have an account? Register here!</a>
+			<%
+			}
+			}
+			%>
+
+			<div class="login-form">
+				<form action="./login" method="post">
+				<p> Email: </p>
+						<input type="email" required placeholder="your@email.com" class="input" name="email">
+				<p> Password: </p>
+						<input type="password" required placeholder="Password" class="input" name="password">
+					<div class="link">
+						Don't have an account? Sign up <a href="signup.jsp">here</a>!
+					</div>
+					<button type="submit" value="Login" class="submit-button">Log
+						In</button>
+				</form>
+			</div>
+		</div>
+
+	</div>
+
+	<%@include file="footer.jsp"%>
 
 </body>
 </html>
