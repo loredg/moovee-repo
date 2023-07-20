@@ -1,0 +1,89 @@
+@charset "ISO-8859-1";
+
+h3 {
+	color: #f6f5f4;
+	text-align: left;
+	font-size: 24px;
+	font-weight: 500;
+	border-bottom: 1px solid white;
+	padding: 10px;
+	margin-bottom: 40px;
+}
+
+#main-container {
+	padding-top: 60px;
+}
+
+#movie-container {
+	border: none;
+}
+
+#side-left {
+	width: 65%;
+	display: inline;
+	text-align: left;
+	float: left;
+	background-color: #343338;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+#movie-poster {
+	width: 300px;
+	margin-bottom: 40px;
+	margin-right: 40px;
+	display: inline;
+}
+
+#movie-title {
+	display: inline;
+	color: #f6f5f4;
+	position: absolute;
+}
+
+#side-right {
+	width: 30%;
+	display: inline;
+	float: right;
+	background-color: #343338;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#remove-form {
+	display: inline;
+	position: relative;
+}
+
+#remove {
+	background: transparent;
+	color: #f6f5f4;
+	font-weight: 500;
+	border: 1 px solid #f6f5f4;
+	font-family: Montserrat, Serif;
+	cursor: pointer;
+	vertical-align: middle;
+	justify-content: center;
+	align-items: center;
+	padding: 10px;	
+	font-size: 20px;
+	border-radius: 8%/20%;
+	display: inline;
+	position: relative;
+	margin-bottom: 50px;
+}
+
+#btn-image {
+	margin-right: 10px;
+}
+
+#qty:hover .chevron {
+	transform: rotate(180deg);
+}
+
+#qty {
+	display: inline;
+	margin-left: 20px;
+	font-weight: 500;
+	font-size: 20px;
+}

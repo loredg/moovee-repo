@@ -149,12 +149,14 @@ header {
 }
 
 .active {
-	outline: 2px solid white;
+	border-radius: 0;
+	border-bottom: 2px solid white;
+	margin-bottom: -2px;
 }
 
 .active:hover {
 	border-radius: 15px;
-	border: none;
+	margin-bottom: 0;
 }
 
 #account {
