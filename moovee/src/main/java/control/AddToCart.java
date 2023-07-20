@@ -43,7 +43,7 @@ public class AddToCart extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("addToCart");
+		String id = request.getParameter("add-to-cart");
 		Cart cart = null;
 		Movie toAdd = null;
 		HttpSession session = request.getSession();

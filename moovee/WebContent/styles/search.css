@@ -18,8 +18,11 @@ body {
 
 
 #main-container {
-	padding: 20px;
+	padding-top: 20px;
 	background-color: #1C1B1E;
+	text-align: center;
+	margin-left: 70px;
+	margin-right: 70px;
 }
 
 #movie-container {
@@ -30,7 +33,8 @@ body {
 	border: 1px solid #f6f5f4;
 	border-radius: 8px;
 	padding-bottom: 20px;
-	margin: 20px;
+	margin: 30px 30px 30px 0;
+	text-align: center;
 }
 
 #movie-container:hover {
@@ -51,14 +55,6 @@ body {
 }
 
 #add-to-cart {
-	/* width: 125px;
-	height: 50px;
-	font-size: 16px;
- 	margin: 0 auto;
- 	margin-right: 10px;
- 	color: #f6f5f4;
- 	background-color: #1C1B1E;
- 	padding: 5px; */
 	width: 100px;
 	height: 40px;
 	font-size: 16px;
@@ -204,6 +200,31 @@ body {
 	
 }
 
+
+#failedSearch {
+	font-size: 30px;
+	font-weight: 500;
+	color: #f6f5f4;
+}
+
+#suggestion {
+	font-size: 20px;
+	color: inherit;
+	text-align: left;
+	line-height: 4.0em;
+	
+}
+
+#results {
+	font-size: 30px;
+	color: #f6f5f4;
+	text-align: left;
+	font-family: Montserrat, Serif;
+	font-weight: 600;
+	margin-bottom: 30px;
+	margin-top: 10px;
+}
+
 @media (max-width: 1920px) {
 	#add-to-cart {
 		margin: 0;
@@ -261,6 +282,14 @@ body {
 	
 	#movie-container {
 		width: 300px;
+	}
+	
+	#main-container {
+		margin: 0;
+	}
+	
+	#results, #suggestion, #failedSearch {
+		margin-left: 30px;
 	}
 	
 }

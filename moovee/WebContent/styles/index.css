@@ -13,7 +13,6 @@ body {
 	background-color: #1C1B1E;
 	text-align: center;
 	color: #f6f5f4;
-	margin: 0px;
 	overflow-x: hidden;
 }
 
@@ -53,7 +52,6 @@ h3 {
 	box-sizing: border-box;
 	width: 100%;
 	position: relative;
-	margin: auto;
 	display: flex;
 	background-color: black;
 	color: #f6f5f4;

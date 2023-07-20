@@ -1,1 +1,5 @@
 /build/
+/moovee/.classpath
+/moovee/WebContent/images/
+/moovee/WebContent/fonts
+/moovee/WebContent/scripts/jquery.js

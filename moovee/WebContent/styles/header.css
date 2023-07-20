@@ -14,7 +14,6 @@ body {
 	font-family: Montserrat, Serif;
 	text-align: center;
 	color: #84817F;
-	margin: 0px;
 }
 
 header {
@@ -23,9 +22,9 @@ header {
 	/* background-color: #3C333D; */
 	padding-top: 30px;
 	padding-bottom: 30px;
-	padding-left: 80px;
-	padding-right: 80px;
 	color: #f6f5f4;
+	padding-left: 70px;
+	padding-right: 70px;
 }
 
 #logo {

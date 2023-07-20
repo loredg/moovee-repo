@@ -42,8 +42,9 @@
 				href="<%=request.getContextPath()%>/contacts.jsp">Contacts</a>
 		</div>
 		<div id="header-right">
-			<form id="search-form" action="./Search" method="post">
-				<input type="search" id="search-bar-main" name="title"
+			<form id="search-form" action="./FilterSearch" method="post">
+			<input type="hidden" name="filter" value="titolo">
+				<input type="search" id="search-bar-main" name="filterValue"
 					placeholder="Type movie title...">
 				<button type="submit" class="right-buttons" id="search-main"></button>
 			</form>

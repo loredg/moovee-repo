@@ -57,7 +57,7 @@
 			</div>
 			<div id="slide-bottom">
 			<form action="./AddToCart" method="post" id="add-to-cart-form">
-				<input type="hidden" value="<%=movie.getId()%>">
+				<input type="hidden" value="<%=movie.getId()%>" name="add-to-cart">
 				<button type="submit" id="add-to-cart" class="scale">Add to cart</button>
 			</form>
 			<p id="price"><%=df.format(movie.getPrice())%>$</p>
