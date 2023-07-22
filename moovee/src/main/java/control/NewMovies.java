@@ -38,8 +38,8 @@ public class NewMovies extends HttpServlet {
 		}
 		
 		request.setAttribute("newMovies", newMovies);
-		RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/index.jsp");
-		dispatcher.forward(request, response);
+		 RequestDispatcher dispatcher = this.getServletContext().getRequestDispatcher("/index.jsp");
+		 dispatcher.forward(request, response);
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" import="java.util.*,model.Movie"%>
 
-<%
+<% 
 request.setAttribute("referer", "/admin/admin.jsp");
 Collection<?> movies = (Collection<?>) request.getAttribute("movies");
 if (movies == null) {
@@ -15,7 +15,7 @@ if (movies == null) {
 <head>
 <meta charset="ISO-8859-1">
 <link href="../styles/admin.css" type="text/css" rel="stylesheet" />
-<link rel="icon" href="images/windowlogo-light.png">
+<link rel="icon" href="../images/windowlogo-light.png">
 <title>Admin</title>
 </head>
 
@@ -33,7 +33,7 @@ if (movies == null) {
 	%>
 
 	<div id="movie">
-		<img src="../GetPicture?id=<%=movie.getId()%>"
+		<img src="../GetLandscapePicture?id=<%=movie.getId()%>"
 			onerror="this.src='./images/noimageavailable.jpg'"
 			style="width: 150px; height: 200px" alt="movie">
 		<div id="movie-deets">
@@ -61,9 +61,7 @@ if (movies == null) {
 			<br> <label for="price">Prezzo di vendita:</label> <input
 				type="number" name="price" required> <br> <label
 				for="qty">Copie disponibili alla vendita:</label> <input type="text"
-				name="qty" required> <br> Disponibile come: <br>
-			Blu ray: <input type="checkbox" name="blurayorDVD" value="Blu ray">
-			<br> DVD:<input type="checkbox" name="blurayorDVD" value="DVD"><br>
+				name="qty" required><br>
 			Copertina: <input type="file" name="poster"> <br>
 			<button type="submit">Aggiungi</button>
 			<button type="reset">Azzera</button>

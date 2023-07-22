@@ -61,7 +61,7 @@ public class AddToCart extends HttpServlet {
 		}
 		
 		if(toAdd != null) {
-			cart.addToCart(toAdd);
+			cart.addToCart(toAdd);	
 		}
 		
 		session.setAttribute("cart", cart);

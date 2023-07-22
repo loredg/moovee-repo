@@ -35,7 +35,7 @@ public class OrderDAO implements IBeanDAO<Order>{
 			
 			
 			//TODO: replace below with DAO
-			for(Movie m : order.getMovies()) {
+			for(Movie m : order.getMovies().keySet()) {
 				ps2 = connection.prepareStatement("INSERT INTO composto_da(idAccount, idFilm) VALUES(?, ?)");
 				ps2.setString(1, order.getUserId());
 				ps2.setString(2, m.getId());

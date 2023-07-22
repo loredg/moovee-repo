@@ -285,7 +285,8 @@ body {
 	}
 	
 	#main-container {
-		margin: 0;
+		margin-left: 30px;
+		margin-right: 30px;
 	}
 	
 	#results, #suggestion, #failedSearch {

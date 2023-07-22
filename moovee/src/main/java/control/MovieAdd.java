@@ -56,7 +56,7 @@ public class MovieAdd extends HttpServlet {
 				for(Part part : request.getParts()) {
 					String filename = part.getSubmittedFileName();
 					if(filename != null && !filename.equals("")) {
-						movie.setPosterStream(part.getInputStream());
+						movie.setLandscapePosterStream(part.getInputStream());
 					}
 				}
 				
@@ -70,6 +70,12 @@ public class MovieAdd extends HttpServlet {
 		}
 		
 		response.sendRedirect("./admin/admin.jsp");
+		
+		/*
+		 * RequestDispatcher dispatcher =
+		 * request.getServletContext().getRequestDispatcher("/admin/admin.jsp");
+		 * dispatcher.forward(request, response);
+		 */
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -67,3 +67,8 @@ function validateSignupForm(form) {
 		validateEmail(form.email) &&
 		validatePassword(form.password));
 }
+
+function validateLoginForm(form) {
+	return (validateEmail(form.email) &&
+		validatePassword(form.password));
+}

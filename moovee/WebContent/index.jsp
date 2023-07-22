@@ -7,6 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="styles/index.css" type="text/css" rel="stylesheet">
 <link rel="icon" href="images/windowlogo-light.png">
+<script src="scripts/slides.js" type="text/javascript"></script>
 <script src="scripts/scripts.js" type="text/javascript"></script>
 <title>moovee</title>
 </head>
@@ -15,9 +16,7 @@
 	<!-- TODO: add alert to confirm registration. Get attribute hasRegistered -->
 
 	<%@ include file="header.jsp"%>
-
 	<%
-	DecimalFormat df = new DecimalFormat("#.00");
 	Collection<?> newMovies = (Collection<?>) request.getAttribute("newMovies");
 	if (newMovies == null) {
 		request.getRequestDispatcher("./NewMovies").forward(request, response);
@@ -30,7 +29,7 @@
 			Movie movie = (Movie) it.next();
 	%>
 
-	<%
+	 <%
 	}
 	}
 	%>
@@ -38,6 +37,7 @@
 	<div id="slideshow-container">
 
 	<%
+	DecimalFormat df = new DecimalFormat("#.00");
 	request.setAttribute("referer", "/index.jsp");
 	Collection<?> movies = (Collection<?>) request.getAttribute("movies");
 	if (movies == null) {

@@ -37,14 +37,14 @@
 
 			<div class="login-form">
 				<form action="./login" method="post"
-					onsubmit="return validateForm()">
+					onsubmit="return validateLoginForm(this)">
 					<p>Email:</p>
 					<input type="email" required placeholder="your@email.com"
 						class="input" name="email" onchange="return validateEmail(this)" onblur="return notEmpty(this)">
 					<p class="error-message" id="email-error"></p>
 					<p>Password:</p>
 					<input type="password" required placeholder="Password"
-						class="input" name="password" onchange="validatePassword(this)" onblur="return notEmpty(this)">
+						class="input" name="password" onchange="return validatePassword(this)" onblur="return notEmpty(this)">
 					<p class="error-message" id="password-error"></p>
 					<div class="link">
 						Don't have an account? Sign up <a href="signup.jsp">here</a>!

@@ -18,8 +18,9 @@
 
 		<div id="sidenav">
 			<button id="closebtn" onclick="closeNav()">&times;</button>
-			<form id="search-form-side" action="<%=request.getContextPath()%>/Search" method="post">
-				<input type="search" id="search-bar-side" name="title"
+			<form id="search-form-side" action="<%=request.getContextPath()%>/FilterSearch" method="post">
+				<input type="hidden" name="filter" value="titolo">
+				<input type="search" id="search-bar-side" name="filterValue"
 					placeholder="Insert movie title...">
 				<button type="submit" class="right-buttons" id="search-side"></button>
 			</form>

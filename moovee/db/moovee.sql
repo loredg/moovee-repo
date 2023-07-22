@@ -5,7 +5,7 @@ create table Account
 (
 id int primary key not null AUTO_INCREMENT,
 username varchar(20) UNIQUE not null,
-email varchar(30) UNIQUE not null,
+email varchar(50) UNIQUE not null,
 password char(128) not null,
 nome varchar(30) not null,
 cognome varchar(30) not null,
@@ -23,7 +23,7 @@ foreign key(idAccount) references Account(id) on update cascade on delete cascad
 
 create table Film
 (
-id int primary key not null,
+id int primary key not null AUTO_INCREMENT,
 regista varchar(40) not null,
 genere varchar(20) not null,
 anno_uscita int not null,
@@ -31,17 +31,18 @@ durata_min integer not null,
 prezzo double not null,
 qta integer not null
 titolo varchar(50) not null,
-copertina longblob default null
+copertina_landscape longblob default NULL, 
+copertina longblob default NULL,
 data_aggiunta date not null
 );
 
 
 create table Composto_Da 
 (
-idFilm int not null,
+idFilm int not null AUTO_ICNREMENT,
 idOrdine int not null,
 primary key (idFilm, idOrdine),
-foreign key (idFilm) references Film(id) on update cascade on delete set null,
+foreign key (idFilm) references Film(id) on update cascade on delete cascade,
 foreign key (idOrdine) references Ordine(id) on update cascade on delete cascade
 );
 

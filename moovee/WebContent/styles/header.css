@@ -156,6 +156,7 @@ header {
 
 .active:hover {
 	border-radius: 15px;
+	border-bottom: none;
 	margin-bottom: 0;
 }
 

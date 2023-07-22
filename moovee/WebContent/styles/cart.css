@@ -5,9 +5,10 @@ h3 {
 	text-align: left;
 	font-size: 24px;
 	font-weight: 500;
-	border-bottom: 1px solid white;
+	border-bottom: 1px solid #f6f5f4;
 	padding: 10px;
 	margin-bottom: 40px;
+	display: block;
 }
 
 #main-container {
@@ -20,38 +21,50 @@ h3 {
 
 #side-left {
 	width: 65%;
-	display: inline;
 	text-align: left;
 	float: left;
 	background-color: #343338;
 	padding-left: 30px;
 	padding-right: 30px;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	margin-bottom: 30px;
 }
 
 #movie-poster {
-	width: 300px;
-	margin-bottom: 40px;
-	margin-right: 40px;
-	display: inline;
+	width: 400px;
+	display: inline-block;
 }
 
-#movie-title {
+.title-container {
+	display: inline;
+	text-align: left;
+}
+
+.movie-title {
 	display: inline;
 	color: #f6f5f4;
-	position: absolute;
+	padding-bottom: 10px;
+	font-weight: 500;
+	font-size: 24px;
+}
+
+.description {
+	font-size: 18px;
+	padding-left: 20px;
+	padding-bottom: 10px;
 }
 
 #side-right {
 	width: 30%;
-	display: inline;
-	float: right;
 	background-color: #343338;
-	padding-left: 10px;
-	padding-right: 10px;
+	padding: 50px;
+	display: inline-block;
+	vertical-align: top;
 }
 
 #remove-form {
-	display: inline;
+	display: inline-block;
 	position: relative;
 }
 
@@ -59,31 +72,269 @@ h3 {
 	background: transparent;
 	color: #f6f5f4;
 	font-weight: 500;
-	border: 1 px solid #f6f5f4;
+	border: 1px solid #f6f5f4;
 	font-family: Montserrat, Serif;
 	cursor: pointer;
-	vertical-align: middle;
 	justify-content: center;
 	align-items: center;
 	padding: 10px;	
-	font-size: 20px;
+	font-size: 18px;
 	border-radius: 8%/20%;
-	display: inline;
-	position: relative;
-	margin-bottom: 50px;
+	display: block;
+	text-align: center;	
+	margin-top: 37px;
 }
 
-#btn-image {
-	margin-right: 10px;
+#remove img {
+	vertical-align: middle;
+	width: 22px;
+	height: 22px;
 }
+
+.item-description {
+	display: inline-block;
+	width: auto;
+	position: absolute;
+	padding-left: 30px;
+}
+
+#qty-container {
+	display: inline;
+	float: right;
+
+}
+
+.dropdown-content {
+	border: none;
+	direction: ltr;
+	margin-left: 3px;
+	display: block;
+	font-family: Montserrat, Serif;
+}
+
+#movie-price {
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+	margin-top: 185px;
+}
+
+#left {
+	float: left;
+	text-align: left;
+	width: 50%;
+	margin-bottom: 5px;
+}
+
+#right {
+	float: right;
+	text-align: right;
+	width: 50%;
+	margin-bottom: 5px;
+}
+
+.primary-text {
+	color: #f6f5f4;
+	font-size: 20px;
+}
+
+#movie-poster {
+	border-radius: 0;
+}
+
+.secondary-text {
+	font-size: 18px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+#go-to-checkout {
+	border: none;
+	width: 100%;
+	height: 40px;
+	font-size: 20px;
+	font-weight: 500;
+	margin-top: 30px;
+	font-family: Montserrat, Serif;
+}
+
+#select-qty {
+	font-family: Montserrat, Serif;
+	font-weight: 500;
+	background-color: transparent;
+	color: #f6f5f4;
+	font-size: 18px;
+	border: 1px solid #f6f5f4;
+	padding: 6px;
+	border-radius: 8%/20%;
+	box-shadow: none;
+}
+
+#select-qty>option {
+	font-family: Montserrat;
+	font-size: 18px;
+	font-weight: 500;
+	background-color: #1c1b1e;
+	line-height: 2em;
+}
+
+#total-container {
+	width: 100%;
+	border-top: 1px solid #f6f5f4;
+	display: flex;
+	justify-content: space-between;
+	padding-top: 10px;
+}
+
+#empty-cart {
+	font-size: 40px;
+	padding: 30px;
+}
+
+#empty-cart a {
+	color: #f6f5f4;
+}
+
+
+#select-qty>option:hover {
+	background-color: #343338;
+}
+
 
 #qty:hover .chevron {
 	transform: rotate(180deg);
 }
 
-#qty {
-	display: inline;
-	margin-left: 20px;
-	font-weight: 500;
-	font-size: 20px;
+@media (max-width: 1557px) {
+	#side-left {
+		width: 100%;
+	}
+	
+	#side-right {
+	width: 50%; 
+	}
+}
+
+@media (max-width: 1072px) {
+	#movie-poster {
+		width: 200px;
+		vertical-align: middle;
+	}
+	
+	#remove {
+		margin: 0;
+		padding: 0;
+		font-size: 12px;
+		width: auto;
+		border: none;
+		border-radius: 0;
+		border-bottom: 1px solid white;
+	}
+	
+	#remove img {
+		display: none;
+	}
+	
+	.movie-title {
+		font-size: 16px;
+	}
+	
+	.description {
+		font-size: 14px;
+	}
+
+	.item-description > * {
+		padding-bottom: 5px;
+	}
+
+	#movie-price {
+		margin-top: 90px;
+		font-size: 14px;	
+	}
+	
+	#select-qty {
+		font-size: 14px;
+	}
+	
+	#side-left {
+		padding: 20px;
+	}
+	
+	.primary-text {
+		font-size: 14px;
+	}
+	
+	.secondary-text {
+		font-size: 12px;
+	}
+	
+	#movie-director {
+		display: none
+	}
+	
+}
+
+@media (max-width: 737px) {
+	
+	#movie-poster {
+		width: 175px;
+	}
+		
+	#select-qty {
+		font-size: 12px;
+		margin: 0 auto;
+	
+	}
+	
+	#movie-price {
+		text-align: center;
+		margin: 0 auto;
+		margin-top: 80px;	
+	}
+	
+	#side-right {
+		padding: 30px;
+	}
+
+	
+	#remove {
+		margin: 15px;
+	}
+	
+	.item-description {
+		padding-left: 10px;
+	}
+	
+	.item-description > * {
+		margin: 0;
+		padding-bottom: 0;
+	}
+	
+	
+	#go-to-checkout {
+		font-size: 16px;
+	}
+	
+	#empty-cart {
+		font-size: 26px;
+	}
+}
+
+@media (max-width: 528px) {
+	#movie-poster {
+		width: 150px;
+	}
+	
+	#movie-price {
+		margin-top: 65px;	
+	}
+	
+	.item-description {
+		padding-left: 10px;
+	}
+
+	#remove {
+		margin: 0;
+	}
+
 }

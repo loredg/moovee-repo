@@ -1,11 +1,17 @@
 package model;
 
 import java.io.InputStream;
+import java.io.Serializable;
+import java.util.Objects;
 
 import org.joda.time.LocalDate;
 
-public class Movie {
+public class Movie implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private String title;
 	private String director;
@@ -142,6 +148,23 @@ public class Movie {
 
 	public void setLandscapePosterBytes(byte[] landscapePosterBytes) {
 		this.landscapePosterBytes = landscapePosterBytes;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Movie other = (Movie) obj;
+		return Objects.equals(id, other.id);
 	}
 	
 }

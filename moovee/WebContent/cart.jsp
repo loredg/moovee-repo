@@ -9,72 +9,117 @@
 <link href="styles/search.css" rel="stylesheet" type="text/css">
 <link href="styles/cart.css" rel="stylesheet" type="text/css">
 <link rel="icon" href="images/windowlogo-light.png">
-<script src="../scripts/jquery.js" type="text/javascript"></script>
+<script src="scripts/jquery.js" type="text/javascript"></script>
+<script src="scripts/scripts.js" type="text/javascript"></script>
 <title>Moovee cart</title>
 </head>
-<body>
+<body onload="checkHeights()">
 
 	<%@ include file="header.jsp"%>
 
 	<div id="main-container">
 
-		<div id="side-left">
-			<h3>Moovee shopping bag</h3>
+		<h3>Moovee shopping bag</h3>
 
-			<%
-			if (cart == null || cart.getMovies().size() == 0) {
-			%>
+		<%
+		DecimalFormat df = new DecimalFormat("#.00");
+		if (cart == null || cart.getMovies().size() == 0) {
+		%>
 
+		<p id="empty-cart">
 			Your shopping cart is empty. <a href="./index.jsp">Click here</a> to
 			see what's available.
+		</p>
 
-			<%
-			} else {
-			for (Movie m : cart.getMovies()) {
-			%>
+		<!-- TODO: ADD slide of new movies	 -->
 
-			<%-- <div id="movie-container" class="scale">
+		<%
+		} else {
+		HashMap<Movie, Integer> moviesInCart = cart.getMovies();
+		Iterator<Movie> it = moviesInCart.keySet().iterator();
+		while (it.hasNext()) {
+			Movie m = it.next();
+			Integer qty = moviesInCart.get(m);
+		%>
+
+		<div id="side-left">
 			<a href="movie.jsp"><img
 				src="./GetLandscapePicture?id=<%=m.getId()%>"
 				onerror="this.src='./images/noimageavailable.jpg'" alt="movie"
 				id="movie-poster"></a>
-			<p id="movie-title"><%=m.getTitle()%></p>
-			<div id="container-bottom">
-				<div id="qty">
-					<button id="qty" class="dropdown">
-						Q.ty:
-						<%=Collections.frequency(cart.getMovies(), m)%>
-						<img src="images/chevron.svg" class="chevron" alt="">
-						<div class="dropdown-content">
-				
-						</div>
-					</button>
+			<div class="item-description">
+				<div class="title-container">
+					<p class="movie-title"><%=m.getTitle()%></p>
 				</div>
+				<p id="movie-director" class="description">
+					Directed by:
+					<%=m.getDirector()%></p>
+				<p id="movie-genre" class="description"><%=m.getGenre()%></p>
+				<p id="movie-year" class="description"><%=m.getReleaseYear()%></p>
+				<form id="remove-form" action="./RemoveFromCart" method="post">
+					<input type="hidden" name="removeFromCart" value="<%=m.getId()%>">
+					<button type="submit" id="remove">
+						<img src="images/bin.svg" alt="" id="btn-image"> Remove
+					</button>
+				</form>
 			</div>
-		</div> --%>
-<!-- TODO: group below in div -->
-			<a href="movie.jsp"><img
-				src="./GetLandscapePicture?id=<%=m.getId()%>"
-				onerror="this.src='./images/noimageavailable.jpg'" alt="movie"
-				id="movie-poster"></a>
-			<p id="movie-title"><%=m.getTitle()%></p>
-			<form id="remove-form" action="./RemoveFromCart" method="post">
-			<input type="hidden" name="remove-from-cart" value="<%=m.getId() %>">
-				<button type="submit" id="remove"><img src="images/bin.svg" alt="" id="btn-image">Remove</button>
-			</form>
-
-			<%
-			}
-			}
-			%>
-
+			<div id="qty-container" class="dropdown">
+				<form id="qty-form" action="./Checkout" method="post" >
+					<select id="select-qty" class="dropdown-content" name="movie-qty">
+						<option selected disabled hidden value="<%=qty%>"><%=qty%></option>
+						<option class="options" value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+					</select>
+				</form>
+				<p id="movie-price"><%=df.format(m.getPrice())%>$
+				</p>
+			</div>
 		</div>
 
+		<%
+		}
+		}
+		%>
+
+
+		<%
+		if (cart != null) {
+			if (!cart.getMovies().isEmpty()) {
+		%>
 		<div id="side-right">
-			<p>
-				Subtotal :
-				<%=cart.getTotalAmount()%></p>
+			<div id="left">
+				<p class="primary-text">Subtotal:</p>
+				<p class="secondary-text">Taxes:</p>
+				<p class="secondary-text">Shipping:</p>
+
+			</div>
+			<div id="right">
+				<p class="primary-text"><%=df.format(cart.getTotalAmount())%>$
+				</p>
+				<p class="secondary-text">0.00$</p>
+				<p class="secondary-text">0.00$</p>
+			</div>
+			<div id="total-container">
+				<p class="primary-text" id="total">Total:</p>
+				<p class="primary-text" id="total-number"><%=df.format(cart.getTotalAmount())%>$
+				</p>
+			</div>
+			<form id="checkout-form" action="./Checkout" method="post">
+				<button onclick="submitForms()" id="go-to-checkout">Go to checkout</button>
+			</form>
 		</div>
+		<%
+		}
+		}
+		%>
 
 	</div>
 

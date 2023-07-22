@@ -40,6 +40,11 @@ public class MovieDelete extends HttpServlet {
 		}
 		
 		response.sendRedirect("./admin/admin.jsp");
+		/*
+		 * RequestDispatcher dispatcher =
+		 * request.getServletContext().getRequestDispatcher("/admin/admin.jsp");
+		 * dispatcher.forward(request, response);
+		 */
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

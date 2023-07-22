@@ -26,7 +26,7 @@ public class MovieDAO implements IBeanDAO<Movie> {
 		java.sql.Date sqlDate = new java.sql.Date(today.toDateTimeAtStartOfDay(jodaTzUTC).getMillis());
 
 		String insertSQL = "INSERT INTO " + TABLE_NAME
-				+ "(regista, genere, anno_uscita, durata_min, prezzo, qta, titolo, data_aggiunta, copertina) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ "(regista, genere, anno_uscita, durata_min, prezzo, qta, titolo, data_aggiunta, copertina_landscape) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
@@ -40,7 +40,7 @@ public class MovieDAO implements IBeanDAO<Movie> {
 			ps.setDouble(5, movie.getPrice());
 			ps.setInt(6, movie.getQty());
 			ps.setDate(8, sqlDate);
-			ps.setBinaryStream(9, movie.getPosterStream());
+			ps.setBinaryStream(9, movie.getLandscapePosterStream());
 
 			ps.executeUpdate();
 			connection.commit();

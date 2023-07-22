@@ -1,16 +1,22 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
+import java.util.HashMap;
+
 import org.joda.time.LocalDate;
 
-public class Order {
+public class Order implements Serializable{
 	
-	private List<Movie> movies = new ArrayList<>();
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private HashMap<Movie, Integer> movies = new HashMap<>();
 	private String userId;
 	private Double total;
 	private LocalDate date;
 	private String orderId;
+	Boolean completed;
 	
 	public Order() {
 		super();
@@ -19,13 +25,14 @@ public class Order {
 		this.total = null;
 		this.date = null;
 		this.orderId = null;
+		this.completed = false;
 	}
 
-	public List<Movie> getMovies() {
+	public HashMap<Movie, Integer> getMovies() {
 		return movies;
 	}
 
-	public void setMovies(List<Movie> movies) {
+	public void setMovies(HashMap<Movie, Integer> movies) {
 		this.movies = movies;
 	}
 
@@ -61,6 +68,12 @@ public class Order {
 		this.orderId = orderId;
 	}
 	
+	public Boolean isCompleted() {
+		return completed;
+	}
 	
+	public void complete() {
+		this.completed = true;
+	}
 
 }

@@ -1,6 +1,7 @@
 package control;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import model.Cart;
 import model.Movie;
+import model.MovieDAO;
 
 /**
  * Servlet implementation class RemoveFromCart
@@ -19,7 +21,8 @@ import model.Movie;
 @WebServlet("/RemoveFromCart")
 public class RemoveFromCart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    
+	MovieDAO movieDAO = new MovieDAO();
 	
     public RemoveFromCart() {
         super();
@@ -42,8 +45,17 @@ public class RemoveFromCart extends HttpServlet {
 		HttpSession session = request.getSession();
 		Cart cart = (Cart) session.getAttribute("cart");
 		Movie toRemove = new Movie();
-		toRemove.setId(id);
-		cart.removeFromCart(toRemove);
+		try {
+			toRemove = movieDAO.doRetrieveByKey(id);
+		}catch (SQLException e) {
+			System.out.println("Error: " + e.getMessage());
+		}
+		if(toRemove != null) {
+			cart.removeFromCart(toRemove);
+		}
+		else {
+			System.out.println("toRemove is null");
+		}
 		RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/cart.jsp");
 		dispatcher.forward(request, response);
 	}
