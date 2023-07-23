@@ -2,8 +2,9 @@ package control;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Collection;
+import java.util.LinkedList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import model.Address;
 import model.AddressDAO;
+import model.UserDAO;
 
 /**
  * Servlet implementation class AddressAdd
@@ -21,6 +23,7 @@ public class AddressAdd extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	AddressDAO addressDAO = new AddressDAO();
+	UserDAO userDAO = new UserDAO();
 	
     public AddressAdd() {
         super();
@@ -34,7 +37,9 @@ public class AddressAdd extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Address address = new Address();
-		address.setUserId(request.getParameter("id"));
+		String id = request.getParameter("id");
+		System.out.println("ciao");
+		address.setUserId(id);
 		address.setAddress(request.getParameter("address"));
 		address.setZipCode(request.getParameter("zipCode"));
 		address.setTown(request.getParameter("town"));
@@ -45,10 +50,14 @@ public class AddressAdd extends HttpServlet {
 			addressDAO.doSave(address);
 		}catch(SQLException e) {
 			System.out.println("Error: " + e.getMessage());
+			return;
 		}
 		
-		RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/protected/payment.jsp");
-		dispatcher.forward(request, response);
+		Collection<Address> addresses = new LinkedList<>();
+		addresses.add(address);
+		
+		request.getSession().setAttribute("addresses", addresses);
+		response.sendRedirect("./protected/checkout.jsp");
 	}
 
 }

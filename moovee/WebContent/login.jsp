@@ -5,7 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <link rel="icon" href="images/windowlogo-light.png">
-<link href="styles/login-signup.css" rel="stylesheet" type="text/css">
+<link href="styles/forms.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="scripts/validateForm.js"></script>
 <title>Log In</title>
 </head>
@@ -35,7 +35,7 @@
 			}
 			%>
 
-			<div class="login-form">
+			<div class="form">
 				<form action="./login" method="post"
 					onsubmit="return validateLoginForm(this)">
 					<p>Email:</p>

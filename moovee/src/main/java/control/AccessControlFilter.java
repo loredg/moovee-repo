@@ -2,6 +2,9 @@ package control;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -26,6 +29,7 @@ public class AccessControlFilter extends HttpFilter implements Filter {
 		Boolean isAdmin = (Boolean) httpServletRequest.getSession().getAttribute("isAdmin");
 		Boolean isLogged = (Boolean) httpServletRequest.getSession().getAttribute("isLogged");
 		String path = httpServletRequest.getServletPath();
+		
 		if (path.contains("/admin/") && (isAdmin==null || !isAdmin)) {
 			httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/login.jsp");
 			return;

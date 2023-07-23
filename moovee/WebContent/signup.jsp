@@ -5,7 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <script src="scripts/validateForm.js" type="text/javascript"></script>
-<link href="styles/login-signup.css" rel="stylesheet" type="text/css">
+<link href="styles/forms.css" rel="stylesheet" type="text/css">
 <title>Sign up</title>
 </head>
 <body>

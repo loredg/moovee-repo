@@ -1,22 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"
-	import="java.util.*, model.User, model.Address"%>
+	import="java.util.*, model.User, model.Address, java.text.*"%>
 <!DOCTYPE html>
 <html lang="eng">
 <head>
 <meta charset="ISO-8859-1">
-<link rel="icon" href="images/windowlogo-light.png">
-<script src="../scripts/scripts.js" type="text/javascript"></script>
-<script
-	src="../scripts/jquery.js"
-	type="text/javascript"></script>
+<link rel="icon" href="../images/windowlogo-light.png">
+<link href="../styles/forms.css" rel="stylesheet" type="text/css">
+<link href="../styles/search.css" rel="stylesheet" type="text/css">
+<link href="../styles/cart.css" rel="stylesheet" type="text/css">
+<link href="../styles/checkout.css" rel="stylesheet" type="text/css">
+<script src="../scripts/jquery.js" type="text/javascript"></script>
+<script src="../scripts/validateForm.js" type="text/javascript"></script>
 <title>Checkout</title>
 </head>
 <body>
 
 	<%@ include file="../header.jsp"%>
-	
+
 	<%
+	DecimalFormat df = new DecimalFormat("#.00");
 	if (isLogged == null || isLogged == false) {
 	%>
 	You need to be logged in to proceed to checkout. Click
@@ -25,42 +28,108 @@
 	} else {
 	User user = (User) session.getAttribute("activeUser");
 	if (user != null) {
-		if (user.getAddresses() == null || user.getAddresses().size() == 0) {
+		Collection<?> addresses = (Collection<?>)request.getSession().getAttribute("addresses");
+		if (addresses == null || addresses.size() == 0) {
 	%>
 
-	<p>Seems like you don't have any addresses registered.</p>
-	<form action="../AddressAdd" method="post">
-		<input type="hidden" value="<%=user.getId()%>" name="id">
-		<br> Address: <input type="text" name="address"> <br>
-		Zip code: <input type="text" name="zipCode"> <br> Town: <input
-			type="text" name="town"> <br> Province: <input
-			type="text" name="province"> <br> Region: <input
-			type="text" name="region"> <br> State: <input
-			type="text" name="state"> <br>
-		<button type="submit">Add address</button>
-		<button type="reset">Reset</button>
-	</form>
+	<div class="main">
+
+		<div class="content">
+
+			<h2>Address</h2>
+
+			<p id="no-address" class="error">Seems like you don't have any
+				addresses registered.</p>
+			<div class="form">
+				<form action="../AddressAdd" method="post"
+					onsubmit="return validateAddressForm(this)">
+					<input type="hidden" value="<%=user.getId()%>" name="id">
+					<p>Address:</p>
+					<input type="text" required name="address" class="input"
+						onchange="return validateAddress(this)"
+						onblur="return notEmpty(this)">
+					<p class="error-message" id="address-error"></p>
+					<p>Zip code:</p>
+					<input required type="text" name="zipCode" class="input"
+						onchange="return validateZipCode(this)"
+						onblur="return notEmpty(this)">
+					<p class="error-message" id="zipCode-error"></p>
+					<p>Town:</p>
+					<input required type="text" name="town" class="input"
+						onchange="return validateText(this)"
+						onblur="return notEmpty(this)">
+					<p class="error-message" id="town-error"></p>
+					<p>Province:</p>
+					<input type="text" name="province" class="input"
+						onchange="return validateText(this)">
+					<p class="error-message" id="province-error"></p>
+					<p>Region:</p>
+					<input type="text" name="region" class="input"
+						onchange="return validateText(this)"
+						onblur="return notEmpty(this)">
+					<p class="error-message" id="region-error"></p>
+					<p>State:</p>
+					<input type="text" name="state" class="input"
+						onchange="return validateText(this)"
+						onblur="return notEmpty(this)">
+					<p class="error-message" id="state-error"></p>
+					<button type="submit" class="submit-button">Add address</button>
+				</form>
+			</div>
+		</div>
+	</div>
 
 	<%
 	} else {
-	List<Address> addresses = user.getAddresses();
-	for (Address a : user.getAddresses()) {
 	%>
-	<p>Please select the address you would like your order sent to:</p>
-	<form action="../Payment" method="post">
-		<input type="radio" class="address-radio-button"
-			value="<%=a.getAddressId()%>"><%=a.getAddress()%><br>
-		<button type="submit">Proceed to payment</button>
-	</form>
-	<%
-	}
-	}
-	}
-	}
-	%>
-	
-	<%@include file="../footer.jsp"%>
+	<div id="main-container">
+		<h3>Please select the address you would like your order sent to:</h3>
+		<%
+		for (Address a : user.getAddresses()) {
+		%>
+		<div id="side-left">
+			<input type="radio" name="address" class="address-radio-button"
+				value="<%=a.getAddressId()%>">
+			<div id="address-deets">
+				<label for="address" id="name"><%=user.getFname()%>
+					<%=user.getLname()%>,</label>
+				<label for="address" id="address"><%=a.getAddress()%>,</label>
+				<label for="address" id="zip-town"><%=a.getZipCode()%>,
+					<%=a.getTown()%>,</label>
+				<label for="address" id="state"><%=a.getState()%></label>
+			</div>
+		</div>
+		<%
+		}
+		}
+		}
+		}
+		%>
 
-<script>$(window).onload(fixFooter())</script>
+		<div id="side-right">
+			<div id="left">
+				<p class="primary-text">Subtotal:</p>
+				<p class="secondary-text">Taxes:</p>
+				<p class="secondary-text">Shipping:</p>
+			</div>
+			<div id="right">
+				<p class="primary-text"><%=df.format(cart.getTotalAmount())%>$
+				</p>
+				<p class="secondary-text">0.00$</p>
+				<p class="secondary-text">0.00$</p>
+			</div>
+			<div id="total-container">
+				<p class="primary-text" id="total">Total:</p>
+				<p class="primary-text" id="total-number"><%=df.format(cart.getTotalAmount())%>$
+				</p>
+			</div>
+			<form id="checkout-form" action="./Payment" method="post">
+				<button onclick="submitForms()" id="go-to-checkout">Go to
+					payment</button>
+			</form>
+		</div>
+	</div>
+
+	<%@include file="../footer.jsp"%>
 </body>
 </html>

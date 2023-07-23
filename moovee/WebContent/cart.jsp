@@ -18,10 +18,12 @@
 	<%@ include file="header.jsp"%>
 
 	<div id="main-container">
-
+	
+		<!-- TODO: add div for h3 and clearcart button -->
 		<h3>Moovee shopping bag</h3>
 
 		<%
+		request.setAttribute("referer", "/cart.jsp");
 		DecimalFormat df = new DecimalFormat("#.00");
 		if (cart == null || cart.getMovies().size() == 0) {
 		%>

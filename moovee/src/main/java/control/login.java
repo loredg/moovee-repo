@@ -44,6 +44,7 @@ public class login extends HttpServlet {
 		String email = request.getParameter("email");
 		String password = PasswordHashing.toHash(request.getParameter("password"));
 		User toMatch = null;
+		String referer = (String)request.getAttribute("referer");
 		RequestDispatcher dispatcherToLoginPage = request.getServletContext().getRequestDispatcher("/login.jsp");
 		List<String> errors = new ArrayList<>();
 		HttpSession session = request.getSession();

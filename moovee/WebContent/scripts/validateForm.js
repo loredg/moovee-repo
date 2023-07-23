@@ -72,3 +72,48 @@ function validateLoginForm(form) {
 	return (validateEmail(form.email) &&
 		validatePassword(form.password));
 }
+
+function validateAddress(input) {
+	let pattern = /^\w+[\w\s]+\w+$/;
+	console.log("ciao");
+	if (input.value.match(pattern)) {
+		input.classList.remove("wrong-input");
+		document.getElementById("address-error").innerHTML = "";
+		return true;
+	} else {
+		input.classList.add("wrong-input");
+		document.getElementById("address-error").innerHTML = "Address can only contain letters and numbers";
+		return false;
+	}
+}
+
+function validateZipCode(input) {
+	let pattern = /\d{5}/;
+	if (input.value.match(pattern)) {
+		input.classList.remove("wrong-input");
+		document.getElementById("zipCode-error").innerHTML = "";
+		return true;
+	} else {
+		input.classList.add("wrong-input");
+		document.getElementById("zipCode-error").innerHTML = "Zip code must be 5 digits";
+		return false;
+	}
+}
+
+function validateText(input) {
+	let pattern = /^[A-Za-z\s]*$/;
+	if (input.value.match(pattern)) {
+		input.classList.remove("wrong-input");
+		console.log(input.name)
+		document.getElementById(input.name + "-error").innerHTML = "";
+		return true;
+	} else {
+		input.classList.add("wrong-input");
+		document.getElementById(input.name + "-error").innerHTML = "Field can only contain letters and spaces.";
+		return false;
+	}
+}
+
+function validateAddressForm(form) {
+	return (validateAddress(form.address) && validateZipcode(form.zipCode) && validateText(form.town) && validateText(form.province) && validateText(form.region) && validateText(form.state));
+}

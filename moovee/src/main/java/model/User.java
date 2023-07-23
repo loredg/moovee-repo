@@ -17,9 +17,9 @@ public class User implements Serializable{
 	private String fname;
 	private String lname;
 	private boolean isAdmin;
-	private List<Address> addresses = new ArrayList<>();
-	private List<Order> orders = new ArrayList<>();
-	private List<CreditCard> cards = new ArrayList<>();
+	private List<Address> addresses;
+	private List<Order> orders;
+	private List<CreditCard> cards;
 	
 	
 	public User() {
@@ -30,9 +30,9 @@ public class User implements Serializable{
 		this.fname= null;
 		this.lname = null;
 		this.isAdmin = false;
-		this.addresses = null;
-		this.orders = null;
-		this.cards = null;
+		this.addresses = new ArrayList<>();
+		this.orders = new ArrayList<>();
+		this.cards = new ArrayList<>();
 	}
 
 	public String getId() {
@@ -122,7 +122,7 @@ public class User implements Serializable{
 	}
 	
 	public void addAddress(Address address) {
-		addresses.add(address);
+		this.addresses.add(address);
 	}
 
 	@Override

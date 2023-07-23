@@ -168,5 +168,38 @@ public class AddressDAO implements IBeanDAO<Address>{
 		}
 		return a;
 	}
+	
+	public synchronized Collection<Address> doRetrieveByUser(String id) throws SQLException {
+		Collection<Address> addresses = new LinkedList<>();
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			ps = connection.prepareStatement("SELECT * FROM indirizzo where userId = ?");
+			ps.setString(1, id);
+			
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Address a = new Address();
+				a.setAddressId(rs.getString("id"));
+				a.setAddress(rs.getString("via"));
+				a.setZipCode(rs.getString("cap"));
+				a.setTown(rs.getString("citta"));
+				a.setProvince(rs.getString("provincia"));
+				a.setRegion(rs.getString("regione"));
+				a.setState(rs.getString("stato"));
+				a.setUserId(id);
+				
+				addresses.add(a);
+			}
+		}finally {
+			try {
+				if(ps != null) {
+					ps.close();
+				}
+			}finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+		return addresses;
+	}
 
 }

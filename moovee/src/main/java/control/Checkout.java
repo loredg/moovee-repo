@@ -56,7 +56,6 @@ public class Checkout extends HttpServlet {
 		session.setAttribute("orderPending", order);
 		
 		response.sendRedirect("./protected/checkout.jsp");
-		return;
 	}
 
 }

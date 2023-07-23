@@ -1,7 +1,13 @@
 package model;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String userId;
 	private String address;
 	private String province;
@@ -102,6 +108,13 @@ public class Address {
 
 	public void setAddressId(String addressId) {
 		this.addressId = addressId;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Address [address=" + address + ", province=" + province + ", town=" + town + ", zipCode=" + zipCode
+				+ ", region=" + region + ", state=" + state + "]";
 	}
 	
 	
