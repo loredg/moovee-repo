@@ -11,21 +11,32 @@
 #title {
 	font-size: 60px;
 	text-align: center;
+	width: 100%;
+	border: 1px solid white;
+	padding-top: 30px;
+	margin-bottom: 30px;
+	vertical-align: middle;
+	width: 150%;
 }
 
 #description {
 	text-align: left;
-	font-size: 18px;
+	font-size: 16px;
 	line-height: 1.5em;
 	font-weight: 500;
+	margin-top: 30px;
+	width: 150%;
 }
 
 #secondary {
 	margin-top: 20px;
+	margin-bottom: 20px;
+	border: 1px solid white;
+	width: 130%;
 }
 
-#secondary  p{
-	display: inline;
+#secondary  p {
+	display: inline-block;
 	color: #84817f;
 	font-size: 18px;
 	font-weight: 500;
@@ -41,7 +52,7 @@
 	display: inline-block;
 	vertical-align: middle;
 	margin-bottom: 5px;
-}	
+}
 
 #details {
 	padding-top: 30px;
@@ -72,4 +83,186 @@ h3 {
 	padding-left: 15px;
 	margin-bottom: 20px;
 	max-width: 40%;
+}
+
+#description-bottom {
+	display: none;
+}
+
+@media ( max-width : 1600px) {
+	#slideshow-cointainer {
+		width: 100%;
+		height: auto;
+	}
+	#title {
+		padding-top: 30px;
+	}
+}
+
+@media ( max-width : 1440px) {
+	#title {
+		font-size: 35px;
+	}
+	#caption {
+		height: auto;
+	}
+	#add-to-cart {
+		width: 100px;
+		height: 40px;
+		font-size: 14px;
+	}
+}
+
+@media ( max-width : 1060px) {
+	#slideshow-container {
+		width: 100%;
+		height: auto;
+	}
+	#title {
+		font-size: 30px;
+		width: 130%;
+	}
+	#price {
+		font-size: 16px;
+	}
+	#more-info {
+		height: 40px;
+		width: 40px;
+	}
+	#slide-bottom {
+		padding-top: 250px;
+	}
+	#description {
+		font-size: 14px;
+	}
+	#lenght, #release-year, #genre {
+		font-size: 10px;
+	}
+	.secondary-text {
+		max-width: 70%;
+	}
+	@media ( max-width : 870px) {
+		#title {
+			font-size: 30px;
+		}
+		#secondary {
+			margin-top: 10px;
+		}
+		#secondary p {
+			font-size: 14px;
+		}
+		#slide-bottom {
+			padding-top: 180px;
+		}
+		#description {
+			margin: 0;
+		}
+	}
+	@media ( max-width : 768px) {
+		#description {
+			display: none;
+		}
+		#add-to-cart {
+			width: 75px;
+			height: 30px;
+			font-size: 12px;
+		}
+		#price {
+			font-size: 12px;
+		}
+		#more-info {
+			width: 20px;
+			height: 20px;
+		}
+		#title {
+			padding: 0;
+		}
+		#prev, #next {
+			padding: 10px;
+			font-size: 12px;
+		}
+		h3 {
+			font-size: 20px;
+		}
+		.primary-text {
+			font-size: 16px;
+		}
+		.secondary-text {
+			font-size: 14p;
+		}
+		#description-bottom {
+			display: block;
+		}
+		#secondary p  {
+			font-size: 12px;
+		}
+	}
+}
+
+@media ( max-width : 697px) {
+	#title {
+		font-size: 30px;
+	}
+	#slide-bottom {
+		padding-top: 140px;
+	}
+}
+
+@media ( max-width : 628px) {
+	#add-to-cart {
+		margin-right: -20px
+	}
+	#more-info {
+		margin-left: -20px;
+	}
+}
+
+@media ( max-width : 570px) {
+	#title {
+		font-size: 20px;
+		margin-top: 20px;
+	}
+	
+	#secondary {
+		margin-top: 40px;	
+		vertical-align: middle;
+	}
+	
+	#secondary p {
+		padding-left: 5px;
+		padding-right: 5px;	
+	}
+	
+}
+
+@media ( max-width : 550px) {
+	#more-info {
+		margin-left: -30px;
+	}
+	#price {
+		margin-right: -10px;
+	}
+	@media ( max-width : 480px) {
+		#price {
+			margin-right: -20px;
+		}
+	}
+	#secondary {
+		margin-top: 0px;	
+	}
+	
+	#title {
+		margin-bottom: 10px;
+		font-size: 16px;
+	}
+	
+	#slide-bottom {
+		padding-top: 100px;
+	}
+	
+	.secondary-text {
+	max-width: 100%;}
+	
+	
+
 }

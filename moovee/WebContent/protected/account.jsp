@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1" import="java.util.*, model.*"%>
 <!DOCTYPE html>
 <html lang="eng">
 <head>
@@ -9,6 +9,7 @@
 <link href="../styles/search.css" rel="stylesheet" type="text/css">
 <link href="../styles/cart.css" rel="stylesheet" type="text/css">
 <link href="../styles/checkout.css" rel="stylesheet" type="text/css">
+<link href="../styles/account.css" rel="stylesheet" type="text/css">
 <script src="../scripts/jquery.js" type="text/javascript"></script>
 <script src="../scripts/validateForm.js" type="text/javascript"></script>
 <title>Your moovee account</title>
@@ -62,6 +63,7 @@
 		<%
 	Collection<?> addresses = (Collection<?>) request.getAttribute("addresses");
 	request.setAttribute("referer", "/protected/account.jsp");
+	request.setAttribute("id", user.getId());
 	if (user != null) {
 		if (addresses == null) {
 			request.getServletContext().getRequestDispatcher("/RetrieveAddresses").forward(request, response);

@@ -25,7 +25,7 @@ import model.UserDAO;
 public class signup extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	IBeanDAO<User> userDAO = new UserDAO();
+	UserDAO userDAO = new UserDAO();
 
 	public signup() {
 		super();
@@ -84,12 +84,14 @@ public class signup extends HttpServlet {
 			//TODO: DELETE LINE
 			System.out.println("ciao user: " + username + " " + email);
 			userDAO.doSave(user);
+			user = userDAO.doRetrieveByEmail(user.getEmail());
 		} catch (SQLException e) {
 			e.getStackTrace();
 		}
 
 		session.setAttribute("hasLogged", true);
 		session.setAttribute("isLogged", true);
+		session.setAttribute("activeUser", user);
 		response.sendRedirect("./index.jsp");
 	}
 

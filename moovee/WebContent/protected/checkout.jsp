@@ -20,7 +20,7 @@
 	<%@ include file="../header.jsp"%>
 
 	<%
-	String referer = "./protected/checkout.jsp";
+	String referer = "/protected/checkout.jsp";
 	request.setAttribute("referer", referer);
 	DecimalFormat df = new DecimalFormat("#.00");
 	User user = (User) session.getAttribute("activeUser");

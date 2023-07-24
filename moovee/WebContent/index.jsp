@@ -63,7 +63,7 @@
 				<p id="price"><%=df.format(movie.getPrice())%>$
 				</p>
 				<form action="./FetchMovie" method="post">
-					<a href="movie.jsp" id="more-info" class="scale" onclick=""></a>
+					<a href="movie.jsp?id=<%=movie.getId()%>" id="more-info" class="scale" onclick=""></a>
 				</form>
 			</div>
 			<a href="movie.jsp?id=<%=movie.getId()%>"> <img
@@ -73,24 +73,6 @@
 			</a>
 		</div>
 
-		<%-- <div id="movie">
-		<img src="./GetPicture?id=<%=movie.getId()%>"
-			onerror="this.src='./images/noimageavailable.jpg'"
-			style="width: 150px; height: 200px" alt="movie">
-		<div id="movie-deets">
-			<label id="movie-title"><%=movie.getTitle()%></label> <br>
-			<form action="./AddToCart" method="post">
-				<input type="hidden" value="<%=movie.getId()%>" name="addToCart">
-				<%
-				if(movie.getQty() == 0) {
-				%>
-				<p>This movie is not available at the moment.</p>
-				<%}else { %>
-				<button type="submit">Add to cart</button>
-				<%}%>
-			</form>
-		</div>
-	</div> --%>
 		<%
 		}
 		index++;

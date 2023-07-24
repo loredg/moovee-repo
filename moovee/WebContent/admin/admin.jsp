@@ -70,7 +70,7 @@ if (movies == null) {
 		}
 		%>
 
-		<div id="orders">
+		<%-- <div id="orders">
 			<%
 			Collection<?> orders = (Collection<?>) request.getAttribute("orders");
 			if (orders == null) {
@@ -119,7 +119,7 @@ if (movies == null) {
 			%>
 		</div>
 
-	</div>
+	</div> --%>
 	<%@ include file="../footer.jsp"%>
 </body>
 </html>

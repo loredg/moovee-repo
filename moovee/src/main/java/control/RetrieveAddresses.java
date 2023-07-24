@@ -57,7 +57,7 @@ public class RetrieveAddresses extends HttpServlet {
 		 * dispatcher.forward(request, response);
 		 */
 		
-		RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/protected/checkout.jsp");
+		RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher(referer);
 		dispatcher.forward(request, response);
 	}
 

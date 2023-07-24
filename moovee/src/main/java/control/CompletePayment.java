@@ -66,28 +66,9 @@ public class CompletePayment extends HttpServlet {
 		} catch (SQLException e) {
 			System.out.println("Error: " + e.getMessage());
 		}
+		
+		request.getSession().removeAttribute("cart");
 
-		Collection<?> orders = null;
-		try {
-			orders = orderDAO.doRetrieveAll("data");
-		} catch (SQLException e) {
-			System.out.println("Error: " + e.getMessage());
-		}
-
-		Iterator<?> it = orders.iterator();
-		while (it.hasNext()) {
-			Order o = (Order) it.next();
-			for (Movie m : o.getMovies().keySet()) {
-				contains.setOrderId(order.getOrderId());
-				contains.setMovieId(m.getId());
-				contains.setQty(order.getMovies().get(m));
-				try {
-					containsDAO.doSave(contains);
-				} catch (SQLException e) {
-					System.out.println("Error: " + e.getMessage());
-				}
-			}
-		}
 
 		response.sendRedirect("./protected/orderComplete.jsp");
 	}

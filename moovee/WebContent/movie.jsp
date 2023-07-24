@@ -11,7 +11,7 @@
 <meta charset="ISO-8859-1">
 
 <%
-request.setAttribute("referer", "movie.jsp");
+request.setAttribute("referer", "/movie.jsp");
 DecimalFormat df = new DecimalFormat("#.00");
 String id = request.getParameter("id");
 Movie movie = (Movie) request.getAttribute("movie");
@@ -62,6 +62,8 @@ if (movie == null) {
 	<div id="details">
 		<h3>Details</h3>
 		<p id="director" class="primary-text">Director</p>
+		<p class="primary-text">Plot:a</p>
+		<p id="description-bottom" class="secondary-text"><%=movie.getPlot()%></p>
 		<p class="secondary-text"><%=movie.getDirector()%></p>
 		<p id="audio" class="primary-text">Audio language</p>
 		<p class="secondary-text">English, English [Audio Description],

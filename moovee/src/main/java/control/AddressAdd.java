@@ -31,14 +31,14 @@ public class AddressAdd extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		doPost(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Address address = new Address();
 		String id = request.getParameter("id");
-		System.out.println("ciao");
+		String referer = (String) request.getAttribute("referer");
+		System.out.println(id);
 		address.setUserId(id);
 		address.setAddress(request.getParameter("address"));
 		address.setZipCode(request.getParameter("zipCode"));
@@ -56,7 +56,13 @@ public class AddressAdd extends HttpServlet {
 		Collection<Address> addresses = new LinkedList<>();
 		addresses.add(address);
 		
-		response.sendRedirect("./protected/checkout.jsp");
-	}
+		
+		response.sendRedirect(referer);
+		
+		/*
+		 * request.getServletContext().getRequestDispatcher("/protected/account.jsp").
+		 * forward(request, response);
+		 */
+		 }
 
 }
