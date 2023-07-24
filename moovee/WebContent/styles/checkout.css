@@ -109,3 +109,31 @@ label {
 #logos {
 	float: right;
 }
+
+@media (max-width: 1369px) {
+	#main-container {
+		margin-left: 100px;
+		margin-right: 100px;
+	}
+	
+}
+
+@media (max-width: 761px) {
+	#main-container {
+		margin-left: 50px;
+		margin-right: 50px;
+	}
+	
+	#name, #address, #zip-town, #state {
+		font-size: 16px;
+	}
+	
+	.centered {
+		margin: 0;
+		width: 100%;
+	}
+	
+	
+	
+	
+}

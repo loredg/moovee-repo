@@ -67,7 +67,7 @@ int result = 0;
 		
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
-			ps = connection.prepareStatement("SELECT * FROM composto_da WHERE id = ?");
+			ps = connection.prepareStatement("SELECT * FROM composto_da WHERE idAccount = ?");
 			ps.setString(1, id);
 			rs = ps.executeQuery();
 			
@@ -120,5 +120,26 @@ int result = 0;
 			}
 		}
 		return containsList;
+	}
+	
+	public synchronized Collection<Contains> doRetrieveAllByOrder(String id) throws SQLException {
+		Collection<Contains> containsList = new LinkedList<>();
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			ps = connection.prepareStatement("SELECT * FROM composto_da WHERE idOrdine = ?");
+			ps.setString(1, id);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Contains contains = new Contains();
+				contains.setMovieId(rs.getString("idFilm"));
+				contains.setOrderId(rs.getString("idOrdine"));
+				contains.setQty(rs.getInt("qta"));
+				containsList.add(contains);
+			}
+		}finally {
+			DriverManagerConnectionPool.releaseConnection(connection);
+		}
+	return containsList;
 	}
 }

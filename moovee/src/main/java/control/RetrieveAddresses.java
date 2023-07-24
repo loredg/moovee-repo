@@ -51,7 +51,13 @@ public class RetrieveAddresses extends HttpServlet {
 		}
 		
 		request.setAttribute("addresses", addresses);
-		RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher(referer);
+		/*
+		 * RequestDispatcher dispatcher =
+		 * request.getServletContext().getRequestDispatcher(referer);
+		 * dispatcher.forward(request, response);
+		 */
+		
+		RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/protected/checkout.jsp");
 		dispatcher.forward(request, response);
 	}
 

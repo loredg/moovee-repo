@@ -28,8 +28,13 @@ public class DriverManagerConnectionPool {
 		String db = "moovee";
 		String username = "root";
 		String password = "BDsql2023!";
-		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+db, username, password);
+		Connection connection = null;
+		try {
+		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/"+db, username, password);
 		connection.setAutoCommit(false);
+		}catch(SQLException e ) {
+			System.out.println("Error:" + e.getMessage());
+		}
 		
 		return connection;
 	}

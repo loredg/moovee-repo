@@ -14,7 +14,7 @@
 <meta charset="ISO-8859-1">
 <title>Completed order</title>
 </head>
-<body onload="fixFooter()">
+<body>
 	<%@ include file="../header.jsp"%>
 
 	<div id="main-container">
