@@ -1,9 +1,11 @@
 package model;
 
+import org.joda.time.LocalDate;
+
 public class CreditCard {
 	
 	private String number;
-	private String expiration;
+	private LocalDate expiration;
 	private String cvc;
 	private String userId;
 	
@@ -23,11 +25,11 @@ public class CreditCard {
 		this.number = number;
 	}
 
-	public String getExpiration() {
+	public LocalDate getExpiration() {
 		return expiration;
 	}
 
-	public void setExpiration(String expiration) {
+	public void setExpiration(LocalDate expiration) {
 		this.expiration = expiration;
 	}
 

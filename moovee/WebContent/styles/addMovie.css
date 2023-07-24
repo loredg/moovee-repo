@@ -1,0 +1,10 @@
+@charset "ISO-8859-1";
+
+h3 {
+	text-align: center;
+	font-size: 30px;
+}
+
+.input {
+	height: 50px;
+}

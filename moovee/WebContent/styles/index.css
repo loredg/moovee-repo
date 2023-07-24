@@ -121,6 +121,7 @@ h3 {
 	padding-top: 140px;
 	text-align: center;
 	display: list-item;
+	list-style-type: none;
 	height: 40%;
 }
 
@@ -134,7 +135,7 @@ h3 {
 
 #add-to-cart {
 	background-color: #f6f5f4;
-	color: black;
+	color: #343338;
 	width: 150px;
 	height: 60px;
 	border-radius: 8%/20%;
@@ -197,6 +198,23 @@ h3 {
 @keyframes fade {
   from {opacity: .4}
   to {opacity: 1}
+}
+
+.horizontal-scroll-wrapper > div {
+  width: 100px;
+  height: 100px;
+}
+
+.horizontal-scroll-wrapper {
+  transform: rotate(-90deg);
+  transform-origin: right top;
+}
+
+.horizontal-scroll-wrapper {
+  width: 100px;
+  height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 @media ( max-width : 1600px) {

@@ -1,0 +1,15 @@
+@charset "ISO-8859-1";
+
+#success {
+	font-size: 35px;
+	color: #f6f5f4;
+	text-align: center;
+}
+
+#main-container > p {
+	margin-bottom: 50px;
+}
+
+a {
+	color: #f6f5f4;
+}

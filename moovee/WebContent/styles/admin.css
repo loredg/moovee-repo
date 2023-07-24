@@ -11,27 +11,62 @@
 }
 
 body {
-	font-family: Montserrat, Serif;
-	background-color: #f6f5f4;
-	text-align: center;
-	color: #84817F;
-	margin: 0px;
+	background-color: #1c1b1e;
 }
 
-#movie {
-	text-align: left;
-	border: 1px solid black;
-	padding: 10px;
-	float:left;
-	margin: 10px;
-	display: block;
+#top {
+	border-bottom: 2px solid #f6f5f4;
+	margin-bottom: 30px;
 }
 
-#movie-deets {
-	padding: 10px;
-	display: block;
+h1 {
+	color: #f6f5f4;
+	display: inline;
 }
 
-#add-movie {
-	display: block;
+#add {
+	background: url(../images/plus.svg) no-repeat center;
+	border-radius: 50%;
+	height: 40px;
+	width: 40px;
+	display: inline;
+	float: right;
+}
+
+#add:hover {
+	background-color: #84817F;
+}
+
+#movie-edit {
+	background: url(../images/edit.svg) no-repeat center;
+	border-radius: 50%;
+	height: 40px;
+	width: 40px;
+	display: inline-block;
+	margin-left: 10px;
+	vertical-align: middle;
+}
+
+#movie-edit:hover {
+	background-color: #84817F;
+}
+
+#delete-form {
+	display: inline;
+}
+
+#delete-movie-button {
+	background: url(../images/bin.svg) no-repeat center;
+	border-radius: 50%;
+	height: 40px;
+	width: 40px;
+	display: inline;
+	margin-left: 10px;
+	vertical-align: middle;
+	border: none;
+	cursor: pointer;
+}
+
+#delete-movie-button:hover {
+	background-color: #84817F;
 }

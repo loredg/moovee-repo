@@ -19,7 +19,7 @@ h3 {
 	border: none;
 }
 
-#side-left {
+.side-left {
 	width: 65%;
 	text-align: left;
 	float: left;
@@ -34,6 +34,7 @@ h3 {
 #movie-poster {
 	width: 400px;
 	display: inline-block;
+	border-radius: 0;
 }
 
 .title-container {
@@ -55,12 +56,13 @@ h3 {
 	padding-bottom: 10px;
 }
 
-#side-right {
+.side-right {
 	width: 30%;
 	background-color: #343338;
 	padding: 50px;
 	display: inline-block;
 	vertical-align: top;
+	margin-bottom: 30px;
 }
 
 #remove-form {
@@ -138,10 +140,6 @@ h3 {
 	font-size: 20px;
 }
 
-#movie-poster {
-	border-radius: 0;
-}
-
 .secondary-text {
 	font-size: 18px;
 	padding-left: 10px;
@@ -156,6 +154,7 @@ h3 {
 	font-weight: 500;
 	margin-top: 30px;
 	font-family: Montserrat, Serif;
+	color: #343338;
 }
 
 #select-qty {
@@ -206,11 +205,11 @@ h3 {
 }
 
 @media (max-width: 1557px) {
-	#side-left {
+	.side-left {
 		width: 100%;
 	}
 	
-	#side-right {
+	.side-right {
 	width: 50%; 
 	}
 }
@@ -256,7 +255,7 @@ h3 {
 		font-size: 14px;
 	}
 	
-	#side-left {
+	.side-left {
 		padding: 20px;
 	}
 	
@@ -271,6 +270,8 @@ h3 {
 	#movie-director {
 		display: none
 	}
+	
+	
 	
 }
 
@@ -292,7 +293,7 @@ h3 {
 		margin-top: 80px;	
 	}
 	
-	#side-right {
+	.side-right {
 		padding: 30px;
 	}
 

@@ -58,6 +58,7 @@ body {
 	width: 100px;
 	height: 40px;
 	font-size: 16px;
+	margin-right: 10px;
 }
 
 #form {
@@ -223,6 +224,41 @@ body {
 	font-weight: 600;
 	margin-bottom: 30px;
 	margin-top: 10px;
+}
+
+#movie-edit {
+	background: url(images/edit.svg) no-repeat center;
+	border-radius: 50%;
+	height: 40px;
+	width: 40px;
+	display: inline-block;
+	margin-left: 10px;
+	vertical-align: middle;
+}
+
+#movie-edit:hover {
+	background-color: #84817F;
+}
+
+
+#delete-form {
+	display: inline;
+}
+
+#delete-movie-button {
+	background: url(images/bin.svg) no-repeat center;
+	border-radius: 50%;
+	height: 40px;
+	width: 40px;
+	display: inline;
+	margin-left: 10px;
+	vertical-align: middle;
+	border: none;
+	cursor: pointer;
+}
+
+#delete-movie-button:hover {
+	background-color: #84817F;
 }
 
 @media (max-width: 1920px) {

@@ -16,6 +16,7 @@ public class Order implements Serializable{
 	private Double total;
 	private LocalDate date;
 	private String orderId;
+	private String addressId;
 	Boolean completed;
 	
 	public Order() {
@@ -26,6 +27,7 @@ public class Order implements Serializable{
 		this.date = null;
 		this.orderId = null;
 		this.completed = false;
+		this.setAddressId(null);
 	}
 
 	public HashMap<Movie, Integer> getMovies() {
@@ -74,6 +76,14 @@ public class Order implements Serializable{
 	
 	public void complete() {
 		this.completed = true;
+	}
+
+	public String getAddressId() {
+		return addressId;
+	}
+
+	public void setAddressId(String addressId) {
+		this.addressId = addressId;
 	}
 
 }

@@ -173,7 +173,7 @@ public class AddressDAO implements IBeanDAO<Address>{
 		Collection<Address> addresses = new LinkedList<>();
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
-			ps = connection.prepareStatement("SELECT * FROM indirizzo where userId = ?");
+			ps = connection.prepareStatement("SELECT * FROM indirizzo where idAccount = ?");
 			ps.setString(1, id);
 			
 			rs = ps.executeQuery();

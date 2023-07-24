@@ -18,6 +18,8 @@ id int primary key not null AUTO_INCREMENT,
 totale integer not null,
 data date not null
 idAccount int not null,
+idIndirizzo int not null,
+foreign key(idIndirizzo) references Indirizzo(id) on update cascade on delete cascade,
 foreign key(idAccount) references Account(id) on update cascade on delete cascade
 );
 
@@ -41,6 +43,7 @@ create table Composto_Da
 (
 idFilm int not null AUTO_ICNREMENT,
 idOrdine int not null,
+qta int not null;
 primary key (idFilm, idOrdine),
 foreign key (idFilm) references Film(id) on update cascade on delete cascade,
 foreign key (idOrdine) references Ordine(id) on update cascade on delete cascade

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import="java.util.*, model.Movie, java.text.*"%>
+	pageEncoding="ISO-8859-1"
+	import="java.util.*, model.Movie, java.text.*"%>
 <!DOCTYPE html>
 <html lang="eng">
 <head>
@@ -29,48 +30,52 @@
 			Movie movie = (Movie) it.next();
 	%>
 
-	 <%
+	<%
 	}
 	}
 	%>
 
 	<div id="slideshow-container">
 
-	<%
-	DecimalFormat df = new DecimalFormat("#.00");
-	request.setAttribute("referer", "/index.jsp");
-	Collection<?> movies = (Collection<?>) request.getAttribute("movies");
-	if (movies == null) {
-		request.getRequestDispatcher("./MovieDisplay").forward(request, response);
-		return;
-	}
-	if (movies != null && movies.size() > 0) {
-		Iterator<?> it = movies.iterator();
-		int index = 1;
-		while (it.hasNext()) {
-			Movie movie = (Movie) it.next();
-			if (movie.getQty() >= 0) {
-	%>
+		<%
+		DecimalFormat df = new DecimalFormat("#.00");
+		request.setAttribute("referer", "/index.jsp");
+		Collection<?> movies = (Collection<?>) request.getAttribute("movies");
+		if (movies == null) {
+			request.getRequestDispatcher("./MovieDisplay").forward(request, response);
+			return;
+		}
+		if (movies != null && movies.size() > 0) {
+			Iterator<?> it = movies.iterator();
+			int index = 1;
+			while (it.hasNext()) {
+				Movie movie = (Movie) it.next();
+				if (movie.getQty() >= 0) {
+		%>
 		<div class="movie-slide fade">
 			<div id="caption">
-			<p id="title"><%=movie.getTitle()%></p>
+				<p id="title"><%=movie.getTitle()%></p>
 			</div>
 			<div id="slide-bottom">
-			<form action="./AddToCart" method="post" id="add-to-cart-form">
-				<input type="hidden" value="<%=movie.getId()%>" name="add-to-cart">
-				<button type="submit" id="add-to-cart" class="scale">Add to cart</button>
-			</form>
-			<p id="price"><%=df.format(movie.getPrice())%>$</p>
-			<a href="#" id="more-info" class="scale"></a>
+				<form action="./AddToCart" method="post" id="add-to-cart-form">
+					<input type="hidden" value="<%=movie.getId()%>" name="add-to-cart">
+					<button type="submit" id="add-to-cart" class="scale">Add
+						to cart</button>
+				</form>
+				<p id="price"><%=df.format(movie.getPrice())%>$
+				</p>
+				<form action="./FetchMovie" method="post">
+					<a href="movie.jsp" id="more-info" class="scale" onclick=""></a>
+				</form>
 			</div>
-			<a href="movie.jsp">
-			<img src="./GetLandscapePicture?id=<%=movie.getId()%>"
-			onerror="this.src='./images/noimageavailable.jpg'"
-			alt="no image available" id="poster-slide">
+			<a href="movie.jsp?id=<%=movie.getId()%>"> <img
+				src="./GetLandscapePicture?id=<%=movie.getId()%>"
+				onerror="this.src='./images/noimageavailable.jpg'"
+				alt="no image available" id="poster-slide">
 			</a>
 		</div>
 
-	<%-- <div id="movie">
+		<%-- <div id="movie">
 		<img src="./GetPicture?id=<%=movie.getId()%>"
 			onerror="this.src='./images/noimageavailable.jpg'"
 			style="width: 150px; height: 200px" alt="movie">
@@ -88,16 +93,42 @@
 			</form>
 		</div>
 	</div> --%>
-	<%
-	}
-	index++;
-	}
-	}
-	%>
-	<a id="prev" onclick="plusSlide(-1)">&#10094;</a> <a id="next"
+		<%
+		}
+		index++;
+		}
+		}
+		%>
+		<a id="prev" onclick="plusSlide(-1)">&#10094;</a> <a id="next"
 			onclick="plusSlide(1)">&#10095;</a>
 
 	</div>
+<%-- 
+	<%
+	Collection<?> action = (Collection<?>) request.getAttribute("moviesSearched");
+	if (action == null) {
+		request.getServletContext().getRequestDispatcher("/FilterSearch?genere=action").forward(request, response);
+	}
+	if (!action.isEmpty()) {
+	%>
+	<div class="horizontal-scroll-wrapper squares">
+		<%
+		Iterator<?> it = action.iterator();
+		while (it.hasNext()) {
+			Movie m = (Movie) it.next();
+			if (m.getQty() > 0) {
+		%>
+		<div>
+			<img src="./GetLandscapePoster?id=<%=m.getId()%>">
+		</div>
+		<%
+		}
+		}
+		}
+		%>
+
+	</div> --%>
+
 
 	<%@ include file="footer.jsp"%>
 

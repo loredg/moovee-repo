@@ -40,9 +40,10 @@ public class MovieAdd extends HttpServlet {
 				String director = request.getParameter("director");
 				String genre = request.getParameter("genre");
 				Integer length = Integer.parseInt(request.getParameter("length"));
-				Integer release_year = Integer.parseInt(request.getParameter("release_year"));
+				Integer release_year = Integer.parseInt(request.getParameter("releaseYear"));
 				Double price = Double.parseDouble(request.getParameter("price"));
 				Integer qty = Integer.parseInt(request.getParameter("qty"));
+				String plot = request.getParameter("plot");
 				
 				Movie movie = new Movie();
 				movie.setTitle(title);
@@ -52,6 +53,7 @@ public class MovieAdd extends HttpServlet {
 				movie.setReleaseYear(release_year);
 				movie.setPrice(price);
 				movie.setQty(qty);
+				movie.setPlot(plot);
 				
 				for(Part part : request.getParts()) {
 					String filename = part.getSubmittedFileName();

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import="java.util.*, model.Cart"%>
+	pageEncoding="ISO-8859-1" import="java.util.*, model.Cart, model.User"%>
 <!DOCTYPE html>
 <html lang="eng">
 <head>
@@ -43,7 +43,7 @@
 				href="<%=request.getContextPath()%>/contacts.jsp">Contacts</a>
 		</div>
 		<div id="header-right">
-			<form id="search-form" action="./FilterSearch" method="post">
+			<form id="search-form" action="<%=request.getContextPath()%>/FilterSearch" method="post">
 			<input type="hidden" name="filter" value="titolo">
 				<input type="search" id="search-bar-main" name="filterValue"
 					placeholder="Type movie title...">
@@ -70,8 +70,9 @@
 				class="right-buttons" id="login" title="Log in"></a>
 			<%
 			} else {
+				User user = (User)request.getSession().getAttribute("activeUser");
 			%>
-			<a href="<%=request.getContextPath()%>/account.jsp"
+			<a href="<%=request.getContextPath()%>/protected/account.jsp"
 				class="right-buttons" id="account" title="Account"></a>
 			<%
 			}

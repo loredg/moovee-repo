@@ -25,6 +25,7 @@ public class Movie implements Serializable{
 	private byte[] posterBytes;
 	private InputStream landscapePosterStream;
 	private byte[] landscapePosterBytes;
+	private String plot;
 	
 	public Movie() {
 		this.id = null;
@@ -40,6 +41,7 @@ public class Movie implements Serializable{
 		this.posterBytes = null;
 		this.landscapePosterBytes = null;
 		this.landscapePosterStream = null;
+		this.plot = null;
 	}
 	
 	public String getTitle() {
@@ -165,6 +167,14 @@ public class Movie implements Serializable{
 			return false;
 		Movie other = (Movie) obj;
 		return Objects.equals(id, other.id);
+	}
+
+	public String getPlot() {
+		return plot;
+	}
+
+	public void setPlot(String plot) {
+		this.plot = plot;
 	}
 	
 }

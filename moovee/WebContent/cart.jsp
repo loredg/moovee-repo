@@ -11,6 +11,7 @@
 <link rel="icon" href="images/windowlogo-light.png">
 <script src="scripts/jquery.js" type="text/javascript"></script>
 <script src="scripts/scripts.js" type="text/javascript"></script>
+<script src="scripts/cart.js" type="text/javascript"></script>
 <title>Moovee cart</title>
 </head>
 <body onload="checkHeights()">
@@ -44,7 +45,7 @@
 			Integer qty = moviesInCart.get(m);
 		%>
 
-		<div id="side-left">
+		<div class="side-left">
 			<a href="movie.jsp"><img
 				src="./GetLandscapePicture?id=<%=m.getId()%>"
 				onerror="this.src='./images/noimageavailable.jpg'" alt="movie"
@@ -66,8 +67,9 @@
 				</form>
 			</div>
 			<div id="qty-container" class="dropdown">
-				<form id="qty-form" action="./Checkout" method="post" >
-					<select id="select-qty" class="dropdown-content" name="movie-qty">
+				<form id="qty-form" action="./ChangeQty" method="post">
+				<input type="hidden" name="movieID" value="<%=m.getId()%>">
+					<select id="select-qty" class="dropdown-content" name="movie-qty" onchange="this.form.submit()">
 						<option selected disabled hidden value="<%=qty%>"><%=qty%></option>
 						<option class="options" value="1">1</option>
 						<option value="2">2</option>
@@ -96,7 +98,7 @@
 		if (cart != null) {
 			if (!cart.getMovies().isEmpty()) {
 		%>
-		<div id="side-right">
+		<div class="side-right">
 			<div id="left">
 				<p class="primary-text">Subtotal:</p>
 				<p class="secondary-text">Taxes:</p>
@@ -115,7 +117,7 @@
 				</p>
 			</div>
 			<form id="checkout-form" action="./Checkout" method="post">
-				<button onclick="submitForms()" id="go-to-checkout">Go to checkout</button>
+				<button type="submit" id="go-to-checkout">Go to checkout</button>
 			</form>
 		</div>
 		<%

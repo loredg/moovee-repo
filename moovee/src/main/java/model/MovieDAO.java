@@ -26,7 +26,7 @@ public class MovieDAO implements IBeanDAO<Movie> {
 		java.sql.Date sqlDate = new java.sql.Date(today.toDateTimeAtStartOfDay(jodaTzUTC).getMillis());
 
 		String insertSQL = "INSERT INTO " + TABLE_NAME
-				+ "(regista, genere, anno_uscita, durata_min, prezzo, qta, titolo, data_aggiunta, copertina_landscape) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ "(regista, genere, anno_uscita, durata_min, prezzo, qta, titolo, data_aggiunta, copertina_landscape, trama) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
@@ -41,6 +41,7 @@ public class MovieDAO implements IBeanDAO<Movie> {
 			ps.setInt(6, movie.getQty());
 			ps.setDate(8, sqlDate);
 			ps.setBinaryStream(9, movie.getLandscapePosterStream());
+			ps.setString(10, movie.getPlot());
 
 			ps.executeUpdate();
 			connection.commit();
@@ -114,6 +115,7 @@ public class MovieDAO implements IBeanDAO<Movie> {
 				movie.setAddDate(new LocalDate(rs.getDate("data_aggiunta")));
 				movie.setPosterBytes(rs.getBytes("copertina"));
 				movie.setLandscapePosterBytes(rs.getBytes("copertina_landscape"));
+				movie.setPlot(rs.getString("trama"));
 			}
 		} finally {
 			try {
@@ -159,7 +161,8 @@ public class MovieDAO implements IBeanDAO<Movie> {
 				movie.setAddDate(new LocalDate(rs.getDate("data_aggiunta")));
 				movie.setPosterBytes(rs.getBytes("copertina"));
 				movie.setLandscapePosterBytes(rs.getBytes("copertina_landscape"));
-
+				movie.setPlot(rs.getString("trama"));
+				
 				movies.add(movie);
 			}
 		} finally {
@@ -200,7 +203,8 @@ public class MovieDAO implements IBeanDAO<Movie> {
 				movie.setPosterBytes(rs.getBytes("copertina"));
 				movie.setAddDate(new LocalDate(rs.getDate("data_aggiunta")));
 				movie.setLandscapePosterBytes(rs.getBytes("copertina_landscape"));
-
+				movie.setPlot(rs.getString("trama"));
+				
 				movies.add(movie);
 			}
 
@@ -261,7 +265,8 @@ public class MovieDAO implements IBeanDAO<Movie> {
 				movie.setAddDate(new LocalDate(rs.getDate("data_aggiunta")));
 				movie.setPosterBytes(rs.getBytes("copertina"));
 				movie.setLandscapePosterBytes(rs.getBytes("copertina_landscape"));
-
+				movie.setPlot(rs.getString("trama"));
+				
 				movies.add(movie);
 			}
 			
@@ -307,7 +312,8 @@ public class MovieDAO implements IBeanDAO<Movie> {
 				movie.setAddDate(new LocalDate(rs.getDate("data_aggiunta")));
 				movie.setPosterBytes(rs.getBytes("copertina"));
 				movie.setLandscapePosterBytes(rs.getBytes("copertina_landscape"));
-
+				movie.setPlot(rs.getString("trama"));
+				
 				movies.add(movie);
 			}
 			
@@ -321,6 +327,98 @@ public class MovieDAO implements IBeanDAO<Movie> {
 			}
 		}
 		return movies;
+	}
+	
+	public synchronized void updateColumn(String column, String value, String id) throws SQLException {
+		Connection connection = null;
+		PreparedStatement ps = null;
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			ps = connection.prepareStatement("UPDATE film SET " + column + " = ? WHERE id = ?");
+			ps.setString(1, value);
+			ps.setString(2,  id);
+			ps.executeUpdate();
+			connection.commit();
+			
+		}finally {
+			try {
+				if (ps != null) {
+					ps.close();
+				}
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
+	
+	public synchronized void updateCopertina(InputStream copertina, String id) throws SQLException {
+		Connection connection = null;
+		PreparedStatement ps = null;
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			ps = connection.prepareStatement("UPDATE film SET copertina = ? WHERE id = ?");
+			ps.setBinaryStream(1, copertina);
+			ps.setString(2,  id);
+			ps.executeUpdate();
+			connection.commit();
+			
+		}finally {
+			try {
+				if (ps != null) {
+					ps.close();
+				}
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
+	
+	public synchronized void updatePrice(Double price, String id) throws SQLException {
+		Connection connection = null;
+		PreparedStatement ps = null;
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			ps = connection.prepareStatement("UPDATE film SET prezzo = ? WHERE id = ?");
+			ps.setDouble(1, price);
+			ps.setString(2,  id);
+			ps.executeUpdate();
+			connection.commit();
+			
+		}finally {
+			try {
+				if (ps != null) {
+					ps.close();
+				}
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
+	
+	public synchronized void updateInt(String column, Integer n, String id) throws SQLException {
+		Connection connection = null;
+		PreparedStatement ps = null;
+		
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			ps = connection.prepareStatement("UPDATE film SET " + column + " = ? WHERE id = ?");
+			ps.setInt(1,  n);
+			ps.setString(2, id);
+			ps.executeUpdate();
+			connection.commit();
+			
+		}finally {
+			try {
+				if (ps != null) {
+					ps.close();
+				}
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
 	}
 
 }

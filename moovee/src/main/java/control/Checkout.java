@@ -1,8 +1,6 @@
 package control;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,7 +18,7 @@ import model.User;
 @WebServlet("/Checkout")
 public class Checkout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	
     public Checkout() {
         super();
     }
@@ -34,17 +32,10 @@ public class Checkout extends HttpServlet {
 		HttpSession session = request.getSession();
 		User activeUser = (User)session.getAttribute("activeUser");
 		Cart cart = (Cart) request.getSession().getAttribute("cart");
-		List<String> errors = new ArrayList<>();
 		
 		if(cart == null) {
 			System.out.println("Error: cart is null");
 			response.sendRedirect("index.jsp");
-			return;
-		}
-		
-		if(activeUser == null) {
-			errors.add("You must be logged in to proceed to checkout.");
-			response.sendRedirect("login.jsp");
 			return;
 		}
 		

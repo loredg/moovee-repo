@@ -90,6 +90,7 @@
 
 	<div id="main-container">
 		<%
+		Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
 		Collection<?> moviesSearched = (Collection<?>) request.getAttribute("moviesSearched");
 		if (moviesSearched == null || moviesSearched.isEmpty()) {
 		%>
@@ -120,6 +121,18 @@
 						to cart</button>
 					<p id="movie-price"><%=df.format(movie.getPrice())%>$
 					</p>
+					<%
+					if (isAdmin) {
+					%>
+					<a id="movie-edit" href="./admin/editMovie.jsp?id=?<%=movie.getId() %>"></a>
+					<form action="./MovieDelete" method="POST" id="delete-form">
+					<input type="hidden" name="action" value="delete">
+					<input type="hidden" name="delete_id" value="<%=movie.getId()%>">
+					<button type="submit" id="delete-movie-button"></button>
+					</form>
+					<%
+					}
+					%>
 				</form>
 			</div>
 		</div>

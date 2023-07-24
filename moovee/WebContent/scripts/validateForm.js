@@ -104,7 +104,6 @@ function validateText(input) {
 	let pattern = /^[A-Za-z\s]*$/;
 	if (input.value.match(pattern)) {
 		input.classList.remove("wrong-input");
-		console.log(input.name)
 		document.getElementById(input.name + "-error").innerHTML = "";
 		return true;
 	} else {
@@ -115,5 +114,49 @@ function validateText(input) {
 }
 
 function validateAddressForm(form) {
-	return (validateAddress(form.address) && validateZipcode(form.zipCode) && validateText(form.town) && validateText(form.province) && validateText(form.region) && validateText(form.state));
+	return (validateAddress(form.address) && validateZipCode(form.zipCode) && validateText(form.town) && validateText(form.province) && validateText(form.region) && validateText(form.state));
+}
+
+function validateCreditCardNumber(input) {
+	let pattern = /\b\d{4}[ -]?\d{4}[ -]?\d{4}[ -]?\d{4}\b/;
+	if (input.value.match(pattern)) {
+		input.classList.remove("wrong-input");
+		document.getElementById(input.name + "-error").innerHTML = "";
+		return true;
+	} else {
+		input.classList.add("wrong-input");
+		document.getElementById(input.name + "-error").innerHTML = "Credit card number must be 16 digits long. Only dashes and spaces are allowed.";
+		return false;
+	}
+}
+
+function validateCVC(input) {
+	let pattern = /[0-9]{3}/;
+	if (input.value.match(pattern)) {
+		input.classList.remove("wrong-input");
+		document.getElementById(input.name + "-error").innerHTML = "";
+		return true;
+	} else {
+		input.classList.add("wrong-input");
+		document.getElementById(input.name + "-error").innerHTML = "CVC must be three digits.";
+		return false;
+	}
+}
+
+function validateExpirationDate(input) {
+	let pattern = /^[0-9]{1,2}\/[0-9]{2}$/;
+	if (input.value.match(pattern)) {
+		input.classList.remove("wrong-input");
+		document.getElementById(input.name + "-error").innerHTML = "";
+		return true;
+	} else {
+		input.classList.add("wrong-input");
+		document.getElementById(input.name + "-error").innerHTML = "Expiration date must be in the format mm/yy.";
+		return false;
+	}
+}
+
+function validateCreditCardForm(form) {
+	return (validateCreditCardNumber(form.cardNumber) &&
+		validateCVC(form.cvc) && validateExpirationDate(form.expirationDate));
 }

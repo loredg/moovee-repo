@@ -18,30 +18,20 @@ public class OrderDAO implements IBeanDAO<Order>{
 
 	@Override
 	public void doSave(Order order) throws SQLException {
-		PreparedStatement ps2 = null;
 		final DateTimeZone jodaTzUTC = DateTimeZone.forID("UTC");
-		
 		LocalDate date = new LocalDate();
 		java.sql.Date sqlDate = new java.sql.Date(date.toDateTimeAtStartOfDay(jodaTzUTC).getMillis());
 
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
-			ps = connection.prepareStatement("INSERT INTO ordine(totale, data, idAccount) VALUES(?, ?, ?)");
+			ps = connection.prepareStatement("INSERT INTO ordine(totale, data, idAccount, idIndirizzo) VALUES(?, ?, ?, ?)");
 			
 			ps.setDouble(1, order.getTotal());
 			ps.setDate(2, sqlDate);
 			ps.setString(3, order.getUserId());
+			ps.setString(4, order.getAddressId());
 			ps.executeUpdate();
-			
-			
-			//TODO: replace below with DAO
-			for(Movie m : order.getMovies().keySet()) {
-				ps2 = connection.prepareStatement("INSERT INTO composto_da(idAccount, idFilm) VALUES(?, ?)");
-				ps2.setString(1, order.getUserId());
-				ps2.setString(2, m.getId());
-				ps2.executeUpdate();
-				connection.commit();
-			}
+		
 		}finally {
 			try {
 				if(ps != null) {
@@ -105,6 +95,7 @@ public class OrderDAO implements IBeanDAO<Order>{
 				order.setUserId(rs.getString("idAccount"));
 				order.setDate(new LocalDate(rs.getDate("data")));
 				order.setTotal(rs.getDouble("total"));
+				order.setAddressId(rs.getString("idIndirizzo"));
 			}
 		}finally {
 			try {
@@ -143,6 +134,7 @@ public class OrderDAO implements IBeanDAO<Order>{
 				o.setTotal(rs.getDouble("totale"));
 				o.setOrderId(rs.getString("id"));
 				o.setUserId("idAccount");
+				o.setAddressId(rs.getString("idIndirizzo"));
 				
 				orders.add(o);
 			}

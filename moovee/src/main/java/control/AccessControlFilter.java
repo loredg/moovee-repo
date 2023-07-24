@@ -38,6 +38,10 @@ public class AccessControlFilter extends HttpFilter implements Filter {
 			httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/login.jsp");
 			return;
 		}
+		else if(path.contains("Checkout") && (isLogged == null || !isLogged)) {
+			httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/login.jsp");
+			return;
+		}
 		//TODO: add restrictions to checkout, payment and account page, put in folder protected
 		
 		chain.doFilter(request, response);

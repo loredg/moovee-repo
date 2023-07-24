@@ -70,5 +70,18 @@ public class Cart implements Serializable {
 			this.setTotalAmount(this.getTotalAmount() - (movie.getPrice() * qty));
 		}
 	}
+	
+	public void changeQty(Movie m, Integer qty) {
+		this.getMovies().put(m, qty);
+		Double total = 0.0;
+		int n = 0;
+		for(Movie movie : movies.keySet()) {
+			int q = movies.get(movie);
+			total += movie.getPrice() * q;
+			n += q; 
+		}
+		this.setTotalAmount(total);
+		this.setNumberOfMovies(n);
+	}
 
 }

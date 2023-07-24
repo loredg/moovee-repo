@@ -14,9 +14,9 @@
      <div class="container">
       <div class="row">
         <div class="footer-col">
-          <h4>Company</h4>
+          <h4>About us</h4>
           <ul>
-            <li><a href="#">About us</a></li>
+            <li><a href="#">What's moovee?</a></li>
             <li><a href="#">Our services</a></li>
             <li><a href="#">Privacy policy</a></li>
             <li><a href="#">Affiliate program</a></li>
@@ -35,10 +35,10 @@
         <div class="footer-col">
           <h4>Online shop</h4>
           <ul>
-            <li><a href="#">Watch</a></li>
-            <li><a href="#">Bag</a></li>
-            <li><a href="#">Shoes</a></li>
-            <li><a href="#">Dress</a></li>
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Crime</a></li>
+            <li><a href="#">Drama</a></li>
+            <li><a href="#">Comedy</a></li>
           </ul>
         </div>
         <div class="footer-col">

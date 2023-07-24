@@ -2,14 +2,21 @@
 
 #address-deets {
 	display: inline-block;
-	margin-left: 30px;
-	border: 1px solid red;
+	margin-left: 50px;
+}
+
+#name, #address, #zip-town, #state {
+	font-size: 24px;
 }
 
 .address-radio-button {
-	/* margin-top: 40px; */
-	position: fixed;
-	vertical-align: middle
+	position: absolute;
+	margin-top: 40px;
+}
+
+.centered {
+	margin: 0 auto;
+	width: 60%;
 }
 
 label {
@@ -22,4 +29,83 @@ label {
 #main-container {
 	margin-left: 400px;
 	margin-right: 400px;
+}
+
+.form-container {
+	width: 60%;
+	background-color: #343338;
+	padding: 70px;
+	margin: 0 auto;
+}
+
+.input {
+	height: 55px;
+}
+
+
+#no-address {
+	font-size: 30px;
+	text-align: center;
+}
+
+.same-line-left {
+	width: 45%;
+	float: left;
+	margin-right: 10px;
+}
+
+.same-line-right {
+	width: 45%;
+	float: right;
+	margin-left: 10px;
+}
+
+.same-line-left .input {
+	width: 100%;
+}
+
+.same-line-right .input {
+	width: 100%;
+	right: 0;
+}
+
+.error-message:empty::before {
+  content:"";
+  display:inline-block;
+}
+
+.submit-button {
+	width: 100%;
+	color: #343338;
+	background-color: #f6f5f4;
+	border-radius: 0;
+}
+
+#shipping, #taxes, #subtotal-number {
+	text-align: right;
+}
+
+#payment-options-container {
+	padding: 30px;
+}
+
+#payment-options {
+	color: #f6f5f4;
+	font-size: 20px;
+	margin-bottom: 20px;
+}
+
+.card-logo {
+	width: 50px;
+	height: auto;
+	margin-right: 20px;
+}
+
+#credit-card-logo {
+	vertical-align: middle;
+	margin-right: 8px;
+}
+
+#logos {
+	float: right;
 }

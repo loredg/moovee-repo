@@ -56,7 +56,6 @@ public class AddressAdd extends HttpServlet {
 		Collection<Address> addresses = new LinkedList<>();
 		addresses.add(address);
 		
-		request.getSession().setAttribute("addresses", addresses);
 		response.sendRedirect("./protected/checkout.jsp");
 	}
 

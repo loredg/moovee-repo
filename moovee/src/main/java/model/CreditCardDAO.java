@@ -7,20 +7,26 @@ import java.sql.SQLException;
 import java.util.Collection;
 import java.util.LinkedList;
 
+import org.joda.time.DateTimeZone;
+import org.joda.time.LocalDate;
+
 public class CreditCardDAO implements IBeanDAO<CreditCard>{
 	
 	Connection connection = null;
 	PreparedStatement ps = null;
 	ResultSet rs = null;
+	final DateTimeZone jodaTzUTC = DateTimeZone.forID("UTC");
 
 	@Override
 	public void doSave(CreditCard bean) throws SQLException {
+		
+		java.sql.Date sqlDate = new java.sql.Date(bean.getExpiration().toDateTimeAtStartOfDay(jodaTzUTC).getMillis());
 		
 		try {
 			connection = DriverManagerConnectionPool.getConnection();
 			ps = connection.prepareStatement("INSERT INTO CartaDiPagamento(numero, scadenza, cvc, idAccount) VALUES(?, ?, ?, ?)");
 			ps.setString(1, bean.getNumber());
-			ps.setString(2, bean.getExpiration());
+			ps.setDate(2, sqlDate);
 			ps.setString(3, bean.getCvc());
 			ps.setString(4, bean.getUserId());
 			ps.executeUpdate();
@@ -67,7 +73,7 @@ public class CreditCardDAO implements IBeanDAO<CreditCard>{
 			rs = ps.executeQuery();
 			while(rs.next()) {
 				card.setNumber(rs.getString("numero"));
-				card.setExpiration(rs.getString("scadenza"));
+				card.setExpiration(new LocalDate(rs.getDate("scadenza")));
 				card.setCvc(rs.getString("cvc"));
 				card.setUserId(rs.getString("idAccount"));
 			}
@@ -98,7 +104,7 @@ public class CreditCardDAO implements IBeanDAO<CreditCard>{
 				CreditCard card = new CreditCard();
 				card.setUserId(rs.getString("idAccount"));
 				card.setNumber(rs.getString("numero"));
-				card.setExpiration(rs.getString("scadenza"));
+				card.setExpiration(new LocalDate(rs.getDate("scadenza")));
 				cards.add(card);
 			}
 		}finally {
@@ -112,5 +118,33 @@ public class CreditCardDAO implements IBeanDAO<CreditCard>{
 		}
 		return cards;
 	}
+	
+public synchronized Collection<CreditCard> doRetrieveByUser(String id) throws SQLException {
+	Collection<CreditCard> cards = new LinkedList<>();
+	try {
+		connection = DriverManagerConnectionPool.getConnection();
+		ps = connection.prepareStatement("SELECT * FROM CartaDiPagamento where idAccount = ?");
+		ps.setString(1, id);
+		
+		rs = ps.executeQuery();
+		while(rs.next()) {
+			CreditCard card = new CreditCard();
+			card.setUserId(rs.getString("idAccount"));
+			card.setNumber(rs.getString("numero"));
+			card.setExpiration(new LocalDate(rs.getDate("scadenza")));
+	
+			cards.add(card);
+		}
+	}finally {
+		try {
+			if(ps != null) {
+				ps.close();
+			}
+		}finally {
+			DriverManagerConnectionPool.releaseConnection(connection);
+		}
+	}
+	return cards;
+}
 
 }
