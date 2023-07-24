@@ -14,8 +14,6 @@
 </head>
 <body onload="showSlides(0); showSlidesAuto(); setActive('home');">
 
-	<!-- TODO: add alert to confirm registration. Get attribute hasRegistered -->
-
 	<%@ include file="header.jsp"%>
 	<%
 	Collection<?> newMovies = (Collection<?>) request.getAttribute("newMovies");

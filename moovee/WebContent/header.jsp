@@ -10,7 +10,7 @@
 	type="text/javascript"></script>
 <link href="<%=request.getContextPath()%>/styles/header.css"
 	rel="stylesheet" type="text/css">
-<title>${param.title}</title>
+<title></title>
 </head>
 <body>
 

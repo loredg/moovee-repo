@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1"
 	import="java.util.*, model.User, model.CreditCard, java.text.*"%>
 <!DOCTYPE html>
-<html>
+<html lang="eng">
 <head>
 <meta charset="ISO-8859-1">
 <link rel="icon" href="../images/windowlogo-light.png">

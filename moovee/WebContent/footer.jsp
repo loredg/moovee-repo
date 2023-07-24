@@ -6,7 +6,7 @@
 <meta charset="ISO-8859-1">
 <script src="<%=request.getContextPath()%>/scripts/jquery.js" type="text/javascript"></script>
 <link href="<%=request.getContextPath()%>/styles/footer.css" rel="stylesheet" type="text/css">
-<title>${param.pageTitle}</title>
+<title></title>
 </head>
 <body>
 
