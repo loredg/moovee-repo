@@ -56,12 +56,12 @@
 				<form action="./FilterSearch" method="post">
 				<input type="hidden" name="filter" value="anno_uscita">
 				<ul>
-					<li class="dropdown-options"><button type="submit" class="submit-button" name="filterValue" value="197">1970s</button></li>
-					<li class="dropdown-options"><button type="submit" class="submit-button" name="filterValue" value="198">1980s</button></li>
-					<li class="dropdown-options"><button type="submit" class="submit-button" name="filterValue" value="199">1990s</button></li>
-					<li class="dropdown-options"><button type="submit" class="submit-button" name="filterValue" value="200">2000s</button></li>
-					<li class="dropdown-options"><button type="submit" class="submit-button" name="filterValue" value="201">2010s</button></li>
-					<li class="dropdown-options"><button type="submit" class="submit-button" name="filterValue" value="202">2020s</button></li>
+					<li class="dropdown-options"><button type="submit" class="submit-button" name="filterValue" value="1970">1970s</button></li>
+					<li class="dropdown-options"><button type="submit" class="submit-button" name="filterValue" value="1980">1980s</button></li>
+					<li class="dropdown-options"><button type="submit" class="submit-button" name="filterValue" value="1990">1990s</button></li>
+					<li class="dropdown-options"><button type="submit" class="submit-button" name="filterValue" value="2000">2000s</button></li>
+					<li class="dropdown-options"><button type="submit" class="submit-button" name="filterValue" value="2010">2010s</button></li>
+					<li class="dropdown-options"><button type="submit" class="submit-button" name="filterValue" value="2020">2020s</button></li>
 				</ul>
 				</form>
 			</div>
@@ -94,10 +94,7 @@
 		Collection<?> moviesSearched = (Collection<?>) request.getAttribute("moviesSearched");
 		if (moviesSearched == null || moviesSearched.isEmpty()) {
 		%>
-		<p id="failedSearch">Sorry, your search hasn't produced any results :(</p>
-		<p id="suggestion">Here is something else you might be interested in: </p>
-		<!-- TODO: ADD NEW MOVIES -->
-		<%
+		<p id="failedSearch">Sorry, your search hasn't produced any results :(</p>		<%
 		} else {
 			%>
 		<p id="results">Results: </p>
@@ -122,6 +119,7 @@
 					<p id="movie-price"><%=df.format(movie.getPrice())%>$
 					</p>
 					<%
+					if(isAdmin != null) {
 					if (isAdmin) {
 					%>
 					<a id="movie-edit" href="./admin/editMovie.jsp?id=?<%=movie.getId() %>"></a>
@@ -131,6 +129,7 @@
 					<button type="submit" id="delete-movie-button"></button>
 					</form>
 					<%
+					}
 					}
 					%>
 				</form>

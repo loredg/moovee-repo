@@ -165,5 +165,25 @@ public class UserDAO implements IBeanDAO<User>{
 		}
 		return user;
 	}
+	
+	public synchronized void updateCredentials(String credential, String value, String id) throws SQLException {
+		try {
+			connection = DriverManagerConnectionPool.getConnection();
+			ps = connection.prepareStatement("UPDATE account set " + credential + " = ? WHERE id = ?" );
+			ps.setString(1, value);
+			ps.setString(2, id);
+			ps.executeUpdate();
+			connection.commit();
+			
+		}finally {
+			try {
+				if(ps != null) {
+					ps.close();
+				}
+			}finally {
+				DriverManagerConnectionPool.releaseConnection(connection);
+			}
+		}
+	}
 
 } 

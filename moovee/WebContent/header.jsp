@@ -72,9 +72,15 @@
 			} else {
 				User user = (User)request.getSession().getAttribute("activeUser");
 			%>
-			<a href="<%=request.getContextPath()%>/protected/account.jsp"
+			<a href="<%=request.getContextPath()%>/protected/userPage.jsp"
 				class="right-buttons" id="account" title="Account"></a>
+				<%
+					Boolean isAdmin = (Boolean)session.getAttribute("isAdmin");
+					if(isAdmin != null && isAdmin) {
+				%>
+				<a href="<%=request.getContextPath() %>/admin/admin.jsp" class="right-buttons" id="admin-page" title="admin"></a>
 			<%
+					}
 			}
 			%>
 		</div>

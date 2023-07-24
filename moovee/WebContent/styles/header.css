@@ -85,8 +85,12 @@ header {
 	background: url(../images/search-light.svg) no-repeat center;
 	text-indent: -99999999px;
 }
+ 
+#admin-page {
+	background: url(../images/user-plus.svg) no-repeat center;
+}
 
-#cart:hover, #dropbtn:hover, #search-main:hover, #search-side:hover, #login:hover {
+#cart:hover, #dropbtn:hover, #search-main:hover, #search-side:hover, #login:hover, #admin-page:hover {
 	background-color: #84817F;
 }
 

@@ -70,56 +70,8 @@ if (movies == null) {
 		}
 		%>
 
-		<%-- <div id="orders">
-			<%
-			Collection<?> orders = (Collection<?>) request.getAttribute("orders");
-			if (orders == null) {
-				request.getServletContext().getRequestDispatcher("/FetchOrders");
-				return;
-			}
-			if (!orders.isEmpty()) {
-				Iterator<?> it = orders.iterator();
-				Order o = (Order) it.next();
-			%>
-			<div id="order-container">
-				<p id="order-number">
-					Order number:
-					<%=o.getOrderId() %></p>
-				<%
-					User user = (User)request.getAttribute("user");
-					if(user == null) {
-						request.getServletContext().getRequestDispatcher("/FetchUser?id=" + o.getOrderId()).forward(request, response);
-					}
-				%>
-				<p id="user">
-					Made by:
-					<%=user.getFname() %>
-					<%=user.getLname() %></p>
-				<p id="contains">Contains:</p>
-				<div id="movies-in-order">
-					<%
-					Collection<?> moviesInOrder = (Collection<?>)request.getAttribute("moviesInOrder");
-					if(moviesInOrder == null) {
-						request.getServletContext().getRequestDispatcher("/FetchMovies?id=" + o.getOrderId()).forward(request, response);
-					}
-					if(!moviesInOrder.isEmpty()) {
-						Iterator<?> i = moviesInOrder.iterator();
-						while(i.hasNext()) {
-							Movie m = (Movie) i.next();
-							%>
-							<p id="title"><%=m.getTitle() %></p>
-							<%
-						}
-					}
-					%>
-				</div>
-			</div>
-			<%
-			}
-			%>
-		</div>
+		
 
-	</div> --%>
 	<%@ include file="../footer.jsp"%>
 </body>
 </html>

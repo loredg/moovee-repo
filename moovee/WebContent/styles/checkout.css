@@ -110,6 +110,10 @@ label {
 	float: right;
 }
 
+.form-container {
+	margin-bottom: 30px;
+}
+
 @media (max-width: 1369px) {
 	#main-container {
 		margin-left: 100px;

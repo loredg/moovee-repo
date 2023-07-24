@@ -37,8 +37,8 @@ public class AddressAdd extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Address address = new Address();
 		String id = request.getParameter("id");
-		String referer = (String) request.getAttribute("referer");
-		System.out.println(id);
+		String referer = (String) request.getParameter("referer");
+		System.out.println(referer);
 		address.setUserId(id);
 		address.setAddress(request.getParameter("address"));
 		address.setZipCode(request.getParameter("zipCode"));
@@ -53,11 +53,7 @@ public class AddressAdd extends HttpServlet {
 			return;
 		}
 		
-		Collection<Address> addresses = new LinkedList<>();
-		addresses.add(address);
-		
-		
-		response.sendRedirect(referer);
+		response.sendRedirect("."+referer);
 		
 		/*
 		 * request.getServletContext().getRequestDispatcher("/protected/account.jsp").

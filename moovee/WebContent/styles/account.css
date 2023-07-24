@@ -1,5 +1,51 @@
 @charset "ISO-8859-1";
 
+
+#top-container{
+	border-bottom: 2px solid #f6f5f4;
+	width: 100%;
+}
+
+h3{
+	display: inline;
+	border-bottom: none;
+}
+
+#logout {
+	border-style: solid;
+	color: #1c1b1e;
+	background-color: #f6f5f4;
+	width: 100px;
+	height: 35px;
+	border-radius: 8%/20%;
+	margin-bottom: 3px;
+	font-size: 14px;
+	font-weight: 500;
+	cursor: pointer;
+	margin-left: 100px;
+}
+
+#logout-form {
+	display: inline;
+	right: 0;
+}
+
+.form-container {
+	margin-bottom: 30px;
+	width: 100%;
+}
+
+#address-add-heading {
+	border-bottom: 2px solid #f6f5f4;
+	display: block;
+	margin-bottom: 30px;
+}
+
+.error-message:empty::before {
+  content:"";
+  display:inline-block;
+}
+
 @media (max-width: 1100px) {
 	#main-container {
 		margin-left: 100px;

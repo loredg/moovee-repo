@@ -66,7 +66,7 @@ public class signup extends HttpServlet {
 				if (u.getEmail().equals(email)) {
 					errors.add("This email is already linked to an existing account. Please log in.");
 					request.setAttribute("errors", errors);
-					response.sendRedirect("/login.jsp");
+					request.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
 					return;
 				}
 			}
